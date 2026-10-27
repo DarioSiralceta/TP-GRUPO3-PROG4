@@ -15,6 +15,13 @@
 <p><strong>Asiento:</strong> @Model.NumeroAsiento</p>
 <p><strong>Identificador de prueba:</strong> @Model.SolicitudId</p>
 
+<a asp-controller="Reservas"
+   asp-action="Seguimiento"
+   asp-route-solicitudId="@Model.SolicitudId"
+   class="btn btn-success">
+    Consultar estado
+</a>
+
 <a asp-controller="Eventos"
    asp-action="Index"
    class="btn btn-primary">

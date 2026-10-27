@@ -1,0 +1,51 @@
+@model Availability.Web.Models.SeguimientoViewModel?
+
+@{
+    ViewData["Title"] = "Seguimiento";
+}
+
+<h1>Seguimiento de solicitud</h1>
+
+<p>Ingresá el identificador de prueba para consultar su estado.</p>
+
+<div class="alert alert-warning">
+    Las solicitudes son simuladas y se borran al reiniciar la aplicación.
+</div>
+
+<form asp-controller="Reservas" asp-action="Seguimiento" method="get">
+    <div class="mb-3">
+        <label for="solicitudId" class="form-label">
+            Identificador de solicitud
+        </label>
+
+        <input type="text"
+               id="solicitudId"
+               name="solicitudId"
+               class="form-control"
+               required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Consultar
+    </button>
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger mt-3">
+        @ViewBag.Error
+    </div>
+}
+
+@if (Model != null)
+{
+    <div class="card mt-4">
+        <div class="card-body">
+            <h2 class="card-title">Resultado de la consulta</h2>
+            <p><strong>Identificador:</strong> @Model.SolicitudId</p>
+            <p><strong>Evento:</strong> @Model.NombreEvento</p>
+            <p><strong>Asiento:</strong> @Model.NumeroAsiento</p>
+            <p><strong>Estado simulado:</strong> @Model.Estado</p>
+        </div>
+    </div>
+}

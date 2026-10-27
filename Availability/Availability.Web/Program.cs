@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<AsientosService>();
 builder.Services.AddScoped<EventosService>();
+builder.Services.AddSingleton<SolicitudesService>();
 
 var app = builder.Build();
 

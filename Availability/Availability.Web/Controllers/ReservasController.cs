@@ -8,13 +8,16 @@ public class ReservasController : Controller
 {
     private readonly EventosService _eventosService;
     private readonly AsientosService _asientosService;
+    private readonly SolicitudesService _solicitudesService;
 
     public ReservasController(
         EventosService eventosService,
-        AsientosService asientosService)
+        AsientosService asientosService,
+        SolicitudesService solicitudesService)
     {
         _eventosService = eventosService;
         _asientosService = asientosService;
+        _solicitudesService = solicitudesService;
     }
 
     [HttpGet]
@@ -64,16 +67,43 @@ public class ReservasController : Controller
             return BadRequest("El asiento no existe o no está disponible.");
         }
 
+        var solicitud = _solicitudesService.CrearSolicitud(
+            evento.Nombre,
+            asiento.Numero);
+
         var modelo = new SolicitudReservaViewModel
         {
             EventoId = evento.Id,
             NombreEvento = evento.Nombre,
             NumeroAsiento = asiento.Numero,
-
-            // Identificador de prueba: no se registra una reserva real.
-            SolicitudId = Guid.NewGuid()
+            SolicitudId = solicitud.SolicitudId
         };
 
         return View("Recibida", modelo);
+    }
+
+    [HttpGet]
+    public IActionResult Seguimiento(string? solicitudId)
+    {
+        if (string.IsNullOrWhiteSpace(solicitudId))
+        {
+            return View();
+        }
+
+        if (!Guid.TryParse(solicitudId, out var id))
+        {
+            ViewBag.Error = "Ingresá un identificador válido.";
+            return View();
+        }
+
+        var solicitud = _solicitudesService.ObtenerPorId(id);
+
+        if (solicitud == null)
+        {
+            ViewBag.Error = "No se encontró una solicitud con ese identificador.";
+            return View();
+        }
+
+        return View(solicitud);
     }
 }
