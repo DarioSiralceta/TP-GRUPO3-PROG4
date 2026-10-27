@@ -1,0 +1,35 @@
+@model List<Availability.Web.Models.AsientoViewModel>
+
+@{
+    ViewData["Title"] = "Asientos";
+}
+
+<h1>Disponibilidad de asientos</h1>
+<p>Datos de ejemplo para probar la pantalla.</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Asiento</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var asiento in Model)
+        {
+            <tr>
+                <td>@asiento.Numero</td>
+                <td>
+                    @if (asiento.Disponible)
+                    {
+                        <span class="text-success">Disponible</span>
+                    }
+                    else
+                    {
+                        <span class="text-danger">Ocupado</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
