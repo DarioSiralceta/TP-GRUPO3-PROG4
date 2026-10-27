@@ -19,6 +19,7 @@
         <tr>
             <th>Asiento</th>
             <th>Estado</th>
+            <th>Acción</th>
         </tr>
     </thead>
     <tbody>
@@ -34,6 +35,18 @@
                     else
                     {
                         <span class="text-danger">Ocupado</span>
+                    }
+                </td>
+                <td>
+                    @if (asiento.Disponible)
+                    {
+                        <a asp-controller="Reservas"
+                           asp-action="Solicitar"
+                           asp-route-eventoId="@ViewBag.EventoId"
+                           asp-route-numeroAsiento="@asiento.Numero"
+                           class="btn btn-primary btn-sm">
+                            Solicitar reserva
+                        </a>
                     }
                 </td>
             </tr>

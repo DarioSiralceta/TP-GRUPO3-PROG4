@@ -28,6 +28,7 @@ public class AsientosController : Controller
         var asientos = _asientosService.ObtenerAsientos();
 
         ViewBag.NombreEvento = evento.Nombre;
+        ViewBag.EventoId = evento.Id;
 
         return View(asientos);
     }
