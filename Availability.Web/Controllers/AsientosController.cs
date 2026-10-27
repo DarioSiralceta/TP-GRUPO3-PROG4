@@ -1,19 +1,33 @@
-using Availability.Web.Models;
+using Availability.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Availability.Web.Controllers;
 
 public class AsientosController : Controller
 {
-    public IActionResult Index()
+    private readonly AsientosService _asientosService;
+    private readonly EventosService _eventosService;
+
+    public AsientosController(
+        AsientosService asientosService,
+        EventosService eventosService)
     {
-        var asientos = new List<AsientoViewModel>
+        _asientosService = asientosService;
+        _eventosService = eventosService;
+    }
+
+    public IActionResult Index(int eventoId)
+    {
+        var evento = _eventosService.ObtenerPorId(eventoId);
+
+        if (evento == null)
         {
-            new() { Numero = 1, Disponible = true },
-            new() { Numero = 2, Disponible = false },
-            new() { Numero = 3, Disponible = true },
-            new() { Numero = 4, Disponible = true }
-        };
+            return NotFound("El evento no existe.");
+        }
+
+        var asientos = _asientosService.ObtenerAsientos();
+
+        ViewBag.NombreEvento = evento.Nombre;
 
         return View(asientos);
     }

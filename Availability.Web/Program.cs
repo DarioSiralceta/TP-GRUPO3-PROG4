@@ -1,7 +1,11 @@
+using Availability.Web.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<AsientosService>();
+builder.Services.AddScoped<EventosService>();
 
 var app = builder.Build();
 
