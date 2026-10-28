@@ -10,6 +10,7 @@ using Booking.Service.DTOs;
 using Booking.Service.Services.Payment;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Npgsql;
 
 namespace Booking.Service.Services;
 
@@ -22,8 +23,8 @@ public interface IBookingService
 }
 
 /// <summary>
-/// Implementación del servicio de negocio para Booking siguiendo el patrón N-Layer y Dominio Anémico.
-/// La lógica de negocio y orquestación del flujo de reservas reside en esta capa de servicio.
+/// Business service implementation for Booking following N-Layer architecture and Anemic Domain.
+/// Handles seat validation, retention lifecycle, expiration, and payment orchestration.
 /// </summary>
 public class BookingService : IBookingService
 {
@@ -45,7 +46,7 @@ public class BookingService : IBookingService
     {
         var bookings = await _context.Bookings.ToListAsync();
         
-        // Evaluar reservas retenidas vencidas
+        // Evaluate expired retentions
         var now = DateTime.UtcNow;
         bool hasChanges = false;
         foreach (var b in bookings)
@@ -73,7 +74,7 @@ public class BookingService : IBookingService
             return null;
         }
 
-        // Regla de negocio 8: Vencimiento de retención
+        // Domain rule 8: Expired retention transitions to Vencida
         if (booking.Status == "Retenida" && booking.ExpiresAt <= DateTime.UtcNow)
         {
             booking.Status = "Vencida";
@@ -85,6 +86,25 @@ public class BookingService : IBookingService
     
     public async Task<BookingEntity> CreateRetentionAsync(string eventId, string seatId, string userId)
     {
+        var now = DateTime.UtcNow;
+
+        // Eagerly release any expired retentions for this seat
+        var expiredBookings = await _context.Bookings
+            .Where(b => b.EventId == eventId
+                     && b.SeatId == seatId
+                     && b.Status == "Retenida"
+                     && b.ExpiresAt <= now)
+            .ToListAsync();
+
+        if (expiredBookings.Count > 0)
+        {
+            foreach (var b in expiredBookings)
+            {
+                b.Status = "Vencida";
+            }
+            await _context.SaveChangesAsync();
+        }
+
         var booking = new BookingEntity
         {
             Id = Guid.NewGuid(),
@@ -92,8 +112,8 @@ public class BookingService : IBookingService
             SeatId = seatId,
             UserId = userId,
             Status = "Retenida",
-            ExpiresAt = DateTime.UtcNow.AddMinutes(2),
-            CreatedAt = DateTime.UtcNow
+            ExpiresAt = now.AddMinutes(2),
+            CreatedAt = now
         };
 
         _context.Bookings.Add(booking);
@@ -102,11 +122,12 @@ public class BookingService : IBookingService
     }
 
     /// <summary>
-    /// Procesa el mensaje recibido desde Availability a través de Azure Service Bus.
-    /// Pasos del flujo:
-    /// 4. Procesamiento: Verifica si el asiento está libre. Si está libre crea reserva "Retenida", si está ocupado la rechaza ("Rechazada").
-    /// 5. Cobro: Llama por gRPC a Payment para cobrar la reserva retenida.
-    /// 6. Resultado: Según la respuesta de Payment, Booking confirma ("Confirmada") o rechaza ("Rechazada").
+    /// Processes reservation request messages received from Availability via Azure Service Bus.
+    /// Flow steps:
+    /// 4. Processing: Checks if the seat is free. If free, creates 'Retenida' booking. If occupied, creates 'Rechazada'.
+    ///    Guaranteed at DB level via PostgreSQL Partial Unique Index: IX_bookings_EventId_SeatId_Active.
+    /// 5. Payment: Calls Payment via gRPC to charge the retained booking.
+    /// 6. Result: Confirms ('Confirmada') or rejects ('Rechazada', reason: 'Pago fallido') based on Payment result.
     /// </summary>
     public async Task<BookingEntity> ProcessReservationRequestAsync(
         ReservationRequestedMessage request, 
@@ -114,17 +135,37 @@ public class BookingService : IBookingService
     {
         var now = DateTime.UtcNow;
 
-        // 1. Idempotencia: Verificar si el RequestId ya fue procesado previamente
+        // 1. Idempotency: Verify whether RequestId has already been processed
         var existingBooking = await _context.Bookings.FirstOrDefaultAsync(b => b.Id == request.RequestId, cancellationToken);
         if (existingBooking != null)
         {
-            _logger.LogInformation("Solicitud {RequestId} ya existe con estado {Status}. Retornando entidad existente.",
+            _logger.LogInformation("Request {RequestId} already processed with status {Status}. Returning existing record.",
                 request.RequestId, existingBooking.Status);
             return existingBooking;
         }
 
-        // 2. Verificar disponibilidad del asiento
-        // Regla: "Un asiento está ocupado mientras tenga una reserva retenida o confirmada. En cualquier otro estado, el asiento vuelve a estar disponible."
+        // 2. Eagerly release expired retentions for this seat so the partial unique index does not block re-booking
+        var expiredBookings = await _context.Bookings
+            .Where(b => b.EventId == request.EventId
+                     && b.SeatId == request.SeatId
+                     && b.Status == "Retenida"
+                     && b.ExpiresAt <= now)
+            .ToListAsync(cancellationToken);
+
+        if (expiredBookings.Count > 0)
+        {
+            _logger.LogInformation("Releasing {Count} expired retention(s) for Seat {SeatId} in Event {EventId}.",
+                expiredBookings.Count, request.SeatId, request.EventId);
+
+            foreach (var b in expiredBookings)
+            {
+                b.Status = "Vencida";
+            }
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        // 3. Application-level check: Verify seat availability
+        // Rule: "A seat is occupied while it has a Retenida (unexpired) or Confirmada booking."
         var isOccupied = await _context.Bookings.AnyAsync(b =>
             b.EventId == request.EventId &&
             b.SeatId == request.SeatId &&
@@ -133,7 +174,7 @@ public class BookingService : IBookingService
 
         if (isOccupied)
         {
-            _logger.LogWarning("Asiento {SeatId} en Evento {EventId} ya está ocupado. Rechazando reserva {RequestId}.",
+            _logger.LogWarning("Seat {SeatId} in Event {EventId} is already occupied. Rejecting reservation {RequestId}.",
                 request.SeatId, request.EventId, request.RequestId);
 
             var rejectedBooking = new BookingEntity
@@ -141,7 +182,7 @@ public class BookingService : IBookingService
                 Id = request.RequestId,
                 EventId = request.EventId,
                 SeatId = request.SeatId,
-                UserId = request.UserId ?? "anonimo",
+                UserId = request.UserId ?? "anonymous",
                 Status = "Rechazada",
                 RejectionReason = "Asiento ocupado",
                 ExpiresAt = now,
@@ -153,8 +194,8 @@ public class BookingService : IBookingService
             return rejectedBooking;
         }
 
-        // 3. Asiento libre: Crear reserva en estado "Retenida"
-        _logger.LogInformation("Asiento {SeatId} libre. Creando reserva Retenida para RequestId {RequestId}.",
+        // 4. Seat free: Attempt to create retention
+        _logger.LogInformation("Seat {SeatId} is available. Creating 'Retenida' booking for RequestId {RequestId}.",
             request.SeatId, request.RequestId);
 
         var booking = new BookingEntity
@@ -162,35 +203,63 @@ public class BookingService : IBookingService
             Id = request.RequestId,
             EventId = request.EventId,
             SeatId = request.SeatId,
-            UserId = request.UserId ?? "anonimo",
+            UserId = request.UserId ?? "anonymous",
             Status = "Retenida",
-            ExpiresAt = now.AddMinutes(2), // Tiempo de retención para cobrar
+            ExpiresAt = now.AddMinutes(2), // 2-minute retention window
             CreatedAt = now
         };
 
-        _context.Bookings.Add(booking);
-        await _context.SaveChangesAsync(cancellationToken);
+        try
+        {
+            _context.Bookings.Add(booking);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+        catch (DbUpdateException ex) when (ex.InnerException is PostgresException pgEx && pgEx.SqlState == "23505")
+        {
+            // Concurrency race condition detected: another replica reserved the seat at the exact same millisecond.
+            // The PostgreSQL partial unique index IX_bookings_EventId_SeatId_Active caught the collision atomically.
+            _logger.LogWarning("Database partial unique constraint caught concurrent booking collision for Seat {SeatId}. Rejecting RequestId {RequestId}.",
+                request.SeatId, request.RequestId);
 
-        // 4. Paso 5 del flujo: Llamar a Payment (vía gRPC) para cobrar la reserva retenida
-        _logger.LogInformation("Iniciando cobro a Payment para reserva {BookingId}...", booking.Id);
+            _context.Entry(booking).State = EntityState.Detached;
+
+            var rejectedBooking = new BookingEntity
+            {
+                Id = request.RequestId,
+                EventId = request.EventId,
+                SeatId = request.SeatId,
+                UserId = request.UserId ?? "anonymous",
+                Status = "Rechazada",
+                RejectionReason = "Asiento ocupado",
+                ExpiresAt = now,
+                CreatedAt = now
+            };
+
+            _context.Bookings.Add(rejectedBooking);
+            await _context.SaveChangesAsync(cancellationToken);
+            return rejectedBooking;
+        }
+
+        // 5. Flow step 5: Call Payment service via gRPC
+        _logger.LogInformation("Initiating payment for booking {BookingId}...", booking.Id);
         var paymentResult = await _paymentServiceClient.ProcessPaymentAsync(
             booking.Id, 
             booking.UserId, 
-            15000.00m, // Monto estimado o configurable
+            15000.00m,
             cancellationToken);
 
-        // 5. Paso 6 del flujo: Actualizar resultado según cobro
+        // 6. Flow step 6: Update status based on payment outcome
         if (paymentResult.IsSuccess)
         {
             booking.Status = "Confirmada";
             booking.RejectionReason = null;
-            _logger.LogInformation("Pago exitoso. Reserva {BookingId} CONFIRMADA.", booking.Id);
+            _logger.LogInformation("Payment successful. Booking {BookingId} CONFIRMED.", booking.Id);
         }
         else
         {
             booking.Status = "Rechazada";
             booking.RejectionReason = paymentResult.ErrorMessage ?? "Pago fallido";
-            _logger.LogWarning("Pago rechazado. Reserva {BookingId} RECHAZADA. Motivo: {Reason}", booking.Id, booking.RejectionReason);
+            _logger.LogWarning("Payment rejected. Booking {BookingId} REJECTED. Reason: {Reason}", booking.Id, booking.RejectionReason);
         }
 
         await _context.SaveChangesAsync(cancellationToken);

@@ -55,6 +55,11 @@ namespace Booking.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EventId", "SeatId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_bookings_EventId_SeatId_Active")
+                        .HasFilter("\"Status\" IN ('Retenida', 'Confirmada')");
+
                     b.ToTable("bookings", (string)null);
                 });
 #pragma warning restore 612, 618
