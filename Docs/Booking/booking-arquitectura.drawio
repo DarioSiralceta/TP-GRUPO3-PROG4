@@ -1,0 +1,76 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Booking" id="bk">
+    <mxGraphModel dx="4281" dy="2308" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bk-4" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=light-dark(#1BA1E2,#3EC1FF);fontColor=light-dark(#000000,#000000);strokeColor=light-dark(#006EAF,#0000FF);strokeWidth=5;opacity=80;fontSize=30;fontStyle=1;verticalAlign=top;align=left;spacingLeft=30;spacingTop=12;" value="Presentación · Booking.API" vertex="1">
+          <mxGeometry height="380" width="1500" y="-100" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-5" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=light-dark(#A20025,#FF5D5D);fontColor=#ffffff;strokeColor=#6F0000;strokeWidth=5;opacity=80;fontSize=30;fontStyle=1;verticalAlign=top;align=left;spacingLeft=30;spacingTop=12;" value="Lógica de negocio · Booking.Service" vertex="1">
+          <mxGeometry height="560" width="1500" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-6" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=light-dark(#008A00,#6CBA6B);fontColor=#ffffff;strokeColor=#005700;strokeWidth=5;opacity=80;fontSize=30;fontStyle=1;verticalAlign=top;align=left;spacingLeft=30;spacingTop=12;" value="Acceso a datos · Booking.Infrastructure" vertex="1">
+          <mxGeometry height="380" width="1500" y="920" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-7" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="BookingsController" vertex="1">
+          <mxGeometry height="86" width="300" x="120" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-8" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="«worker (BackgroundService)»&lt;br&gt;BookingReservationWorker" vertex="1">
+          <mxGeometry height="96" width="300" x="600" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-9" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="Program" vertex="1">
+          <mxGeometry height="86" width="300" x="1080" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-10" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="«interfaz»&lt;br&gt;IBookingService" vertex="1">
+          <mxGeometry height="96" width="300" x="120" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-11" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="BookingService" vertex="1">
+          <mxGeometry height="86" width="300" x="120" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-12" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="«interfaz»&lt;br&gt;IPaymentServiceClient" vertex="1">
+          <mxGeometry height="96" width="300" x="600" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-13" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="PaymentServiceClient" vertex="1">
+          <mxGeometry height="86" width="300" x="600" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-14" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="«record»&lt;br&gt;PaymentResult" vertex="1">
+          <mxGeometry height="96" width="300" x="1080" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-15" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="«DTO»&lt;br&gt;ReservationRequestedMessage" vertex="1">
+          <mxGeometry height="96" width="300" x="1080" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-16" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="FlexibleStringJsonConverter" vertex="1">
+          <mxGeometry height="86" width="300" x="1080" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-17" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="BookingDbContext" vertex="1">
+          <mxGeometry height="86" width="300" x="120" y="1020" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-18" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="BookingEntity" vertex="1">
+          <mxGeometry height="86" width="300" x="600" y="1020" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-19" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="AzureServiceBusOptions" vertex="1">
+          <mxGeometry height="86" width="300" x="1080" y="1020" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-20" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;fontSize=14;align=left;spacingLeft=10;spacingRight=10;" value="Migrations (InitialCreate, AddUniqueActiveBookingIndex)" vertex="1">
+          <mxGeometry height="60" width="380" x="600" y="1170" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-21" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=30;fontStyle=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" value="Availability API" vertex="1">
+          <mxGeometry height="208" width="208" x="-420" y="-100" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-22" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=30;fontStyle=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" value="Azure Service Bus" vertex="1">
+          <mxGeometry height="208" width="208" x="-420" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-23" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=24;fontStyle=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" value="Authorization Server (Keycloak)" vertex="1">
+          <mxGeometry height="208" width="208" x="-420" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-24" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=26;fontStyle=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" value="PostgreSQL (booking_db)" vertex="1">
+          <mxGeometry height="208" width="208" x="1640" y="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="bk-25" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=30;fontStyle=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" value="Payment gRPC API" vertex="1">
+          <mxGeometry height="208" width="208" x="1640" y="500" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

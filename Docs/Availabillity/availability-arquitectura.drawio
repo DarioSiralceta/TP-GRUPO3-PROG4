@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="zUVqC8zFIPoB1CWhiGaN">
-    <mxGraphModel dx="4518" dy="3111" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="5129" dy="3446" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -52,24 +52,6 @@
               <mxPoint x="-20" y="-278" />
             </Array>
             <mxPoint x="-140" y="-291" as="sourcePoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-37" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="Twqqt8sDEQhHJ3gu8GZg-36" value=" ">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="480" y="-500" />
-              <mxPoint x="480" y="-500" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-38" connectable="0" parent="Twqqt8sDEQhHJ3gu8GZg-37" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;container=0;" value="valida con sus claves" vertex="1">
-          <mxGeometry relative="1" x="-0.0375" y="-3" as="geometry">
-            <mxPoint x="-3" y="-305" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="TX4009m4u_vXZrdfmmcY-135" connectable="0" parent="Twqqt8sDEQhHJ3gu8GZg-37" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="valida el token con la clave pública" vertex="1">
-          <mxGeometry relative="1" x="0.1085" y="1" as="geometry">
-            <mxPoint x="1" y="70" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-33" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;defaultLabelBackgroundColor=page;" target="Twqqt8sDEQhHJ3gu8GZg-27">
@@ -1004,6 +986,17 @@
           <mxGeometry relative="1" x="-0.721" y="2" as="geometry">
             <mxPoint x="12" y="63" as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="TICz0VGhEdmqiyYmAeu3-2" edge="1" parent="1" source="TICz0VGhEdmqiyYmAeu3-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="Twqqt8sDEQhHJ3gu8GZg-27">
+          <mxGeometry relative="1" x="-0.0526" as="geometry">
+            <Array as="points">
+              <mxPoint x="530" y="-497" />
+              <mxPoint x="530" y="-497" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TICz0VGhEdmqiyYmAeu3-1" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=6;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255); font-size: 11px; white-space: nowrap;&quot;&gt;valida que el token sea de Keycloak, no esté vencido&lt;br&gt;y tenga audiencia availability-ap&lt;/span&gt;" vertex="1">
+          <mxGeometry height="26" width="280" x="560" y="-510" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
