@@ -1,4 +1,29 @@
+using Azure.Messaging.ServiceBus;
+using Availability.Application.Interfaces;
+using Availability.Application.Reservations.Request;
+using Availability.Infraestructure.Messageing;
+
+
+
+
+
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration["AzureServiceBus:ConnectionString"]
+    ?? throw new InvalidOperationException(
+        "Falta configurar AzureServiceBus:ConnectionString.");
+
+var topicName = builder.Configuration["AzureServiceBus:TopicName"]
+    ?? throw new InvalidOperationException(
+        "Falta configurar AzureServiceBus:TopicName.");
+
+builder.Services.AddSingleton(new ServiceBusClient(connectionString));
+
+builder.Services.AddSingleton<IReservationRequestPublisher>(
+    sp => new AzureServiceBusReservationRequestPublisher(
+        sp.GetRequiredService<ServiceBusClient>(),
+        topicName));
 
 // Add services to the container.
 
