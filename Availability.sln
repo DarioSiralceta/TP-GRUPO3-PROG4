@@ -15,11 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared.Authentication", "Au
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.TestApi", "Authorization\Auth.TestApi\Auth.TestApi.csproj", "{0C287CDF-858C-4282-B96E-0E130183BB51}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Keycloak", "Keycloak", "{D85403D1-BA66-4D50-9AC9-99A55C87B068}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Keycloak", "Keycloak", "{B364D056-8D8D-46F0-AC15-7F13D806265A}"
 	ProjectSection(SolutionItems) = preProject
-		.env.example = .env.example
-		Authorization\Keycolak\docker-compose.yml = Authorization\Keycolak\docker-compose.yml
-		Authorization\Keycolak\realm-tp-prog4-realm.json = Authorization\Keycolak\realm-tp-prog4-realm.json
+		Authorization\Keycloak\docker-compose.yml = Authorization\Keycloak\docker-compose.yml
 	EndProjectSection
 EndProject
 Global
