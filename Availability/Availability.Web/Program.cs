@@ -1,4 +1,5 @@
 using Availability.Web.Services;
+using Availability.Web.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +23,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseMiddleware<AuditoriaMiddleware>();
 app.UseAuthorization();
 
 app.MapControllerRoute(
