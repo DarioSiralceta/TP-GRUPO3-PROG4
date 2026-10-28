@@ -9,12 +9,14 @@ public class SolicitudesService
         = new();
 
     public SeguimientoViewModel CrearSolicitud(
+        int eventoId,
         string nombreEvento,
         int numeroAsiento)
     {
         var solicitud = new SeguimientoViewModel
         {
             SolicitudId = Guid.NewGuid(),
+            EventoId = eventoId,
             NombreEvento = nombreEvento,
             NumeroAsiento = numeroAsiento,
             Estado = "Pendiente"

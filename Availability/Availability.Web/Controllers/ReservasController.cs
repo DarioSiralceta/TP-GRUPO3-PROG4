@@ -68,8 +68,15 @@ public class ReservasController : Controller
         }
 
         var solicitud = _solicitudesService.CrearSolicitud(
+            evento.Id,
             evento.Nombre,
             asiento.Numero);
+
+        // Post/Redirect/Get: redirigimos después del POST para que
+        // recargar la página de resultado no reenvíe el formulario.
+        return RedirectToAction(
+            nameof(Recibida),
+            new { solicitudId = solicitud.SolicitudId });
 
         var modelo = new SolicitudReservaViewModel
         {
@@ -80,6 +87,28 @@ public class ReservasController : Controller
         };
 
         return View("Recibida", modelo);
+    }
+
+    [HttpGet]
+    public IActionResult Recibida(Guid solicitudId)
+    {
+        var solicitud = _solicitudesService.ObtenerPorId(solicitudId);
+
+        if (solicitud == null)
+        {
+            return NotFound(
+                "La solicitud no existe o se perdió al reiniciar la aplicación.");
+        }
+
+        var modelo = new SolicitudReservaViewModel
+        {
+            EventoId = solicitud.EventoId,
+            NombreEvento = solicitud.NombreEvento,
+            NumeroAsiento = solicitud.NumeroAsiento,
+            SolicitudId = solicitud.SolicitudId
+        };
+
+        return View(modelo);
     }
 
     [HttpGet]
