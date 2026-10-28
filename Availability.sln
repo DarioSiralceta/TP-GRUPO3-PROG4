@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.11.12315.225 stable
+VisualStudioVersion = 18.11.12315.225
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Availability.API", "Availability\Availability.API\Availability.API.csproj", "{63D99411-CFD0-42DC-AD0F-2E06316D5073}"
 EndProject
@@ -14,6 +14,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared.Authentication", "Authorization\Shared.Authentication\Shared.Authentication.csproj", "{DF20D740-344E-4689-AF41-89AD00C63EE8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.TestApi", "Authorization\Auth.TestApi\Auth.TestApi.csproj", "{0C287CDF-858C-4282-B96E-0E130183BB51}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Keycloak", "Keycloak", "{D85403D1-BA66-4D50-9AC9-99A55C87B068}"
+	ProjectSection(SolutionItems) = preProject
+		.env.example = .env.example
+		Authorization\Keycolak\docker-compose.yml = Authorization\Keycolak\docker-compose.yml
+		Authorization\Keycolak\realm-tp-prog4-realm.json = Authorization\Keycolak\realm-tp-prog4-realm.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
