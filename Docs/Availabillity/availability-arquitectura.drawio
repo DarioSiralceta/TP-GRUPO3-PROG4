@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="zUVqC8zFIPoB1CWhiGaN">
-    <mxGraphModel dx="5129" dy="3446" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="4518" dy="3111" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -173,7 +173,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="TX4009m4u_vXZrdfmmcY-138" connectable="0" parent="TX4009m4u_vXZrdfmmcY-90" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="publica en grupoN-booking-topic" vertex="1">
+        <mxCell id="TX4009m4u_vXZrdfmmcY-138" connectable="0" parent="TX4009m4u_vXZrdfmmcY-90" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="publica en grupo3-booking-topic" vertex="1">
           <mxGeometry relative="1" x="0.1373" y="-2" as="geometry">
             <mxPoint x="29" as="offset" />
           </mxGeometry>
@@ -183,20 +183,22 @@
             <mxPoint x="39" y="-244" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-86" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);container=0;" value="AzureServiceBusPublisher" vertex="1">
-          <mxGeometry height="112" width="350" x="10" y="596" as="geometry" />
+        <mxCell id="4WYp6clLRQjOJLHwz89s-7" connectable="0" parent="TX4009m4u_vXZrdfmmcY-90" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="SQL" vertex="1">
+          <mxGeometry relative="1" x="0.1373" y="-2" as="geometry">
+            <mxPoint x="49" y="-668" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-86" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);container=0;" value="AzureServiceBusReservationRequestPublisher" vertex="1">
+          <mxGeometry height="86" width="350" x="10" y="596" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-87" parent="Twqqt8sDEQhHJ3gu8GZg-86" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="- sender: ServiceBusSender" vertex="1">
           <mxGeometry height="26" width="350" y="26" as="geometry" />
         </mxCell>
-        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-88" parent="Twqqt8sDEQhHJ3gu8GZg-86" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="- topicName: string" vertex="1">
-          <mxGeometry height="26" width="350" y="52" as="geometry" />
-        </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-89" parent="Twqqt8sDEQhHJ3gu8GZg-86" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;container=0;" value="" vertex="1">
-          <mxGeometry height="8" width="350" y="78" as="geometry" />
+          <mxGeometry height="8" width="350" y="52" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-91" parent="Twqqt8sDEQhHJ3gu8GZg-86" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="+ PublishAsync(message)" vertex="1">
-          <mxGeometry height="26" width="350" y="86" as="geometry" />
+          <mxGeometry height="26" width="350" y="60" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-93" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-92" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="Twqqt8sDEQhHJ3gu8GZg-76">
           <mxGeometry relative="1" x="0.2657" as="geometry">
@@ -205,7 +207,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-92" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=11;container=0;" value="&lt;font&gt;Ayuda a que Availability pueda obtener info de Booking&lt;/font&gt;" vertex="1">
+        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-92" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=7;container=0;" value="&lt;font&gt;Ayuda a que Availability pueda obtener info de Booking.&lt;br&gt;Antes de llamar a Booking pide un token propio de availability&lt;br&gt;&lt;/font&gt;" vertex="1">
           <mxGeometry height="34" width="183" x="-258" y="439" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-94" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=40;fontStyle=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;container=0;" value="Azure Service Bus" vertex="1">
@@ -285,28 +287,25 @@
           <mxGeometry height="138" width="300" x="20" y="50" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-60" parent="Twqqt8sDEQhHJ3gu8GZg-110" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);container=0;" value="AvailabilityRepository" vertex="1">
-          <mxGeometry height="190" width="300" as="geometry" />
+          <mxGeometry height="182" width="300" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-173" parent="Twqqt8sDEQhHJ3gu8GZg-60" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="- context: AvailabilityDbContext" vertex="1">
           <mxGeometry height="26" width="300" y="26" as="geometry" />
         </mxCell>
-        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-186" parent="Twqqt8sDEQhHJ3gu8GZg-60" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;container=0;" value="" vertex="1">
-          <mxGeometry height="8" width="300" y="52" as="geometry" />
-        </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-63" parent="Twqqt8sDEQhHJ3gu8GZg-60" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="+ ObtenerAsientosPorEvento(eventoId)" vertex="1">
-          <mxGeometry height="26" width="300" y="60" as="geometry" />
+          <mxGeometry height="26" width="300" y="52" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-64" parent="Twqqt8sDEQhHJ3gu8GZg-60" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="+ ObtenerAsiento(asientoId)" vertex="1">
-          <mxGeometry height="26" width="300" y="86" as="geometry" />
+          <mxGeometry height="26" width="300" y="78" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-65" parent="Twqqt8sDEQhHJ3gu8GZg-60" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="+ GuardarSolicitud(solicitud)" vertex="1">
-          <mxGeometry height="26" width="300" y="112" as="geometry" />
+          <mxGeometry height="26" width="300" y="104" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-66" parent="Twqqt8sDEQhHJ3gu8GZg-60" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="+&amp;nbsp;&lt;span style=&quot;background-color: transparent;&quot;&gt;ObtenerSolicitud(&lt;/span&gt;solicitudId&lt;span style=&quot;background-color: transparent;&quot;&gt;)&lt;/span&gt;&lt;p dir=&quot;ltr&quot;&gt;&lt;/p&gt;" vertex="1">
-          <mxGeometry height="26" width="300" y="138" as="geometry" />
+          <mxGeometry height="26" width="300" y="130" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-113" parent="Twqqt8sDEQhHJ3gu8GZg-60" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="+&amp;nbsp;&lt;span style=&quot;background-color: transparent;&quot;&gt;ObtenerEventos()&lt;/span&gt;&lt;p dir=&quot;ltr&quot;&gt;&lt;/p&gt;" vertex="1">
-          <mxGeometry height="26" width="300" y="164" as="geometry" />
+          <mxGeometry height="26" width="300" y="156" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-62" parent="Twqqt8sDEQhHJ3gu8GZg-110" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;container=0;" value="" vertex="1">
           <mxGeometry height="8" width="300" y="26" as="geometry" />
@@ -315,22 +314,28 @@
           <mxGeometry height="138" width="350" x="20" y="374" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-76" parent="Twqqt8sDEQhHJ3gu8GZg-111" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);container=0;" value="BookingClient" vertex="1">
-          <mxGeometry height="138" width="350" as="geometry" />
+          <mxGeometry height="172" width="350" as="geometry" />
         </mxCell>
-        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-82" parent="Twqqt8sDEQhHJ3gu8GZg-111" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="- httpClient: HttpClient" vertex="1">
+        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-77" parent="Twqqt8sDEQhHJ3gu8GZg-76" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="- bookingUrl: string" vertex="1">
           <mxGeometry height="26" width="350" y="26" as="geometry" />
         </mxCell>
-        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-77" parent="Twqqt8sDEQhHJ3gu8GZg-111" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="- bookingUrl: string" vertex="1">
+        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-82" parent="Twqqt8sDEQhHJ3gu8GZg-76" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="- httpClient: HttpClient" vertex="1">
           <mxGeometry height="26" width="350" y="52" as="geometry" />
         </mxCell>
-        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-78" parent="Twqqt8sDEQhHJ3gu8GZg-111" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;container=0;" value="" vertex="1">
-          <mxGeometry height="8" width="350" y="78" as="geometry" />
+        <mxCell id="4WYp6clLRQjOJLHwz89s-3" parent="Twqqt8sDEQhHJ3gu8GZg-76" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="- tokenService: KeycloakTokenService" vertex="1">
+          <mxGeometry height="26" width="350" y="78" as="geometry" />
         </mxCell>
-        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-79" parent="Twqqt8sDEQhHJ3gu8GZg-111" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="+ ObtenerAsientosOcupados(eventoId)" vertex="1">
-          <mxGeometry height="26" width="350" y="86" as="geometry" />
+        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-78" parent="Twqqt8sDEQhHJ3gu8GZg-76" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;container=0;" value="" vertex="1">
+          <mxGeometry height="8" width="350" y="104" as="geometry" />
         </mxCell>
-        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-81" parent="Twqqt8sDEQhHJ3gu8GZg-111" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="+ ObtenerEstadoReserva(solicitudId)" vertex="1">
-          <mxGeometry height="26" width="350" y="112" as="geometry" />
+        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-186" parent="Twqqt8sDEQhHJ3gu8GZg-76" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;container=0;" value="" vertex="1">
+          <mxGeometry height="8" width="350" y="112" as="geometry" />
+        </mxCell>
+        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-81" parent="Twqqt8sDEQhHJ3gu8GZg-76" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="+ ObtenerEstadoReserva(solicitudId)" vertex="1">
+          <mxGeometry height="26" width="350" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-79" parent="Twqqt8sDEQhHJ3gu8GZg-76" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="+ ObtenerAsientosOcupados(eventoId)" vertex="1">
+          <mxGeometry height="26" width="350" y="146" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-116" connectable="0" parent="1" style="group" value="" vertex="1">
           <mxGeometry height="34" width="240" x="270" y="-510" as="geometry" />
@@ -688,7 +693,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="GG_mx2uGcQPLXj2_ZyCx-44" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="&lt;div&gt;&amp;lt;&amp;lt;Interfaz&amp;gt;&amp;gt;&lt;/div&gt;IReservationRequestPublisher" vertex="1">
+        <mxCell id="GG_mx2uGcQPLXj2_ZyCx-44" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="&lt;div&gt;&amp;lt;&amp;lt;Interfaz&amp;gt;&amp;gt;&lt;/div&gt;IReservationRequestPublisher " vertex="1">
           <mxGeometry height="80" width="230" x="800" y="770" as="geometry" />
         </mxCell>
         <mxCell id="GG_mx2uGcQPLXj2_ZyCx-45" parent="GG_mx2uGcQPLXj2_ZyCx-44" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
@@ -925,8 +930,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="TX4009m4u_vXZrdfmmcY-91" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=8;container=0;" value="&lt;p dir=&quot;ltr&quot;&gt;&lt;b&gt;Al iniciar la app, conecta cada interfaz con su clase concreta. ejemplo con el caso de uso solicitar reserva:&lt;/b&gt;&lt;br&gt;&lt;br&gt;ISolicitarReservaInputPort → RequestReservationUseCase&lt;br&gt;&lt;br&gt;ISolicitarReservaOutputPort → SolicitarReservaPresenter&lt;br&gt;&lt;br&gt;&lt;b&gt;Contratos compartidos por todos los casos de uso:&lt;/b&gt;&lt;br&gt;&lt;br&gt;IAvailabilityRepository → AvailabilityRepository&lt;br&gt;&lt;br&gt;IReservationRequestPublisher → AzureServiceBusPublisher&lt;br&gt;&lt;br&gt;IBookingClient → BookingClient&lt;br&gt;&lt;br&gt;los otros tres casos de uso (listar eventos, consultar disponibilidad y consultar estado) se conectan igual: cada uno con su input port, su caso de uso, su output port y su presenter.&lt;/p&gt;" vertex="1">
-          <mxGeometry height="199" width="266" x="-341" y="721.5" as="geometry" />
+        <mxCell id="TX4009m4u_vXZrdfmmcY-91" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=7;container=0;" value="&lt;p dir=&quot;ltr&quot;&gt;&lt;b&gt;Al iniciar la app, conecta cada interfaz con su clase concreta. ejemplo con el caso de uso solicitar reserva:&lt;/b&gt;&lt;br&gt;&lt;br&gt;ISolicitarReservaInputPort → RequestReservationUseCase&lt;br&gt;&lt;br&gt;ISolicitarReservaOutputPort → SolicitarReservaPresenter&lt;br&gt;&lt;br&gt;&lt;b&gt;Contratos compartidos por todos los casos de uso:&lt;/b&gt;&lt;br&gt;&lt;br&gt;IAvailabilityRepository → AvailabilityRepository&lt;br&gt;&lt;br&gt;IReservationRequestPublisher → AzureServiceBusReservationRequestPublisher&lt;br&gt;&lt;br&gt;IBookingClient → BookingClient&lt;br&gt;&lt;br&gt;los otros tres casos de uso (listar eventos, consultar disponibilidad y consultar estado) se conectan igual: cada uno con su input port, su caso de uso, su output port y su presenter.&lt;/p&gt;" vertex="1">
+          <mxGeometry height="199" width="275" x="-350" y="721.5" as="geometry" />
         </mxCell>
         <mxCell id="TX4009m4u_vXZrdfmmcY-95" edge="1" parent="1" source="TX4009m4u_vXZrdfmmcY-93" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="Twqqt8sDEQhHJ3gu8GZg-99">
           <mxGeometry relative="1" x="0.073" as="geometry">
@@ -936,7 +941,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="TX4009m4u_vXZrdfmmcY-93" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=8;container=0;" value="&lt;p dir=&quot;ltr&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;p dir=&quot;ltr&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p dir=&quot;ltr&quot;&gt;además registra (sin interfaz): ReservaController, el AvailabilityDbContext con su connection string, la autenticación JWT (confiando en Keycloak) y la conexión a Service Bus con su connection string.&lt;/p&gt;" vertex="1">
+        <mxCell id="TX4009m4u_vXZrdfmmcY-93" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=7;container=0;" value="&lt;p dir=&quot;ltr&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p dir=&quot;ltr&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p dir=&quot;ltr&quot;&gt;además registra (sin interfaz): ReservaController, el AvailabilityDbContext con su connection string, la autenticación JWT con AddKeycloakAuthentication (confiando en Keycloak), el KeycloakTokenService para pedir tokens y la conexión a Service Bus con su connection string&lt;/p&gt;" vertex="1">
           <mxGeometry height="80" width="255" x="-341" y="940" as="geometry" />
         </mxCell>
         <mxCell id="TX4009m4u_vXZrdfmmcY-99" edge="1" parent="1" source="TX4009m4u_vXZrdfmmcY-98" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;dashed=1;" target="Twqqt8sDEQhHJ3gu8GZg-39">
@@ -985,6 +990,20 @@
         </mxCell>
         <mxCell id="TX4009m4u_vXZrdfmmcY-132" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=6;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;decisión: está en Domain y no en Application, porque lo usa la entidad ReservationRequest. si quedara en Application, la entidad apuntaría hacia afuera&lt;/span&gt;" vertex="1">
           <mxGeometry height="34" width="153" x="1637" y="716" as="geometry" />
+        </mxCell>
+        <mxCell id="4WYp6clLRQjOJLHwz89s-5" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="Twqqt8sDEQhHJ3gu8GZg-36">
+          <mxGeometry relative="1" x="0.2105" as="geometry">
+            <Array as="points">
+              <mxPoint x="-10" y="460" />
+              <mxPoint x="-10" y="-570" />
+              <mxPoint x="340" y="-570" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4WYp6clLRQjOJLHwz89s-6" connectable="0" parent="4WYp6clLRQjOJLHwz89s-5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Pide token" vertex="1">
+          <mxGeometry relative="1" x="-0.721" y="2" as="geometry">
+            <mxPoint x="12" y="63" as="offset" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
