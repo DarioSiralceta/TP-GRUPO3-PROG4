@@ -17,6 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.TestApi", "Authorizati
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Keycloak", "Keycloak", "{B364D056-8D8D-46F0-AC15-7F13D806265A}"
 	ProjectSection(SolutionItems) = preProject
+		Authorization\Keycloak\.env.example = Authorization\Keycloak\.env.example
 		Authorization\Keycloak\docker-compose.yml = Authorization\Keycloak\docker-compose.yml
 	EndProjectSection
 EndProject
