@@ -11,6 +11,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Availability.Application", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Availability.Infraestructure", "Availability\Availability.Infraestructure\Availability.Infraestructure.csproj", "{82AF8063-BE7F-4910-AF96-1B4628DD436F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payment", "Payment", "{1DF26CFD-3400-4FD0-ADC9-5B5B5259986C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.API", "Payment\Payment.API\Payment.API.csproj", "{511F3F32-B0EA-4FA4-A572-4E3739D93960}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.BLL", "Payment\Payment.BLL\Payment.BLL.csproj", "{FAED4944-7C88-4D21-A02B-603A21D0CDAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.DAL", "Payment\Payment.DAL\Payment.DAL.csproj", "{BEBC70AA-334A-44CC-BD33-8F00188D4A59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.Domain", "Payment\Payment.Domain\Payment.Domain.csproj", "{9BC8E80E-AEB5-4113-9E28-3F53308A46E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +43,31 @@ Global
 		{82AF8063-BE7F-4910-AF96-1B4628DD436F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82AF8063-BE7F-4910-AF96-1B4628DD436F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82AF8063-BE7F-4910-AF96-1B4628DD436F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{511F3F32-B0EA-4FA4-A572-4E3739D93960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{511F3F32-B0EA-4FA4-A572-4E3739D93960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{511F3F32-B0EA-4FA4-A572-4E3739D93960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{511F3F32-B0EA-4FA4-A572-4E3739D93960}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAED4944-7C88-4D21-A02B-603A21D0CDAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAED4944-7C88-4D21-A02B-603A21D0CDAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAED4944-7C88-4D21-A02B-603A21D0CDAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAED4944-7C88-4D21-A02B-603A21D0CDAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEBC70AA-334A-44CC-BD33-8F00188D4A59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEBC70AA-334A-44CC-BD33-8F00188D4A59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEBC70AA-334A-44CC-BD33-8F00188D4A59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEBC70AA-334A-44CC-BD33-8F00188D4A59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BC8E80E-AEB5-4113-9E28-3F53308A46E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BC8E80E-AEB5-4113-9E28-3F53308A46E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BC8E80E-AEB5-4113-9E28-3F53308A46E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BC8E80E-AEB5-4113-9E28-3F53308A46E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{511F3F32-B0EA-4FA4-A572-4E3739D93960} = {1DF26CFD-3400-4FD0-ADC9-5B5B5259986C}
+		{FAED4944-7C88-4D21-A02B-603A21D0CDAD} = {1DF26CFD-3400-4FD0-ADC9-5B5B5259986C}
+		{BEBC70AA-334A-44CC-BD33-8F00188D4A59} = {1DF26CFD-3400-4FD0-ADC9-5B5B5259986C}
+		{9BC8E80E-AEB5-4113-9E28-3F53308A46E6} = {1DF26CFD-3400-4FD0-ADC9-5B5B5259986C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1CA9FB4-FD0F-48AB-9858-93C3DC1F365A}
