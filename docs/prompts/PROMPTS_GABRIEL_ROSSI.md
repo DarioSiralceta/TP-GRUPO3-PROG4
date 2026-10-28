@@ -92,3 +92,91 @@ No modifiques el proto ni otras capas. Registrá este prompt en mi historial.
 - **Resumen de la respuesta generada:** Se completó la entidad `PaymentAttempt` con las propiedades solicitadas y el enum `PaymentStatus` con los valores numéricos alineados con `payment.proto`. No se modificaron el contrato ni otras capas.
 - **Archivos creados o modificados:** Modificados `Payment/Payment.Domain/Entities/PaymentAttempt.cs`, `Payment/Payment.Domain/Enums/PaymentStatus.cs` y `docs/prompts/PROMPTS_GABRIEL_ROSSI.md`.
 - **Decisiones técnicas:** Mantener `PaymentStatus` en el namespace `Payment.Domain.Enums`, según su ubicación en `Enums`, e importarlo desde la entidad. Las propiedades de tipo `string` se inicializan en `string.Empty` para cumplir con nullable reference types sin agregar lógica de negocio.
+
+## Interacción 4
+
+- **Fecha y hora:** 2026-10-28 17:45:05.459 (UTC-03:00)
+- **Herramienta utilizada:** GitHub Copilot
+- **Prompt completo enviado por el usuario:**
+
+```text
+Implementá el punto 2 de Dominio y lógica de cobro del TP de Programación IV: simulador de proveedor de pagos.
+
+El proyecto utiliza C#/.NET, arquitectura N-Layer y dominio anémico.
+
+**1. Crear un único archivo:**
+
+`Payment/Payment.BLL/Services/MockPaymentProvider.cs`
+
+**2. Implementar la clase **`MockPaymentProvider`**:**
+
+- Debe ser pública.
+- Debe utilizar el enum existente `Payment.Domain.Enums.PaymentStatus`.
+- Debe tener un método público llamado `ProcessPayment`.
+- El método recibe un parámetro `PaymentStatus simulatedResult`.
+- El método devuelve un `PaymentStatus`.
+- Debe retornar el resultado recibido, sin lógica adicional.
+- No debe realizar cobros reales ni llamadas HTTP.
+**3. Resultados admitidos:**
+
+- `PaymentStatus.Success`
+- `PaymentStatus.Declined`
+- `PaymentStatus.Unavailable`
+El objetivo es poder elegir el resultado del proveedor de forma determinista para demostrar los escenarios de éxito, rechazo y servicio no disponible.
+
+**4. Restricciones:**
+
+- No modificar `PaymentAttempt.cs` ni `PaymentStatus.cs`.
+- No modificar `PaymentService.cs` todavía.
+- No implementar reintentos, persistencia, gRPC ni autenticación.
+- No crear interfaces, DTOs, configuraciones ni archivos adicionales.
+- No agregar dependencias externas.
+**5. Verificación:**
+
+Compilar `Payment.BLL` y comprobar que no haya errores.
+
+**6. Documentación:**
+
+Registrar este prompt completo y los cambios realizados en `docs/prompts/PROMPTS_GABRIEL_ROSSI.md`, siguiendo el formato existente.
+
+No hacer commit ni push. Informar qué archivo se creó y el resultado de la compilación.
+```
+
+- **Resumen de la respuesta generada:** Se creó el simulador determinista `MockPaymentProvider`, cuyo método `ProcessPayment` devuelve directamente el estado recibido, sin llamadas externas ni efectos secundarios. Se compiló `Payment.BLL`.
+- **Archivos creados o modificados:** Creado `Payment/Payment.BLL/Services/MockPaymentProvider.cs`; modificado `docs/prompts/PROMPTS_GABRIEL_ROSSI.md`.
+- **Decisiones técnicas:** Ubicar la clase en `Payment.BLL.Services` siguiendo la estructura existente y referenciar `Payment.Domain.Enums.PaymentStatus`. No agregar validación ni otra lógica al método, para que retorne exactamente el parámetro recibido; no modificar otros componentes ni crear dependencias adicionales.
+
+## Interacción 5
+
+- **Fecha y hora:** 2026-10-28 17:52:41.752 (UTC-03:00)
+- **Herramienta utilizada:** GitHub Copilot
+- **Prompt completo enviado por el usuario:**
+
+```text
+Implementá la conexión entre MockPaymentProvider y PaymentService en el proyecto Payment.BLL.
+
+Trabajamos con arquitectura N-Layer y dominio anémico. Ya existen MockPaymentProvider.cs, PaymentService.cs e IPaymentService.cs.
+
+1. En IPaymentService.cs:
+
+- Agregar el método `Task<PaymentStatus> ProcessPaymentAsync(PaymentStatus simulatedResult)`.
+2. En PaymentService.cs:
+
+- Implementar IPaymentService.
+- Recibir MockPaymentProvider mediante el constructor.
+- Implementar ProcessPaymentAsync.
+- Llamar a MockPaymentProvider.ProcessPayment.
+- Si devuelve Success o Declined, retornar inmediatamente.
+- Si devuelve Unavailable, realizar hasta 3 intentos en total, esperando 1 segundo entre intentos mediante Task.Delay.
+- Si los 3 intentos devuelven Unavailable, retornar Unavailable.
+3. Mantener MockPaymentProvider.cs sin cambios.
+4. No modificar Payment.API, Payment.DAL, Payment.Domain ni el contrato .proto.
+5. No agregar persistencia, autenticación, dependencias externas ni abstracciones adicionales.
+6. Compilar Payment.BLL y verificar que no haya errores.
+7. Registrar este prompt completo y los cambios en docs/prompts/PROMPTS_GABRIEL_ROSSI.md.
+No realizar commit ni push. Informar los archivos modificados y el resultado de compilación.
+```
+
+- **Resumen de la respuesta generada:** Se agregó `ProcessPaymentAsync` al contrato `IPaymentService` y se implementó en `PaymentService` con inyección de `MockPaymentProvider`. La implementación retorna en cuanto recibe un estado distinto de `Unavailable`, repite hasta tres llamadas cuando recibe `Unavailable`, espera un segundo solo entre intentos y retorna `Unavailable` tras agotar los tres intentos.
+- **Archivos creados o modificados:** Modificados `Payment/Payment.BLL/Interfaces/IPaymentService.cs`, `Payment/Payment.BLL/Services/PaymentService.cs` y `docs/prompts/PROMPTS_GABRIEL_ROSSI.md`. `MockPaymentProvider.cs` no fue modificado.
+- **Decisiones técnicas:** Inyectar el proveedor mediante un campo de solo lectura y el constructor. Usar un ciclo acotado a tres intentos y `Task.Delay(TimeSpan.FromSeconds(1))` solo cuando queda otro intento, por lo que hay como máximo dos esperas. Cualquier resultado distinto de `Unavailable` se devuelve inmediatamente; no se agregaron otras abstracciones ni dependencias.
