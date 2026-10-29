@@ -18,6 +18,8 @@ artifacts/
 !.env.example
 **/appsettings.Development.json
 **/secrets.json
+**/Keycloak/.env
+
 
 # Base de datos Sqlite
 *.db
