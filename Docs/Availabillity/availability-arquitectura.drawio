@@ -995,8 +995,21 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="TICz0VGhEdmqiyYmAeu3-1" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=6;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255); font-size: 11px; white-space: nowrap;&quot;&gt;valida que el token sea de Keycloak, no esté vencido&lt;br&gt;y tenga audiencia availability-ap&lt;/span&gt;" vertex="1">
+        <mxCell id="TICz0VGhEdmqiyYmAeu3-1" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=6;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255); font-size: 11px; white-space: nowrap;&quot;&gt;valida que el token sea de Keycloak, no esté vencido&lt;br&gt;y tenga audiencia availability-api&lt;/span&gt;" vertex="1">
           <mxGeometry height="26" width="280" x="560" y="-510" as="geometry" />
+        </mxCell>
+        <mxCell id="HzMQGikSgvFi88hIMbh_-1" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="Twqqt8sDEQhHJ3gu8GZg-36">
+          <mxGeometry relative="1" x="0.3235" as="geometry">
+            <Array as="points">
+              <mxPoint x="410" y="-630" />
+              <mxPoint x="410" y="-630" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HzMQGikSgvFi88hIMbh_-2" connectable="0" parent="HzMQGikSgvFi88hIMbh_-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="valida el token con la clave pública" vertex="1">
+          <mxGeometry relative="1" x="0.4575" as="geometry">
+            <mxPoint y="101" as="offset" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
