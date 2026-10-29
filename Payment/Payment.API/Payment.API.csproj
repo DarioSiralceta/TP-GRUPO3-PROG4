@@ -8,10 +8,15 @@
 
   <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.63.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Payment.BLL\Payment.BLL.csproj" />
+    <ProjectReference Include="..\Payment.DAL\Payment.DAL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
