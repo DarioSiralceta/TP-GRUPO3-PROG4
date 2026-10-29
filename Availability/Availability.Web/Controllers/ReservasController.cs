@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Availability.Web.Models;
 using Availability.Web.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Availability.Web.Controllers;
 
@@ -31,6 +32,7 @@ public class ReservasController : Controller
         Activity.Current?.TraceId.ToString()
         ?? HttpContext.TraceIdentifier;
 
+    [Authorize]
     [HttpGet]
     public IActionResult Solicitar(int eventoId, int numeroAsiento)
     {
@@ -74,6 +76,7 @@ public class ReservasController : Controller
         return View(modelo);
     }
 
+    [Authorize]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Confirmar(int eventoId, int numeroAsiento)
