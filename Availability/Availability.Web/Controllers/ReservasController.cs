@@ -32,10 +32,24 @@ public class ReservasController : Controller
         Activity.Current?.TraceId.ToString()
         ?? HttpContext.TraceIdentifier;
 
-    [Authorize]
     [HttpGet]
     public IActionResult Solicitar(int eventoId, int numeroAsiento)
     {
+        // Mostramos un aviso antes del formulario si no hay sesión.
+        // Conservamos el evento y asiento para regresar después del login.
+        if (User.Identity?.IsAuthenticated != true)
+        {
+            var returnUrl = Url.Action(
+                nameof(Solicitar),
+                "Reservas",
+                new { eventoId, numeroAsiento });
+
+            return RedirectToAction(
+                "RequiereLogin",
+                "Account",
+                new { returnUrl });
+        }
+
         var evento = _eventosService.ObtenerPorId(eventoId);
 
         if (evento == null)

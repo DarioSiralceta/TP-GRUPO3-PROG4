@@ -10,10 +10,23 @@ public class AccountController : Controller
 {
     [AllowAnonymous]
     [HttpGet]
+    public IActionResult RequiereLogin(string? returnUrl = null)
+    {
+        // Solo aceptamos destinos locales para evitar
+        // redirecciones hacia sitios externos.
+        ViewBag.ReturnUrl = Url.IsLocalUrl(returnUrl)
+            ? returnUrl
+            : Url.Content("~/");
+
+        return View();
+    }
+
+    [AllowAnonymous]
+    [HttpGet]
     public IActionResult Login(string? returnUrl = null)
     {
-        // Validamos el destino para impedir redirecciones
-        // a sitios externos enviados por el usuario.
+        // Conservamos el destino elegido para regresar
+        // después de completar el inicio de sesión.
         var destino = Url.IsLocalUrl(returnUrl)
             ? returnUrl!
             : Url.Content("~/");
