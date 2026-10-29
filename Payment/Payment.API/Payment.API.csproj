@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Payment.BLL\Payment.BLL.csproj" />
     <ProjectReference Include="..\Payment.DAL\Payment.DAL.csproj" />
+    <ProjectReference Include="..\..\Authorization\Shared.Authentication\Shared.Authentication.csproj" />
   </ItemGroup>
 
   <ItemGroup>

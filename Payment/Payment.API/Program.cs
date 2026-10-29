@@ -5,10 +5,13 @@ using Payment.BLL.Services;
 using Payment.DAL.Context;
 using Payment.DAL.Interfaces;
 using Payment.DAL.Repositories;
+using Shared.Authentication.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddGrpc();
+builder.Services.AddKeycloakAuthentication(builder.Configuration);
+builder.Services.AddKeycloakAuthorization();
 
 // Registrar los servicios de pago
 builder.Services.AddSingleton<IPaymentProvider, MockPaymentProvider>();
@@ -19,10 +22,12 @@ builder.Services.AddDbContext<PaymentDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("PaymentDb")));
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 
-// TODO: registrar autenticacion.
-
 var app = builder.Build();
 
-app.MapGrpcService<PaymentGrpcService>();
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapGrpcService<PaymentGrpcService>()
+    .RequireAuthorization("CanProcessPayment");
 
 app.Run();
