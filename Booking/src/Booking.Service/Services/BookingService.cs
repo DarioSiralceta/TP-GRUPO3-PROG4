@@ -18,6 +18,8 @@ public interface IBookingService
 {
     Task<IEnumerable<BookingEntity>> GetAllBookingsAsync();
     Task<BookingEntity?> GetBookingByIdAsync(Guid id);
+    Task<SeatStatusDto> GetSeatStatusAsync(string eventId, string seatId); // Franco Brienza - Copilot
+    Task<List<string>> GetOccupiedSeatsAsync(string eventId); // Franco Brienza - Copilot
     Task<BookingEntity> CreateRetentionAsync(string eventId, string seatId, string userId);
     Task<BookingEntity> ProcessReservationRequestAsync(ReservationRequestedMessage request, CancellationToken cancellationToken = default);
 }
@@ -82,6 +84,65 @@ public class BookingService : IBookingService
         }
 
         return booking;
+    }
+
+    public async Task<SeatStatusDto> GetSeatStatusAsync(string eventId, string seatId) // Franco Brienza - Copilot
+    {
+        await ExpireRetentionsAsync(eventId, seatId); 
+
+        var now = DateTime.UtcNow;
+        var booking = await _context.Bookings
+            .Where(b => b.EventId == eventId
+                     && b.SeatId == seatId
+                     && (b.Status == "Confirmada" || (b.Status == "Retenida" && b.ExpiresAt > now)))
+            .OrderByDescending(b => b.Status == "Confirmada")
+            .ThenByDescending(b => b.CreatedAt)
+            .FirstOrDefaultAsync();
+
+        return new SeatStatusDto
+        {
+            EventId = eventId,
+            SeatId = seatId,
+            IsOccupied = booking != null,
+            Status = booking?.Status ?? "Disponible"
+        };
+    }
+
+    public async Task<List<string>> GetOccupiedSeatsAsync(string eventId) // Franco Brienza - Copilot
+    {
+        await ExpireRetentionsAsync(eventId);
+
+        var now = DateTime.UtcNow;
+        return await _context.Bookings
+            .Where(b => b.EventId == eventId
+                     && (b.Status == "Confirmada" || (b.Status == "Retenida" && b.ExpiresAt > now)))
+            .Select(b => b.SeatId)
+            .Distinct()
+            .OrderBy(seatId => seatId)
+            .ToListAsync();
+    }
+
+    private async Task ExpireRetentionsAsync(string eventId, string? seatId = null) // Franco Brienza - Copilot
+    {
+        var now = DateTime.UtcNow;
+        var expiredBookings = await _context.Bookings
+            .Where(b => b.EventId == eventId
+                     && (seatId == null || b.SeatId == seatId)
+                     && b.Status == "Retenida"
+                     && b.ExpiresAt <= now)
+            .ToListAsync();
+
+        if (expiredBookings.Count == 0)
+        {
+            return;
+        }
+
+        foreach (var booking in expiredBookings)
+        {
+            booking.Status = "Vencida";
+        }
+
+        await _context.SaveChangesAsync();
     }
     
     public async Task<BookingEntity> CreateRetentionAsync(string eventId, string seatId, string userId)

@@ -1,4 +1,5 @@
 using Booking.Infrastructure.Entities;
+using Booking.Service.DTOs;
 using Booking.Service.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,6 +32,20 @@ public class BookingsController : ControllerBase
             return NotFound();
         }
         return Ok(booking);
+    }
+
+    [HttpGet("events/{eventId}/seats/{seatId}")]
+    public async Task<ActionResult<SeatStatusDto>> GetSeatStatus(string eventId, string seatId) // Franco Brienza
+    {
+        var seatStatus = await _bookingService.GetSeatStatusAsync(eventId, seatId);
+        return Ok(seatStatus);
+    }
+
+    [HttpGet("events/{eventId}/occupied-seats")]
+    public async Task<ActionResult<List<string>>> GetOccupiedSeats(string eventId) // Franco Brienza
+    {
+        var occupiedSeats = await _bookingService.GetOccupiedSeatsAsync(eventId);
+        return Ok(occupiedSeats);
     }
 
     [HttpPost]
