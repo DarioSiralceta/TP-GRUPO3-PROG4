@@ -11,6 +11,8 @@ obj/
 [Dd]ebug/
 [Rr]elease/
 artifacts/
+.nuget/
+**/.nuget/
 
 # Configuración local
 .DS_Store

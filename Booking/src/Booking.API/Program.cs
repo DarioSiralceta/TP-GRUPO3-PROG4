@@ -1,4 +1,5 @@
 // src/Booking.API/Program.cs
+using System.Text.Json.Serialization;
 using Booking.API.Workers;
 using Booking.Infrastructure.Configuration;
 using Booking.Infrastructure.Persistence;
@@ -15,7 +16,11 @@ builder.Services.AddKeycloakAuthentication(builder.Configuration);
 builder.Services.AddKeycloakAuthorization();
 
 // Controllers and OpenAPI / Swagger
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
