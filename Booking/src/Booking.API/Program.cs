@@ -6,7 +6,9 @@ using Booking.Infrastructure.Persistence;
 using Booking.Service.Services;
 using Booking.Service.Services.Payment;
 using Microsoft.EntityFrameworkCore;
+using Payment.API.Protos;
 using Shared.Authentication.Extensions;
+using Shared.Authentication.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,6 +33,16 @@ builder.Services.Configure<AzureServiceBusOptions>(
 // Business services and clients (N-Layer architecture)
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IPaymentServiceClient, PaymentServiceClient>();
+builder.Services.AddHttpClient<KeycloakTokenService>();
+
+var paymentGrpcAddress = builder.Configuration["Payment:GrpcAddress"];
+if (!Uri.TryCreate(paymentGrpcAddress, UriKind.Absolute, out var paymentAddress))
+{
+    throw new InvalidOperationException("La URL gRPC de Payment no está configurada correctamente en Payment:GrpcAddress.");
+}
+
+builder.Services.AddGrpcClient<PaymentService.PaymentServiceClient>(options =>
+    options.Address = paymentAddress);
 
 // Register PostgreSQL DbContext
 builder.Services.AddDbContext<BookingDbContext>(options =>
