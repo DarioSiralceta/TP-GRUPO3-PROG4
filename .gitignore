@@ -18,3 +18,8 @@ artifacts/
 !.env.example
 **/appsettings.Development.json
 **/secrets.json
+
+# Base de datos Sqlite
+*.db
+*.db-shm
+*.db-wal
