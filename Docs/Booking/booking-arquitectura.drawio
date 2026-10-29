@@ -4,23 +4,88 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="bk-4" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=light-dark(#1BA1E2,#3EC1FF);fontColor=light-dark(#000000,#000000);strokeColor=light-dark(#006EAF,#0000FF);strokeWidth=5;opacity=80;fontSize=30;fontStyle=1;verticalAlign=top;align=left;spacingLeft=30;spacingTop=12;" value="Presentación · Booking.API" vertex="1">
+        <mxCell id="bk-4" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=light-dark(#1BA1E2,#3EC1FF);fontColor=light-dark(#000000,#000000);strokeColor=light-dark(#006EAF,#0000FF);strokeWidth=5;opacity=80;fontSize=30;fontStyle=1;verticalAlign=top;align=center;spacingLeft=30;spacingTop=12;" value="Presentación · Booking.API" vertex="1">
           <mxGeometry height="380" width="1500" y="-100" as="geometry" />
         </mxCell>
-        <mxCell id="bk-5" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=light-dark(#A20025,#FF5D5D);fontColor=#ffffff;strokeColor=#6F0000;strokeWidth=5;opacity=80;fontSize=30;fontStyle=1;verticalAlign=top;align=left;spacingLeft=30;spacingTop=12;" value="Lógica de negocio · Booking.Service" vertex="1">
+        <mxCell id="bk-5" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=light-dark(#A20025,#FF5D5D);fontColor=#ffffff;strokeColor=#6F0000;strokeWidth=5;opacity=80;fontSize=30;fontStyle=1;verticalAlign=top;align=center;spacingLeft=30;spacingTop=12;" value="Lógica de negocio · Booking.Service" vertex="1">
           <mxGeometry height="560" width="1500" y="320" as="geometry" />
         </mxCell>
-        <mxCell id="bk-6" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=light-dark(#008A00,#6CBA6B);fontColor=#ffffff;strokeColor=#005700;strokeWidth=5;opacity=80;fontSize=30;fontStyle=1;verticalAlign=top;align=left;spacingLeft=30;spacingTop=12;" value="Acceso a datos · Booking.Infrastructure" vertex="1">
+        <mxCell id="bk-6" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=light-dark(#008A00,#6CBA6B);fontColor=#ffffff;strokeColor=#005700;strokeWidth=5;opacity=80;fontSize=30;fontStyle=1;verticalAlign=top;align=center;spacingLeft=30;spacingTop=12;" value="Acceso a datos · Booking.Infrastructure" vertex="1">
           <mxGeometry height="380" width="1500" y="920" as="geometry" />
         </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-21" edge="1" parent="1" source="bk-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="bk-10">
+          <mxGeometry relative="1" x="0.2388" as="geometry">
+            <Array as="points">
+              <mxPoint x="40" y="75" />
+              <mxPoint x="40" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="bk-7" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="BookingsController" vertex="1">
-          <mxGeometry height="86" width="300" x="120" as="geometry" />
+          <mxGeometry height="148" width="350" x="70" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-4" parent="bk-7" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="- bookingService:&amp;nbsp;&lt;span style=&quot;color: rgb(255, 255, 255); font-size: 13px; text-align: center;&quot;&gt;IBookingService&lt;/span&gt;" vertex="1">
+          <mxGeometry height="26" width="350" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-3" parent="bk-7" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="350" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-5" parent="bk-7" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="+ GetBookings()&amp;nbsp;" vertex="1">
+          <mxGeometry height="26" width="350" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-10" parent="bk-7" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="+ GetBooking(id) (Requiere token)" vertex="1">
+          <mxGeometry height="26" width="350" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-50" parent="bk-7" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="+ CreateBooking(eventId, seatId, userId) (Requiere token)" vertex="1">
+          <mxGeometry height="26" width="350" y="122" as="geometry" />
         </mxCell>
         <mxCell id="bk-8" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="«worker (BackgroundService)»&lt;br&gt;BookingReservationWorker" vertex="1">
-          <mxGeometry height="96" width="300" x="600" as="geometry" />
+          <mxGeometry height="262" width="300" x="600" y="-26" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-23" parent="bk-8" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="- scopeFactory: IServiceScopeFactory&amp;nbsp;" vertex="1">
+          <mxGeometry height="26" width="300" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-27" parent="bk-8" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="- options: AzureServiceBusOptions&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="26" width="300" y="72" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-29" parent="bk-8" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;- logger: ILogger&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="26" width="300" y="98" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-30" parent="bk-8" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;- client: ServiceBusClient&lt;br/&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="26" width="300" y="124" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-28" parent="bk-8" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;- processor: ServiceBusProcessor&lt;br/&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="26" width="300" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-31" parent="bk-8" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
+          <mxGeometry height="8" width="300" y="176" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-32" parent="bk-8" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;# ExecuteAsync(stoppingToken)&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="26" width="300" y="184" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-33" parent="bk-8" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;- MessageHandlerAsync(args)&lt;br/&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="26" width="300" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-34" parent="bk-8" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;+ StopAsync(cancellationToken)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="26" width="300" y="236" as="geometry" />
         </mxCell>
         <mxCell id="bk-9" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="Program" vertex="1">
-          <mxGeometry height="86" width="300" x="1080" as="geometry" />
+          <mxGeometry height="166" width="300" x="1080" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-40" parent="bk-9" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;+ ConfigurarAutenticacion()&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="26" width="300" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-43" parent="bk-9" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;+ RegistrarInterfaces()&lt;br/&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="26" width="300" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-47" parent="bk-9" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;+ ConfigurarBase()&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="26" width="300" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-48" parent="bk-9" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;+ ConfigurarServiceBus()&lt;br/&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="26" width="300" y="114" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-49" parent="bk-9" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;+ IniciarWorker()&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="26" width="300" y="140" as="geometry" />
         </mxCell>
         <mxCell id="bk-10" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="«interfaz»&lt;br&gt;IBookingService" vertex="1">
           <mxGeometry height="96" width="300" x="120" y="420" as="geometry" />
@@ -64,11 +129,54 @@
         <mxCell id="bk-23" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=24;fontStyle=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" value="Authorization Server (Keycloak)" vertex="1">
           <mxGeometry height="208" width="208" x="-420" y="500" as="geometry" />
         </mxCell>
-        <mxCell id="bk-24" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=26;fontStyle=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" value="PostgreSQL (booking_db)" vertex="1">
+        <mxCell id="bk-24" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=26;fontStyle=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" value="SQL" vertex="1">
           <mxGeometry height="208" width="208" x="1640" y="1000" as="geometry" />
         </mxCell>
         <mxCell id="bk-25" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=30;fontStyle=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" value="Payment gRPC API" vertex="1">
           <mxGeometry height="208" width="208" x="1640" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-20" edge="1" parent="1" source="BS0r1bFjgohTazYwafoy-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="bk-7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="50" y="100" />
+              <mxPoint x="50" y="100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-18" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=9;" value="recibe las consultas HTTP (Availability pregunta el estado de una reserva) y se las pasa al BookingService" vertex="1">
+          <mxGeometry height="45" width="171" x="-180" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-37" edge="1" parent="1" source="BS0r1bFjgohTazYwafoy-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="bk-8">
+          <mxGeometry relative="1" x="-0.2387" as="geometry">
+            <Array as="points">
+              <mxPoint x="550" y="105" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-36" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=7;" value="corre siempre de fondo, lee los pedidos del Service Bus (grupo3-booking-topic, suscripción booking) y se los pasa al BookingService" vertex="1">
+          <mxGeometry height="45" width="171" x="510" y="-190" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-39" edge="1" parent="1" source="BS0r1bFjgohTazYwafoy-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="bk-8">
+          <mxGeometry relative="1" x="-0.1412" as="geometry">
+            <Array as="points">
+              <mxPoint x="500" y="-227.5" />
+              <mxPoint x="500" y="105" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-38" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=8;" value="si procesa bien hace Complete; si falla, Abandon para reintentar; si falla 5 veces o el mensaje viene roto, lo manda a dead-letter" vertex="1">
+          <mxGeometry height="45" width="171" x="510" y="-250" as="geometry" />
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-52" edge="1" parent="1" source="BS0r1bFjgohTazYwafoy-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="bk-9" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1070" y="-147.5" />
+              <mxPoint x="1070" y="83" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BS0r1bFjgohTazYwafoy-51" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=6;" value="Al iniciar, conecta: IBookingService → BookingService, IPaymentServiceClient → PaymentServiceClient. Además registra el BookingDbContext (PostgreSQL), la autenticación JWT (audiencia booking-api) y el worker" vertex="1">
+          <mxGeometry height="45" width="171" x="1080" y="-170" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
