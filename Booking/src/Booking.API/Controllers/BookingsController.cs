@@ -1,6 +1,8 @@
 using Booking.Infrastructure.Entities;
 using Booking.Service.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Booking.API.Controllers;
 
@@ -21,7 +23,7 @@ public class BookingsController : ControllerBase
         var bookings = await _bookingService.GetAllBookingsAsync();
         return Ok(bookings);
     }
-
+    [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult<BookingEntity>> GetBooking(Guid id)
     {
@@ -33,6 +35,7 @@ public class BookingsController : ControllerBase
         return Ok(booking);
     }
 
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult<BookingEntity>> CreateBooking(string eventId, string seatId, string userId)
     {
