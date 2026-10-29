@@ -1,9 +1,10 @@
-using Microsoft.Extensions.Configuration;   
+using Microsoft.Extensions.Configuration;
+using Payment.BLL.Interfaces;
 using Payment.Domain.Enums;
 
 namespace Payment.BLL.Services;
 
-public class MockPaymentProvider
+public class MockPaymentProvider : IPaymentProvider
 {
     private readonly PaymentStatus _result;
 

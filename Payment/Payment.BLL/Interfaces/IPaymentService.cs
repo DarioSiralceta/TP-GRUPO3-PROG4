@@ -1,8 +1,8 @@
-using Payment.Domain.Enums;
+using Payment.Domain.Entities;
 
 namespace Payment.BLL.Interfaces;
 
 public interface IPaymentService
 {
-    Task<PaymentStatus> ProcessPaymentAsync();
+    Task<PaymentAttempt> ProcessPaymentAsync(string bookingId, string userId, decimal amount, string currency);
 }
