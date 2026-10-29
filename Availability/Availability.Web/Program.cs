@@ -29,7 +29,7 @@ builder.Services
     .AddOpenIdConnect(options =>
     {
         options.Authority =
-            "http://127.0.0.1:8080/realms/realm-tp-prog4";
+            "http://127.0.0.1:8081/realms/realm-tp-prog4";
 
         options.ClientId = "availability-web";
 
