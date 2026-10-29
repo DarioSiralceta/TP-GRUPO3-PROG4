@@ -44,7 +44,8 @@
             "included.custom.audience": "booking-api"
           }
         }
-      ]
+      ],
+      "secret": "${AVAILABILITY_CLIENT_SECRET}"
     },
     {
       "clientId": "availability-web",
@@ -70,7 +71,7 @@
         "pkce.code.challenge.method": "S256",
         "post.logout.redirect.uris": "https://localhost:7165/signout-callback-oidc"
       },
-
+      "secret": "${MVC_CLIENT_SECRET}",
       "protocolMappers": [
         {
           "name": "availability-api-audience",
@@ -113,7 +114,8 @@
             "included.custom.audience": "payment-api"
           }
         }
-      ]
+      ],
+      "secret": "${BOOKING_CLIENT_SECRET}"
     }
   ],
   "users": [
@@ -132,6 +134,20 @@
       "realmRoles": [
         "payments.process"
       ]
+    }
+  ],
+  "identityProviders": [
+    {
+      "alias": "google",
+      "providerId": "google",
+      "enabled": true,
+      "trustEmail": false,
+      "storeToken": false,
+      "config": {
+        "clientId": "${GOOGLE_CLIENT_ID}",
+        "clientSecret": "${GOOGLE_CLIENT_SECRET}",
+        "defaultScope": "openid profile email"
+      }
     }
   ]
 }
