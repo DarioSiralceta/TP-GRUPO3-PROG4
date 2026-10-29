@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Booking.Service\Booking.Service.csproj" />
     <ProjectReference Include="..\Booking.Infrastructure\Booking.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Authorization\Shared.Authentication\Shared.Authentication.csproj" />
   </ItemGroup>
 
 </Project>
