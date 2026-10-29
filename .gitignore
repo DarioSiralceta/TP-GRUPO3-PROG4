@@ -13,6 +13,7 @@ obj/
 artifacts/
 
 # Configuración local
+.DS_Store
 .env
 .env.*
 !.env.example
