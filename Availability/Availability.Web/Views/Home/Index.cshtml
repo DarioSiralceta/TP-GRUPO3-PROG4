@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="text-center">
+    <h1>Bienvenido al sistema de reservas</h1>
+
+    <p>
+        Acá vas a poder consultar la disponibilidad de asientos
+        y realizar reservas.
+    </p>
+
+    <a asp-controller="Eventos"
+       asp-action="Index"
+       class="btn btn-primary">
+        Ver eventos
+    </a>
+
+    <a asp-controller="Reservas"
+        asp-action="Seguimiento"
+        class="btn btn-outline-primary">
+        Consultar una solicitud
+    </a>
+</div>

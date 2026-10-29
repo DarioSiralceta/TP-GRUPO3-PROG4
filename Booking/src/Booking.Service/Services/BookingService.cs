@@ -53,9 +53,9 @@ public class BookingService : IBookingService
         bool hasChanges = false;
         foreach (var b in bookings)
         {
-            if (b.Status == "Retenida" && b.ExpiresAt <= now)
+            if (b.Status == BookingStatus.Retenida && b.ExpiresAt <= now)
             {
-                b.Status = "Vencida";
+                b.Status = BookingStatus.Vencida;
                 hasChanges = true;
             }
         }
@@ -77,9 +77,9 @@ public class BookingService : IBookingService
         }
 
         // Domain rule 8: Expired retention transitions to Vencida
-        if (booking.Status == "Retenida" && booking.ExpiresAt <= DateTime.UtcNow)
+        if (booking.Status == BookingStatus.Retenida && booking.ExpiresAt <= DateTime.UtcNow)
         {
-            booking.Status = "Vencida";
+            booking.Status = BookingStatus.Vencida;
             await _context.SaveChangesAsync();
         }
 
@@ -94,8 +94,8 @@ public class BookingService : IBookingService
         var booking = await _context.Bookings
             .Where(b => b.EventId == eventId
                      && b.SeatId == seatId
-                     && (b.Status == "Confirmada" || (b.Status == "Retenida" && b.ExpiresAt > now)))
-            .OrderByDescending(b => b.Status == "Confirmada")
+                     && (b.Status == BookingStatus.Confirmada || (b.Status == BookingStatus.Retenida && b.ExpiresAt > now)))
+            .OrderByDescending(b => b.Status == BookingStatus.Confirmada)
             .ThenByDescending(b => b.CreatedAt)
             .FirstOrDefaultAsync();
 
@@ -104,7 +104,7 @@ public class BookingService : IBookingService
             EventId = eventId,
             SeatId = seatId,
             IsOccupied = booking != null,
-            Status = booking?.Status ?? "Disponible"
+            Status = booking?.Status.ToString() ?? "Disponible"
         };
     }
 
@@ -115,7 +115,7 @@ public class BookingService : IBookingService
         var now = DateTime.UtcNow;
         return await _context.Bookings
             .Where(b => b.EventId == eventId
-                     && (b.Status == "Confirmada" || (b.Status == "Retenida" && b.ExpiresAt > now)))
+                     && (b.Status == BookingStatus.Confirmada || (b.Status == BookingStatus.Retenida && b.ExpiresAt > now)))
             .Select(b => b.SeatId)
             .Distinct()
             .OrderBy(seatId => seatId)
@@ -128,7 +128,7 @@ public class BookingService : IBookingService
         var expiredBookings = await _context.Bookings
             .Where(b => b.EventId == eventId
                      && (seatId == null || b.SeatId == seatId)
-                     && b.Status == "Retenida"
+                     && b.Status == BookingStatus.Retenida
                      && b.ExpiresAt <= now)
             .ToListAsync();
 
@@ -139,7 +139,7 @@ public class BookingService : IBookingService
 
         foreach (var booking in expiredBookings)
         {
-            booking.Status = "Vencida";
+            booking.Status = BookingStatus.Vencida;
         }
 
         await _context.SaveChangesAsync();
@@ -153,7 +153,7 @@ public class BookingService : IBookingService
         var expiredBookings = await _context.Bookings
             .Where(b => b.EventId == eventId
                      && b.SeatId == seatId
-                     && b.Status == "Retenida"
+                     && b.Status == BookingStatus.Retenida
                      && b.ExpiresAt <= now)
             .ToListAsync();
 
@@ -161,7 +161,7 @@ public class BookingService : IBookingService
         {
             foreach (var b in expiredBookings)
             {
-                b.Status = "Vencida";
+                b.Status = BookingStatus.Vencida;
             }
             await _context.SaveChangesAsync();
         }
@@ -172,7 +172,7 @@ public class BookingService : IBookingService
             EventId = eventId,
             SeatId = seatId,
             UserId = userId,
-            Status = "Retenida",
+            Status = BookingStatus.Retenida,
             ExpiresAt = now.AddMinutes(2),
             CreatedAt = now
         };
@@ -209,7 +209,7 @@ public class BookingService : IBookingService
         var expiredBookings = await _context.Bookings
             .Where(b => b.EventId == request.EventId
                      && b.SeatId == request.SeatId
-                     && b.Status == "Retenida"
+                     && b.Status == BookingStatus.Retenida
                      && b.ExpiresAt <= now)
             .ToListAsync(cancellationToken);
 
@@ -220,7 +220,7 @@ public class BookingService : IBookingService
 
             foreach (var b in expiredBookings)
             {
-                b.Status = "Vencida";
+                b.Status = BookingStatus.Vencida;
             }
             await _context.SaveChangesAsync(cancellationToken);
         }
@@ -230,7 +230,7 @@ public class BookingService : IBookingService
         var isOccupied = await _context.Bookings.AnyAsync(b =>
             b.EventId == request.EventId &&
             b.SeatId == request.SeatId &&
-            (b.Status == "Confirmada" || (b.Status == "Retenida" && b.ExpiresAt > now)),
+            (b.Status == BookingStatus.Confirmada || (b.Status == BookingStatus.Retenida && b.ExpiresAt > now)),
             cancellationToken);
 
         if (isOccupied)
@@ -244,7 +244,7 @@ public class BookingService : IBookingService
                 EventId = request.EventId,
                 SeatId = request.SeatId,
                 UserId = request.UserId ?? "anonymous",
-                Status = "Rechazada",
+                Status = BookingStatus.Rechazada,
                 RejectionReason = "Asiento ocupado",
                 ExpiresAt = now,
                 CreatedAt = now
@@ -265,7 +265,7 @@ public class BookingService : IBookingService
             EventId = request.EventId,
             SeatId = request.SeatId,
             UserId = request.UserId ?? "anonymous",
-            Status = "Retenida",
+            Status = BookingStatus.Retenida,
             ExpiresAt = now.AddMinutes(2), // 2-minute retention window
             CreatedAt = now
         };
@@ -290,7 +290,7 @@ public class BookingService : IBookingService
                 EventId = request.EventId,
                 SeatId = request.SeatId,
                 UserId = request.UserId ?? "anonymous",
-                Status = "Rechazada",
+                Status = BookingStatus.Rechazada,
                 RejectionReason = "Asiento ocupado",
                 ExpiresAt = now,
                 CreatedAt = now
@@ -312,13 +312,13 @@ public class BookingService : IBookingService
         // 6. Flow step 6: Update status based on payment outcome
         if (paymentResult.IsSuccess)
         {
-            booking.Status = "Confirmada";
+            booking.Status = BookingStatus.Confirmada;
             booking.RejectionReason = null;
             _logger.LogInformation("Payment successful. Booking {BookingId} CONFIRMED.", booking.Id);
         }
         else
         {
-            booking.Status = "Rechazada";
+            booking.Status = BookingStatus.Rechazada;
             booking.RejectionReason = paymentResult.ErrorMessage ?? "Pago fallido";
             _logger.LogWarning("Payment rejected. Booking {BookingId} REJECTED. Reason: {Reason}", booking.Id, booking.RejectionReason);
         }

@@ -1,0 +1,30 @@
+@model Availability.Web.Models.SolicitudReservaViewModel
+
+@{
+    ViewData["Title"] = "Solicitar reserva";
+}
+
+<h1>Solicitar reserva</h1>
+
+<p><strong>Evento:</strong> @Model.NombreEvento</p>
+<p><strong>Asiento:</strong> @Model.NumeroAsiento</p>
+
+<div class="alert alert-warning">
+    Esta es una prueba. No se creará una reserva real.
+</div>
+
+<form asp-controller="Reservas" asp-action="Confirmar" method="post">
+    <input type="hidden" name="eventoId" value="@Model.EventoId" />
+    <input type="hidden" name="numeroAsiento" value="@Model.NumeroAsiento" />
+
+    <button type="submit" class="btn btn-primary">
+        Confirmar solicitud
+    </button>
+
+    <a asp-controller="Asientos"
+       asp-action="Index"
+       asp-route-eventoId="@Model.EventoId"
+       class="btn btn-secondary">
+        Volver a los asientos
+    </a>
+</form>

@@ -1,0 +1,29 @@
+@model Availability.Web.Models.SolicitudReservaViewModel
+
+@{
+    ViewData["Title"] = "Solicitud simulada";
+}
+
+<h1>Solicitud simulada</h1>
+
+<div class="alert alert-info">
+    Se generó un identificador de prueba.
+    No se realizó una reserva real.
+</div>
+
+<p><strong>Evento:</strong> @Model.NombreEvento</p>
+<p><strong>Asiento:</strong> @Model.NumeroAsiento</p>
+<p><strong>Identificador de prueba:</strong> @Model.SolicitudId</p>
+
+<a asp-controller="Reservas"
+   asp-action="Seguimiento"
+   asp-route-solicitudId="@Model.SolicitudId"
+   class="btn btn-success">
+    Consultar estado
+</a>
+
+<a asp-controller="Eventos"
+   asp-action="Index"
+   class="btn btn-primary">
+    Volver a eventos
+</a>

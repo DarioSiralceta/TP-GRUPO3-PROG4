@@ -1,0 +1,38 @@
+@model List<Availability.Web.Models.EventoViewModel>
+
+@{
+    ViewData["Title"] = "Eventos";
+}
+
+<h1>Eventos</h1>
+<p>Elegí un evento para consultar sus asientos.</p>
+<p class="text-muted">Los eventos y asientos son datos de ejemplo.</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Evento</th>
+            <th>Lugar</th>
+            <th>Fecha</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var evento in Model)
+        {
+            <tr>
+                <td>@evento.Nombre</td>
+                <td>@evento.Lugar</td>
+                <td>@evento.Fecha.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>
+                    <a asp-controller="Asientos"
+                       asp-action="Index"
+                       asp-route-eventoId="@evento.Id"
+                       class="btn btn-primary">
+                        Ver asientos
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

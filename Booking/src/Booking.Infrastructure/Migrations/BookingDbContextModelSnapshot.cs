@@ -60,7 +60,10 @@ namespace Booking.Infrastructure.Migrations
                         .HasDatabaseName("IX_bookings_EventId_SeatId_Active")
                         .HasFilter("\"Status\" IN ('Retenida', 'Confirmada')");
 
-                    b.ToTable("bookings", (string)null);
+                    b.ToTable("bookings", null, t =>
+                        {
+                            t.HasCheckConstraint("CK_bookings_Status", "\"Status\" IN ('Retenida', 'Confirmada', 'Rechazada', 'Vencida')");
+                        });
                 });
 #pragma warning restore 612, 618
         }

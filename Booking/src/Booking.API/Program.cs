@@ -1,15 +1,26 @@
 // src/Booking.API/Program.cs
+using System.Text.Json.Serialization;
 using Booking.API.Workers;
 using Booking.Infrastructure.Configuration;
 using Booking.Infrastructure.Persistence;
 using Booking.Service.Services;
 using Booking.Service.Services.Payment;
 using Microsoft.EntityFrameworkCore;
+using Shared.Authentication.Extensions;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Keycloak Authentication and Authorization from Shared.Authentication
+builder.Services.AddKeycloakAuthentication(builder.Configuration);
+builder.Services.AddKeycloakAuthorization();
+
 // Controllers and OpenAPI / Swagger
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -38,7 +49,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllers();
 
 app.Run();

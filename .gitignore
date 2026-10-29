@@ -11,10 +11,14 @@ obj/
 [Dd]ebug/
 [Rr]elease/
 artifacts/
+.nuget/
+**/.nuget/
 
 # Configuración local
+.DS_Store
 .env
 .env.*
 !.env.example
 **/appsettings.Development.json
 **/secrets.json
+**/Keycloak/.env
