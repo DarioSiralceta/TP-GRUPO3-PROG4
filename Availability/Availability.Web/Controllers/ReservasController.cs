@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Availability.Web.Models;
 using Availability.Web.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Availability.Web.Controllers;
 
@@ -34,6 +35,21 @@ public class ReservasController : Controller
     [HttpGet]
     public IActionResult Solicitar(int eventoId, int numeroAsiento)
     {
+        // Mostramos un aviso antes del formulario si no hay sesión.
+        // Conservamos el evento y asiento para regresar después del login.
+        if (User.Identity?.IsAuthenticated != true)
+        {
+            var returnUrl = Url.Action(
+                nameof(Solicitar),
+                "Reservas",
+                new { eventoId, numeroAsiento });
+
+            return RedirectToAction(
+                "RequiereLogin",
+                "Account",
+                new { returnUrl });
+        }
+
         var evento = _eventosService.ObtenerPorId(eventoId);
 
         if (evento == null)
@@ -74,6 +90,7 @@ public class ReservasController : Controller
         return View(modelo);
     }
 
+    [Authorize]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Confirmar(int eventoId, int numeroAsiento)
