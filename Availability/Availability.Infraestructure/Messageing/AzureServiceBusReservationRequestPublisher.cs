@@ -11,7 +11,7 @@ using System.Text.Json;
 
 namespace Availability.Infraestructure.Messageing
 {
-    public class AzureServiceBusReservationRequestPublisher : IReservationRequestPublisher
+    public class AzureServiceBusReservationRequestPublisher : IReservationRequestPublisher, IAsyncDisposable
     {
         private ServiceBusSender _sender;
 
@@ -32,6 +32,11 @@ namespace Availability.Infraestructure.Messageing
             
 
             
+        }
+
+        public async ValueTask DisposeAsync()
+        {
+            await _sender.DisposeAsync();
         }
     }
 }

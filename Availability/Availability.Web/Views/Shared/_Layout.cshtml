@@ -1,0 +1,128 @@
+﻿@{
+    var controladorActual =
+        ViewContext.RouteData.Values["controller"]?.ToString();
+
+    var accionActual =
+        ViewContext.RouteData.Values["action"]?.ToString();
+
+    var esInicio =
+        controladorActual == "Home" && accionActual == "Index";
+
+    var esEventos =
+        controladorActual == "Eventos"
+        || controladorActual == "Asientos"
+        || (controladorActual == "Reservas"
+            && accionActual == "Solicitar");
+
+    var esSeguimiento =
+        controladorActual == "Reservas"
+        && accionActual == "Seguimiento";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1.0" />
+
+        <title>@ViewData["Title"] - Availability</title>
+
+        <link rel="stylesheet"
+            href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+        <link rel="stylesheet"
+            href="~/Availability.Web.styles.css"
+            asp-append-version="true" />
+
+        <link rel="stylesheet"
+            href="~/css/site.css"
+            asp-append-version="true" />
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-light app-navbar"
+                aria-label="Navegación principal">
+                <div class="container">
+                    <a class="navbar-brand"
+                    asp-area=""
+                    asp-controller="Home"
+                    asp-action="Index">
+                        <span class="brand-symbol" aria-hidden="true">A</span>
+                        Availability
+                    </a>
+
+                    <button class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navegacionPrincipal"
+                            aria-controls="navegacionPrincipal"
+                            aria-expanded="false"
+                            aria-label="Mostrar u ocultar navegación">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div id="navegacionPrincipal"
+                        class="collapse navbar-collapse">
+                        <ul class="navbar-nav me-auto ms-sm-3">
+                            <li class="nav-item">
+                                <a class="nav-link @(esInicio ? "active" : "")"
+                                aria-current="@(esInicio ? "page" : null)"
+                                asp-area=""
+                                asp-controller="Home"
+                                asp-action="Index">
+                                    Inicio
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link @(esEventos ? "active" : "")"
+                                aria-current="@(esEventos ? "page" : null)"
+                                asp-area=""
+                                asp-controller="Eventos"
+                                asp-action="Index">
+                                    Eventos
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link @(esSeguimiento ? "active" : "")"
+                                aria-current="@(esSeguimiento ? "page" : null)"
+                                asp-area=""
+                                asp-controller="Reservas"
+                                asp-action="Seguimiento">
+                                    Seguimiento
+                                </a>
+                            </li>
+                        </ul>
+
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main id="contenidoPrincipal"
+            class="container app-main">
+            @RenderBody()
+        </main>
+
+        <footer class="app-footer">
+            <div class="container footer-content">
+                <span>&copy; @DateTime.Now.Year Availability</span>
+
+                <a asp-area=""
+                asp-controller="Home"
+                asp-action="Privacy">
+                    Privacidad
+                </a>
+            </div>
+        </footer>
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
+</html>

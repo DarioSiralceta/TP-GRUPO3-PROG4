@@ -9,10 +9,15 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.21.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.22">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Authorization\Shared.Authentication\Shared.Authentication.csproj" />
     <ProjectReference Include="..\Availability.Application\Availability.Application.csproj" />
     <ProjectReference Include="..\Availability.Infraestructure\Availability.Infraestructure.csproj" />
   </ItemGroup>

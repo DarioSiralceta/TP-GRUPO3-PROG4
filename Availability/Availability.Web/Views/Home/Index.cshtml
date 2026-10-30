@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<section class="home-hero" aria-labelledby="tituloInicio">
+    <div class="hero-content">
+        <span class="hero-label">Eventos y reservas</span>
+
+        <h1 id="tituloInicio">
+            Tu próximo evento empieza acá.
+        </h1>
+
+        <p class="hero-description">
+            Explorá los eventos, consultá los asientos disponibles
+            y enviá tu solicitud de reserva desde un solo lugar.
+        </p>
+
+        <div class="hero-actions">
+            <a asp-controller="Eventos"
+               asp-action="Index"
+               class="btn btn-primary">
+                Ver eventos
+            </a>
+
+            <a asp-controller="Reservas"
+               asp-action="Seguimiento"
+               class="btn btn-outline-light">
+                Consultar una solicitud
+            </a>
+        </div>
+
+        <p class="hero-note">
+            Consultá sin iniciar sesión. Para reservar, ingresá a tu cuenta.
+        </p>
+    </div>
+</section>
+
+<section class="home-section" aria-labelledby="tituloPasos">
+    <div class="section-heading">
+        <h2 id="tituloPasos">¿Cómo funciona?</h2>
+        <p>Seguí tu solicitud desde la elección del evento hasta el resultado.</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <article class="step-card">
+                <span class="step-number" aria-hidden="true">01</span>
+
+                <h3>Elegí un evento</h3>
+
+                <p>
+                    Consultá el listado de eventos y revisá
+                    la disponibilidad de sus asientos.
+                </p>
+            </article>
+        </div>
+
+        <div class="col-md-4">
+            <article class="step-card">
+                <span class="step-number" aria-hidden="true">02</span>
+
+                <h3>Solicitá tu reserva</h3>
+
+                <p>
+                    Iniciá sesión, elegí un asiento y enviá la solicitud.
+                    Recibirás un identificador para consultarla.
+                </p>
+            </article>
+        </div>
+
+        <div class="col-md-4">
+            <article class="step-card">
+                <span class="step-number" aria-hidden="true">03</span>
+
+                <h3>Consultá el resultado</h3>
+
+                <p>
+                    Usá el identificador en Seguimiento.
+                    Recibir la solicitud no significa
+                    que la reserva esté confirmada.
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
