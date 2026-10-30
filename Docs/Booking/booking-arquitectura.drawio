@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Booking" id="bk">
-    <mxGraphModel dx="3377" dy="2032" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="5535" dy="3215" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -873,6 +873,17 @@
           <mxGeometry relative="1" x="-0.8052" y="-3" as="geometry">
             <mxPoint y="-3" as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="NyWOKDfgpvcPHngKXhvz-90" edge="1" parent="1" source="NyWOKDfgpvcPHngKXhvz-89" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="NyWOKDfgpvcPHngKXhvz-76">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="-90" />
+              <mxPoint x="1000" y="-90" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NyWOKDfgpvcPHngKXhvz-89" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=10;" value="corre de fondo y cada 30 segundos pasa a Vencida las reservas Retenidas que ya pasaron su hora" vertex="1">
+          <mxGeometry height="45" width="171" x="880" y="-170" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
