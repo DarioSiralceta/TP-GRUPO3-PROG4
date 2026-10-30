@@ -1,13 +1,6 @@
-﻿<<<<<<< HEAD
-
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 18
-VisualStudioVersion = 18.11.12315.225
-=======
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
+﻿﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.37824.6
->>>>>>> feature/availability
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Availability.API", "Availability\Availability.API\Availability.API.csproj", "{63D99411-CFD0-42DC-AD0F-2E06316D5073}"
 EndProject
@@ -187,18 +180,15 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-<<<<<<< HEAD
 		{324E333B-5BB1-6702-B6C7-FB622EB3D7AE} = {049709DC-B2E1-CB57-AF8D-0E936AF5ACCA}
 		{CA1C8C73-96FF-42B3-9145-415ED349A4D6} = {324E333B-5BB1-6702-B6C7-FB622EB3D7AE}
 		{5C041EAE-9C17-422C-AD65-5F6612666FF8} = {324E333B-5BB1-6702-B6C7-FB622EB3D7AE}
 		{D5FA34DF-C0C7-4A4C-82C8-66DF963A7A18} = {324E333B-5BB1-6702-B6C7-FB622EB3D7AE}
 		{427C3809-72FF-4D46-9FC9-FE436FE4C3A6} = {0FCDE3A2-FD1A-264D-89A2-35165F59291D}
-=======
 		{511F3F32-B0EA-4FA4-A572-4E3739D93960} = {1DF26CFD-3400-4FD0-ADC9-5B5B5259986C}
 		{FAED4944-7C88-4D21-A02B-603A21D0CDAD} = {1DF26CFD-3400-4FD0-ADC9-5B5B5259986C}
 		{BEBC70AA-334A-44CC-BD33-8F00188D4A59} = {1DF26CFD-3400-4FD0-ADC9-5B5B5259986C}
 		{9BC8E80E-AEB5-4113-9E28-3F53308A46E6} = {1DF26CFD-3400-4FD0-ADC9-5B5B5259986C}
->>>>>>> origin/feature/gRPC
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1CA9FB4-FD0F-48AB-9858-93C3DC1F365A}
