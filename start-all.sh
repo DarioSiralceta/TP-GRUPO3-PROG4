@@ -29,7 +29,7 @@ dotnet run --project Booking/src/Booking.API &
 dotnet run --project Availability/Availability.API &
 dotnet run --project Payment/Payment.API &
 dotnet run --project Authorization/Auth.TestApi/Auth.TestApi.csproj --launch-profile http &
-dotnet run --project Availability/Availability.Web &
+dotnet run --project Availability/Availability.Web/Availability.Web.csproj --launch-profile https &
 
 # Interceptar Ctrl+C (SIGINT/SIGTERM) para detener todos los procesos dotnet en segundo plano
 trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
