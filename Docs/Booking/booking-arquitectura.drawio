@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Booking" id="bk">
-    <mxGraphModel dx="4159" dy="2246" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="4353" dy="2341" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -255,7 +255,7 @@
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-88" connectable="0" parent="BS0r1bFjgohTazYwafoy-87" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Implementa" vertex="1">
           <mxGeometry relative="1" x="-0.0286" y="-1" as="geometry">
-            <mxPoint x="9" y="-78" as="offset" />
+            <mxPoint x="-1" y="-78" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-124" edge="1" parent="1" source="bk-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="bk-15">
@@ -850,7 +850,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="NyWOKDfgpvcPHngKXhvz-72" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=9;" value="ide su token a Keycloak y llama a Payment por gRPC. Traduce Success → cobrado, Declined → pago rechazado, Unavailable o error → pago no disponible" vertex="1">
+        <mxCell id="NyWOKDfgpvcPHngKXhvz-72" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=9;" value="Pide su token a Keycloak y llama a Payment por gRPC. Traduce Success → cobrado, Declined → pago rechazado, Unavailable o error → pago no disponible" vertex="1">
           <mxGeometry height="45" width="239.5" x="540.5" y="553.5" as="geometry" />
         </mxCell>
       </root>
