@@ -50,6 +50,7 @@ builder.Services.AddDbContext<BookingDbContext>(options =>
 
 // Background Worker for processing reservation messages from Availability via Azure Service Bus
 builder.Services.AddHostedService<BookingReservationWorker>();
+builder.Services.AddHostedService<BookingRetentionExpirationWorker>();
 
 var app = builder.Build();
 

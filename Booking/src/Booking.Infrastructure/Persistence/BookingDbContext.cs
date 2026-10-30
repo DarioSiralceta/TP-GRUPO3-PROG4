@@ -35,5 +35,10 @@ public class BookingDbContext : DbContext
             .HasFilter($"\"Status\" IN ('{BookingStatus.Retenida}', '{BookingStatus.Confirmada}')")
             .IsUnique()
             .HasDatabaseName("IX_bookings_EventId_SeatId_Active");
+
+        modelBuilder.Entity<BookingEntity>()
+            .HasIndex(b => b.ExpiresAt)
+            .HasFilter($"\"Status\" = '{BookingStatus.Retenida}'")
+            .HasDatabaseName("IX_bookings_ExpiresAt_Retenida");
     }
 }

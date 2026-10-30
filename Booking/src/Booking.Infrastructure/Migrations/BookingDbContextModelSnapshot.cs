@@ -55,6 +55,10 @@ namespace Booking.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ExpiresAt")
+                        .HasDatabaseName("IX_bookings_ExpiresAt_Retenida")
+                        .HasFilter("\"Status\" = 'Retenida'");
+
                     b.HasIndex("EventId", "SeatId")
                         .IsUnique()
                         .HasDatabaseName("IX_bookings_EventId_SeatId_Active")

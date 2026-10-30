@@ -46,55 +46,21 @@ public class BookingService : IBookingService
 
     public async Task<IEnumerable<BookingEntity>> GetAllBookingsAsync()
     {
-        var bookings = await _context.Bookings.ToListAsync();
-        
-        // Evaluate expired retentions
-        var now = DateTime.UtcNow;
-        bool hasChanges = false;
-        foreach (var b in bookings)
-        {
-            if (b.Status == BookingStatus.Retenida && b.ExpiresAt <= now)
-            {
-                b.Status = BookingStatus.Vencida;
-                hasChanges = true;
-            }
-        }
-
-        if (hasChanges)
-        {
-            await _context.SaveChangesAsync();
-        }
-
-        return bookings;
+        return await _context.Bookings.ToListAsync();
     }
 
     public async Task<BookingEntity?> GetBookingByIdAsync(Guid id)
     {
-        var booking = await _context.Bookings.FindAsync(id);
-        if (booking == null)
-        {
-            return null;
-        }
-
-        // Domain rule 8: Expired retention transitions to Vencida
-        if (booking.Status == BookingStatus.Retenida && booking.ExpiresAt <= DateTime.UtcNow)
-        {
-            booking.Status = BookingStatus.Vencida;
-            await _context.SaveChangesAsync();
-        }
-
-        return booking;
+        return await _context.Bookings.FindAsync(id);
     }
 
     public async Task<SeatStatusDto> GetSeatStatusAsync(string eventId, string seatId) // Franco Brienza - Copilot
     {
-        await ExpireRetentionsAsync(eventId, seatId); 
-
         var now = DateTime.UtcNow;
         var booking = await _context.Bookings
             .Where(b => b.EventId == eventId
-                     && b.SeatId == seatId
-                     && (b.Status == BookingStatus.Confirmada || (b.Status == BookingStatus.Retenida && b.ExpiresAt > now)))
+                    && b.SeatId == seatId
+                    && (b.Status == BookingStatus.Confirmada || (b.Status == BookingStatus.Retenida && b.ExpiresAt > now)))
             .OrderByDescending(b => b.Status == BookingStatus.Confirmada)
             .ThenByDescending(b => b.CreatedAt)
             .FirstOrDefaultAsync();
@@ -110,61 +76,36 @@ public class BookingService : IBookingService
 
     public async Task<List<string>> GetOccupiedSeatsAsync(string eventId) // Franco Brienza - Copilot
     {
-        await ExpireRetentionsAsync(eventId);
-
         var now = DateTime.UtcNow;
         return await _context.Bookings
             .Where(b => b.EventId == eventId
-                     && (b.Status == BookingStatus.Confirmada || (b.Status == BookingStatus.Retenida && b.ExpiresAt > now)))
+                    && (b.Status == BookingStatus.Confirmada || (b.Status == BookingStatus.Retenida && b.ExpiresAt > now)))
             .Select(b => b.SeatId)
             .Distinct()
             .OrderBy(seatId => seatId)
             .ToListAsync();
     }
 
-    private async Task ExpireRetentionsAsync(string eventId, string? seatId = null) // Franco Brienza - Copilot
+    private Task<int> ExpireRetentionsForSeatAsync(
+        string eventId,
+        string seatId,
+        CancellationToken cancellationToken = default)
     {
         var now = DateTime.UtcNow;
-        var expiredBookings = await _context.Bookings
+        return _context.Bookings
             .Where(b => b.EventId == eventId
-                     && (seatId == null || b.SeatId == seatId)
-                     && b.Status == BookingStatus.Retenida
-                     && b.ExpiresAt <= now)
-            .ToListAsync();
-
-        if (expiredBookings.Count == 0)
-        {
-            return;
-        }
-
-        foreach (var booking in expiredBookings)
-        {
-            booking.Status = BookingStatus.Vencida;
-        }
-
-        await _context.SaveChangesAsync();
+                    && b.SeatId == seatId
+                    && b.Status == BookingStatus.Retenida
+                    && b.ExpiresAt <= now)
+            .ExecuteUpdateAsync(
+                setters => setters.SetProperty(b => b.Status, BookingStatus.Vencida),
+                cancellationToken);
     }
-    
+
     public async Task<BookingEntity> CreateRetentionAsync(string eventId, string seatId, string userId)
     {
+        await ExpireRetentionsForSeatAsync(eventId, seatId);
         var now = DateTime.UtcNow;
-
-        // Eagerly release any expired retentions for this seat
-        var expiredBookings = await _context.Bookings
-            .Where(b => b.EventId == eventId
-                     && b.SeatId == seatId
-                     && b.Status == BookingStatus.Retenida
-                     && b.ExpiresAt <= now)
-            .ToListAsync();
-
-        if (expiredBookings.Count > 0)
-        {
-            foreach (var b in expiredBookings)
-            {
-                b.Status = BookingStatus.Vencida;
-            }
-            await _context.SaveChangesAsync();
-        }
 
         var booking = new BookingEntity
         {
@@ -191,11 +132,9 @@ public class BookingService : IBookingService
     /// 6. Result: Confirms ('Confirmada') or rejects ('Rechazada', reason: 'Pago fallido') based on Payment result.
     /// </summary>
     public async Task<BookingEntity> ProcessReservationRequestAsync(
-        ReservationRequestedMessage request, 
+        ReservationRequestedMessage request,
         CancellationToken cancellationToken = default)
     {
-        var now = DateTime.UtcNow;
-
         // 1. Idempotency: Verify whether RequestId has already been processed
         var existingBooking = await _context.Bookings.FirstOrDefaultAsync(b => b.Id == request.RequestId, cancellationToken);
         if (existingBooking != null)
@@ -205,26 +144,18 @@ public class BookingService : IBookingService
             return existingBooking;
         }
 
-        // 2. Eagerly release expired retentions for this seat so the partial unique index does not block re-booking
-        var expiredBookings = await _context.Bookings
-            .Where(b => b.EventId == request.EventId
-                     && b.SeatId == request.SeatId
-                     && b.Status == BookingStatus.Retenida
-                     && b.ExpiresAt <= now)
-            .ToListAsync(cancellationToken);
-
-        if (expiredBookings.Count > 0)
+        // Release an expired hold immediately; the background worker handles other seats.
+        var expiredCount = await ExpireRetentionsForSeatAsync(
+            request.EventId,
+            request.SeatId,
+            cancellationToken);
+        if (expiredCount > 0)
         {
             _logger.LogInformation("Releasing {Count} expired retention(s) for Seat {SeatId} in Event {EventId}.",
-                expiredBookings.Count, request.SeatId, request.EventId);
-
-            foreach (var b in expiredBookings)
-            {
-                b.Status = BookingStatus.Vencida;
-            }
-            await _context.SaveChangesAsync(cancellationToken);
+                expiredCount, request.SeatId, request.EventId);
         }
 
+        var now = DateTime.UtcNow;
         // 3. Application-level check: Verify seat availability
         // Rule: "A seat is occupied while it has a Retenida (unexpired) or Confirmada booking."
         var isOccupied = await _context.Bookings.AnyAsync(b =>
@@ -304,8 +235,8 @@ public class BookingService : IBookingService
         // 5. Flow step 5: Call Payment service via gRPC
         _logger.LogInformation("Initiating payment for booking {BookingId}...", booking.Id);
         var paymentResult = await _paymentServiceClient.ProcessPaymentAsync(
-            booking.Id, 
-            booking.UserId, 
+            booking.Id,
+            booking.UserId,
             15000.00m,
             cancellationToken);
 
