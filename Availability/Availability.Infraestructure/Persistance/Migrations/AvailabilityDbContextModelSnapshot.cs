@@ -17,6 +17,51 @@ namespace Availability.Infraestructure.Persistence.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.22");
 
+            modelBuilder.Entity("Availability.Domain.Entities.Event", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("Events");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateUtc = new DateTime(2026, 12, 10, 20, 0, 0, 0, DateTimeKind.Utc),
+                            Location = "Teatro Central",
+                            Name = "Concierto de prueba",
+                            RoomId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DateUtc = new DateTime(2026, 12, 15, 21, 0, 0, 0, DateTimeKind.Utc),
+                            Location = "Teatro Central",
+                            Name = "Obra de teatro",
+                            RoomId = 1
+                        });
+                });
+
             modelBuilder.Entity("Availability.Domain.Entities.ReservationRequest", b =>
                 {
                     b.Property<Guid>("RequestId")
@@ -43,6 +88,144 @@ namespace Availability.Infraestructure.Persistence.Migrations
                     b.HasKey("RequestId");
 
                     b.ToTable("ReservationRequests");
+                });
+
+            modelBuilder.Entity("Availability.Domain.Entities.Room", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Rooms");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Capacity = 10,
+                            Name = "Teatro Central"
+                        });
+                });
+
+            modelBuilder.Entity("Availability.Domain.Entities.Seat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoomId", "Number")
+                        .IsUnique();
+
+                    b.ToTable("Seats");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Number = 1,
+                            RoomId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Number = 2,
+                            RoomId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Number = 3,
+                            RoomId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Number = 4,
+                            RoomId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Number = 5,
+                            RoomId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Number = 6,
+                            RoomId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Number = 7,
+                            RoomId = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Number = 8,
+                            RoomId = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Number = 9,
+                            RoomId = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Number = 10,
+                            RoomId = 1
+                        });
+                });
+
+            modelBuilder.Entity("Availability.Domain.Entities.Event", b =>
+                {
+                    b.HasOne("Availability.Domain.Entities.Room", "Room")
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("Availability.Domain.Entities.Seat", b =>
+                {
+                    b.HasOne("Availability.Domain.Entities.Room", "Room")
+                        .WithMany("Seats")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("Availability.Domain.Entities.Room", b =>
+                {
+                    b.Navigation("Seats");
                 });
 #pragma warning restore 612, 618
         }

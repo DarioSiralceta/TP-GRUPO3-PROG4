@@ -8,6 +8,9 @@ using Availability.Infraestructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Shared.Authentication.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Availability.Application.Events.Queries.GetEvents;
+using Availability.Infraestructure.Repositories;
+
 
 
 
@@ -35,6 +38,9 @@ builder.Services.AddSingleton<IReservationRequestPublisher>(
 builder.Services.AddScoped<RequestReservationUseCase>();
 
 // Add services to the container.
+
+builder.Services.AddScoped<IEventRepository, EventRepository>();
+builder.Services.AddScoped<GetEventsUseCase>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
