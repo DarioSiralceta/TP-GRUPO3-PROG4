@@ -50,11 +50,4 @@ public class BookingsController : ControllerBase
         return Ok(occupiedSeats);
     }
 
-    [Authorize]
-    [HttpPost]
-    public async Task<ActionResult<BookingEntity>> CreateBooking(string eventId, string seatId, string userId)
-    {
-        var booking = await _bookingService.CreateRetentionAsync(eventId, seatId, userId);
-        return Ok(booking);
-    }
 }

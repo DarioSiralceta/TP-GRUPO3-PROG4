@@ -20,7 +20,6 @@ public interface IBookingService
     Task<BookingEntity?> GetBookingByIdAsync(Guid id);
     Task<SeatStatusDto> GetSeatStatusAsync(string eventId, string seatId); // Franco Brienza - Copilot
     Task<List<string>> GetOccupiedSeatsAsync(string eventId); // Franco Brienza - Copilot
-    Task<BookingEntity> CreateRetentionAsync(string eventId, string seatId, string userId);
     Task<BookingEntity> ProcessReservationRequestAsync(ReservationRequestedMessage request, CancellationToken cancellationToken = default);
 }
 
@@ -100,27 +99,6 @@ public class BookingService : IBookingService
             .ExecuteUpdateAsync(
                 setters => setters.SetProperty(b => b.Status, BookingStatus.Vencida),
                 cancellationToken);
-    }
-
-    public async Task<BookingEntity> CreateRetentionAsync(string eventId, string seatId, string userId)
-    {
-        await ExpireRetentionsForSeatAsync(eventId, seatId);
-        var now = DateTime.UtcNow;
-
-        var booking = new BookingEntity
-        {
-            Id = Guid.NewGuid(),
-            EventId = eventId,
-            SeatId = seatId,
-            UserId = userId,
-            Status = BookingStatus.Retenida,
-            ExpiresAt = now.AddMinutes(2),
-            CreatedAt = now
-        };
-
-        _context.Bookings.Add(booking);
-        await _context.SaveChangesAsync();
-        return booking;
     }
 
     /// <summary>
