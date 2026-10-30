@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "Payment.API.Protos";
+
+package payment;
+
+service PaymentService {
+  rpc ProcessPayment (ProcessPaymentRequest) returns (ProcessPaymentResponse);
+}
+
+message ProcessPaymentRequest {
+  string booking_id = 1;
+  string user_id = 2;
+  double amount = 3;
+  string currency = 4;
+}
+
+enum PaymentStatus {
+  PAYMENT_STATUS_UNSPECIFIED = 0;
+  SUCCESS = 1;
+  DECLINED = 2;
+  UNAVAILABLE = 3;
+}
+
+message ProcessPaymentResponse {
+  PaymentStatus status = 1;
+  string transaction_id = 2;
+  string error_message = 3;
+}
