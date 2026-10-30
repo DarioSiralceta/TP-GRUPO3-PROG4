@@ -1,15 +1,19 @@
-using Microsoft.OpenApi.Models;
-using Availability.Infraestructure.Persistence.Repositories;
-using Azure.Messaging.ServiceBus;
+using Availability.Application.Events.Queries.GetEvents;
+using Availability.Application.Events.Queries.GetEventSeats;
 using Availability.Application.Interfaces;
 using Availability.Application.Reservations.Request;
+using Availability.Infraestructure.Clients;
 using Availability.Infraestructure.Messageing;
 using Availability.Infraestructure.Persistence;
-using Microsoft.EntityFrameworkCore;
-using Shared.Authentication.Extensions;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Availability.Application.Events.Queries.GetEvents;
+using Availability.Infraestructure.Persistence.Repositories;
 using Availability.Infraestructure.Repositories;
+using Azure.Messaging.ServiceBus;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using Shared.Authentication.Extensions;
+
+
 
 
 
@@ -33,7 +37,8 @@ builder.Services.AddSingleton(new ServiceBusClient(connectionString));
 builder.Services.AddSingleton<IReservationRequestPublisher>(
     sp => new AzureServiceBusReservationRequestPublisher(
         sp.GetRequiredService<ServiceBusClient>(),
-        topicName));
+        topicName,
+        sp.GetRequiredService<ILogger<AzureServiceBusReservationRequestPublisher>>()));
 
 builder.Services.AddScoped<RequestReservationUseCase>();
 
@@ -41,6 +46,19 @@ builder.Services.AddScoped<RequestReservationUseCase>();
 
 builder.Services.AddScoped<IEventRepository, EventRepository>();
 builder.Services.AddScoped<GetEventsUseCase>();
+
+builder.Services.AddScoped<ISeatRepository, SeatRepository>();
+builder.Services.AddScoped<GetEventSeatsUseCase>();
+
+builder.Services.AddHttpClient<IBookingAvailabilityClient, BookingAvailabilityHttpClient>(
+    client =>
+    {
+        var baseUrl = builder.Configuration["BookingApi:BaseUrl"]
+            ?? throw new InvalidOperationException(
+                "Falta configurar BookingApi:BaseUrl.");
+
+        client.BaseAddress = new Uri(baseUrl);
+    });
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
