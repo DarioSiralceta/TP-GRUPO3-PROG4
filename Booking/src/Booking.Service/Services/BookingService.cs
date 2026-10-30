@@ -47,7 +47,7 @@ public class BookingService : IBookingService
     public async Task<IEnumerable<BookingEntity>> GetAllBookingsAsync()
     {
         var bookings = await _context.Bookings.ToListAsync();
-        
+
         // Evaluate expired retentions
         var now = DateTime.UtcNow;
         bool hasChanges = false;
@@ -88,7 +88,7 @@ public class BookingService : IBookingService
 
     public async Task<SeatStatusDto> GetSeatStatusAsync(string eventId, string seatId) // Franco Brienza - Copilot
     {
-        await ExpireRetentionsAsync(eventId, seatId); 
+        await ExpireRetentionsAsync(eventId, seatId);
 
         var now = DateTime.UtcNow;
         var booking = await _context.Bookings
@@ -144,7 +144,7 @@ public class BookingService : IBookingService
 
         await _context.SaveChangesAsync();
     }
-    
+
     public async Task<BookingEntity> CreateRetentionAsync(string eventId, string seatId, string userId)
     {
         var now = DateTime.UtcNow;
@@ -182,16 +182,8 @@ public class BookingService : IBookingService
         return booking;
     }
 
-    /// <summary>
-    /// Processes reservation request messages received from Availability via Azure Service Bus.
-    /// Flow steps:
-    /// 4. Processing: Checks if the seat is free. If free, creates 'Retenida' booking. If occupied, creates 'Rechazada'.
-    ///    Guaranteed at DB level via PostgreSQL Partial Unique Index: IX_bookings_EventId_SeatId_Active.
-    /// 5. Payment: Calls Payment via gRPC to charge the retained booking.
-    /// 6. Result: Confirms ('Confirmada') or rejects ('Rechazada', reason: 'Pago fallido') based on Payment result.
-    /// </summary>
     public async Task<BookingEntity> ProcessReservationRequestAsync(
-        ReservationRequestedMessage request, 
+        ReservationRequestedMessage request,
         CancellationToken cancellationToken = default)
     {
         var now = DateTime.UtcNow;
@@ -304,8 +296,8 @@ public class BookingService : IBookingService
         // 5. Flow step 5: Call Payment service via gRPC
         _logger.LogInformation("Initiating payment for booking {BookingId}...", booking.Id);
         var paymentResult = await _paymentServiceClient.ProcessPaymentAsync(
-            booking.Id, 
-            booking.UserId, 
+            booking.Id,
+            booking.UserId,
             15000.00m,
             cancellationToken);
 
