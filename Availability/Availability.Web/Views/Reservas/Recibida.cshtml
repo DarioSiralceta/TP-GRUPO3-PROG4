@@ -1,29 +1,33 @@
 @model Availability.Web.Models.SolicitudReservaViewModel
 
 @{
-    ViewData["Title"] = "Solicitud simulada";
+    ViewData["Title"] = "Solicitud recibida";
 }
 
-<h1>Solicitud simulada</h1>
+<h1>Solicitud recibida</h1>
 
-<div class="alert alert-info">
-    Se generó un identificador de prueba.
-    No se realizó una reserva real.
+<div class="alert alert-success" role="status">
+    Availability recibió tu solicitud para su procesamiento.
+    Esto todavía no confirma la reserva.
 </div>
 
 <p><strong>Evento:</strong> @Model.NombreEvento</p>
 <p><strong>Asiento:</strong> @Model.NumeroAsiento</p>
-<p><strong>Identificador de prueba:</strong> @Model.SolicitudId</p>
 
-<a asp-controller="Reservas"
-   asp-action="Seguimiento"
-   asp-route-solicitudId="@Model.SolicitudId"
-   class="btn btn-success">
-    Consultar estado
-</a>
+<p>
+    <strong>Identificador de solicitud:</strong>
+    @Model.SolicitudId
+</p>
 
-<a asp-controller="Eventos"
+<div class="alert alert-info">
+    Conservá este identificador.
+    La consulta del resultado estará disponible cuando
+    terminemos de integrar el seguimiento.
+</div>
+
+<a asp-controller="Asientos"
    asp-action="Index"
+   asp-route-eventoId="@Model.EventoId"
    class="btn btn-primary">
-    Volver a eventos
+    Volver a los asientos
 </a>

@@ -30,10 +30,6 @@ builder.Services.AddHttpClient<EventosService>(client =>
     client.Timeout = TimeSpan.FromSeconds(15);
 });
 
-// Conserva las solicitudes simuladas entre peticiones.
-// Se pierden al reiniciar la aplicación.
-builder.Services.AddSingleton<SolicitudesService>();
-
 // Keycloak realiza la autenticación mediante OpenID Connect.
 // Las cookies mantienen la sesión dentro del MVC.
 builder.Services
@@ -82,6 +78,16 @@ builder.Services
     });
 
 builder.Services.AddAuthorization();
+
+builder.Services.AddHttpClient<ReservasApiService>(client =>
+{
+    var baseUrl = builder.Configuration["AvailabilityApi:BaseUrl"]
+        ?? throw new InvalidOperationException(
+            "Falta configurar AvailabilityApi:BaseUrl.");
+
+    client.BaseAddress = new Uri(baseUrl);
+    client.Timeout = TimeSpan.FromSeconds(15);
+});
 
 var app = builder.Build();
 
