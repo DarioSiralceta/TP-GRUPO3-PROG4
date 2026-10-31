@@ -16,9 +16,9 @@ public class AsientosController : Controller
         _eventosService = eventosService;
     }
 
-    public IActionResult Index(int eventoId)
+    public async Task<IActionResult> Index(int eventoId)
     {
-        var evento = _eventosService.ObtenerPorId(eventoId);
+        var evento = await _eventosService.ObtenerPorIdAsync(eventoId);
 
         if (evento == null)
         {

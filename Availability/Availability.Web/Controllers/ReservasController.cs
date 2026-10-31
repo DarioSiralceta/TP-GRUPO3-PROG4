@@ -33,7 +33,7 @@ public class ReservasController : Controller
         ?? HttpContext.TraceIdentifier;
 
     [HttpGet]
-    public IActionResult Solicitar(int eventoId, int numeroAsiento)
+    public async Task<IActionResult> Solicitar(int eventoId, int numeroAsiento)
     {
         // Mostramos un aviso antes del formulario si no hay sesión.
         // Conservamos el evento y asiento para regresar después del login.
@@ -50,7 +50,7 @@ public class ReservasController : Controller
                 new { returnUrl });
         }
 
-        var evento = _eventosService.ObtenerPorId(eventoId);
+        var evento = await _eventosService.ObtenerPorIdAsync(eventoId);
 
         if (evento == null)
         {
@@ -93,9 +93,9 @@ public class ReservasController : Controller
     [Authorize]
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Confirmar(int eventoId, int numeroAsiento)
+    public async Task<IActionResult> Confirmar(int eventoId, int numeroAsiento)
     {
-        var evento = _eventosService.ObtenerPorId(eventoId);
+        var evento = await _eventosService.ObtenerPorIdAsync(eventoId);
 
         if (evento == null)
         {

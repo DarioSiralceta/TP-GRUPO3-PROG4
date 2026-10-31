@@ -8,7 +8,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<AsientosService>();
-builder.Services.AddScoped<EventosService>();
+
+// HttpClient administra las llamadas HTTP a Availability.API.
+// La dirección se configura fuera del servicio para poder cambiar de entorno.
+builder.Services.AddHttpClient<EventosService>(client =>
+{
+    var baseUrl = builder.Configuration["AvailabilityApi:BaseUrl"]
+        ?? throw new InvalidOperationException(
+            "Falta configurar AvailabilityApi:BaseUrl.");
+
+    client.BaseAddress = new Uri(baseUrl);
+    client.Timeout = TimeSpan.FromSeconds(15);
+});
 
 // Conserva las solicitudes simuladas entre peticiones.
 // Se pierden al reiniciar la aplicación.
