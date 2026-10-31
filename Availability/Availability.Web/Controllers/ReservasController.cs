@@ -3,6 +3,7 @@ using Availability.Web.Models;
 using Availability.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using System.Text.Json;
 
 namespace Availability.Web.Controllers;
 
@@ -35,7 +36,6 @@ public class ReservasController : Controller
     [HttpGet]
     public async Task<IActionResult> Solicitar(int eventoId, int numeroAsiento)
     {
-        // Mostramos un aviso antes del formulario si no hay sesión.
         // Conservamos el evento y asiento para regresar después del login.
         if (User.Identity?.IsAuthenticated != true)
         {
@@ -50,44 +50,67 @@ public class ReservasController : Controller
                 new { returnUrl });
         }
 
-        var evento = await _eventosService.ObtenerPorIdAsync(eventoId);
-
-        if (evento == null)
+        try
         {
-            _logger.LogWarning(
-                "AUDITORIA EVENTO_NO_ENCONTRADO " +
+            var evento = await _eventosService.ObtenerPorIdAsync(eventoId);
+
+            if (evento == null)
+            {
+                _logger.LogWarning(
+                    "AUDITORIA EVENTO_NO_ENCONTRADO " +
+                    "CorrelacionId={CorrelacionId} EventoId={EventoId}",
+                    CorrelacionId,
+                    eventoId);
+
+                return NotFound("El evento no existe.");
+            }
+
+            var asientos = await _asientosService
+                .ObtenerAsientosAsync(eventoId);
+
+            var asiento = asientos
+                .FirstOrDefault(a => a.Numero == numeroAsiento);
+
+            if (asiento == null || !asiento.Disponible)
+            {
+                _logger.LogWarning(
+                    "AUDITORIA ASIENTO_NO_DISPONIBLE " +
+                    "CorrelacionId={CorrelacionId} " +
+                    "EventoId={EventoId} NumeroAsiento={NumeroAsiento}",
+                    CorrelacionId,
+                    eventoId,
+                    numeroAsiento);
+
+                return BadRequest(
+                    "El asiento no existe o no está disponible.");
+            }
+
+            var modelo = new SolicitudReservaViewModel
+            {
+                EventoId = evento.Id,
+                NombreEvento = evento.Nombre,
+                NumeroAsiento = asiento.Numero
+            };
+
+            return View(modelo);
+        }
+        catch (Exception ex) when (
+            ex is HttpRequestException
+            or TaskCanceledException
+            or JsonException)
+        {
+            _logger.LogError(
+                ex,
+                "AUDITORIA ERROR_CONSULTA_DISPONIBILIDAD " +
                 "CorrelacionId={CorrelacionId} EventoId={EventoId}",
                 CorrelacionId,
                 eventoId);
 
-            return NotFound("El evento no existe.");
+            return StatusCode(
+                StatusCodes.Status503ServiceUnavailable,
+                "No pudimos verificar la disponibilidad. " +
+                "Volvé al listado de asientos e intentá nuevamente.");
         }
-
-        var asiento = _asientosService.ObtenerAsientos()
-            .FirstOrDefault(a => a.Numero == numeroAsiento);
-
-        if (asiento == null || !asiento.Disponible)
-        {
-            _logger.LogWarning(
-                "AUDITORIA ASIENTO_NO_DISPONIBLE " +
-                "CorrelacionId={CorrelacionId} " +
-                "EventoId={EventoId} NumeroAsiento={NumeroAsiento}",
-                CorrelacionId,
-                eventoId,
-                numeroAsiento);
-
-            return BadRequest(
-                "El asiento no existe o no está disponible.");
-        }
-
-        var modelo = new SolicitudReservaViewModel
-        {
-            EventoId = evento.Id,
-            NombreEvento = evento.Nombre,
-            NumeroAsiento = asiento.Numero
-        };
-
-        return View(modelo);
     }
 
     [Authorize]
@@ -95,57 +118,81 @@ public class ReservasController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Confirmar(int eventoId, int numeroAsiento)
     {
-        var evento = await _eventosService.ObtenerPorIdAsync(eventoId);
-
-        if (evento == null)
+        try
         {
-            _logger.LogWarning(
-                "AUDITORIA EVENTO_NO_ENCONTRADO " +
+            var evento = await _eventosService.ObtenerPorIdAsync(eventoId);
+
+            if (evento == null)
+            {
+                _logger.LogWarning(
+                    "AUDITORIA EVENTO_NO_ENCONTRADO " +
+                    "CorrelacionId={CorrelacionId} EventoId={EventoId}",
+                    CorrelacionId,
+                    eventoId);
+
+                return NotFound("El evento no existe.");
+            }
+
+            var asientos = await _asientosService
+                .ObtenerAsientosAsync(eventoId);
+
+            var asiento = asientos
+                .FirstOrDefault(a => a.Numero == numeroAsiento);
+
+            if (asiento == null || !asiento.Disponible)
+            {
+                _logger.LogWarning(
+                    "AUDITORIA ASIENTO_NO_DISPONIBLE " +
+                    "CorrelacionId={CorrelacionId} " +
+                    "EventoId={EventoId} NumeroAsiento={NumeroAsiento}",
+                    CorrelacionId,
+                    eventoId,
+                    numeroAsiento);
+
+                return BadRequest(
+                    "El asiento no existe o no está disponible.");
+            }
+
+            // La disponibilidad ya se consulta en la API.
+            // La creación de la solicitud sigue siendo simulada.
+            var solicitud = _solicitudesService.CrearSolicitud(
+                evento.Id,
+                evento.Nombre,
+                asiento.Numero);
+
+            _logger.LogInformation(
+                "AUDITORIA SOLICITUD_SIMULADA_CREADA " +
+                "CorrelacionId={CorrelacionId} SolicitudId={SolicitudId} " +
+                "EventoId={EventoId} NumeroAsiento={NumeroAsiento}",
+                CorrelacionId,
+                solicitud.SolicitudId,
+                evento.Id,
+                asiento.Numero);
+
+            // Post/Redirect/Get evita reenviar el formulario al recargar.
+            return RedirectToAction(
+                nameof(Recibida),
+                new { solicitudId = solicitud.SolicitudId });
+        }
+        catch (Exception ex) when (
+            ex is HttpRequestException
+            or TaskCanceledException
+            or JsonException)
+        {
+            _logger.LogError(
+                ex,
+                "AUDITORIA ERROR_CONSULTA_DISPONIBILIDAD " +
                 "CorrelacionId={CorrelacionId} EventoId={EventoId}",
                 CorrelacionId,
                 eventoId);
 
-            return NotFound("El evento no existe.");
+            return StatusCode(
+                StatusCodes.Status503ServiceUnavailable,
+                "No pudimos verificar la disponibilidad. " +
+                "Volvé al listado de asientos e intentá nuevamente.");
         }
-
-        var asiento = _asientosService.ObtenerAsientos()
-            .FirstOrDefault(a => a.Numero == numeroAsiento);
-
-        if (asiento == null || !asiento.Disponible)
-        {
-            _logger.LogWarning(
-                "AUDITORIA ASIENTO_NO_DISPONIBLE " +
-                "CorrelacionId={CorrelacionId} " +
-                "EventoId={EventoId} NumeroAsiento={NumeroAsiento}",
-                CorrelacionId,
-                eventoId,
-                numeroAsiento);
-
-            return BadRequest(
-                "El asiento no existe o no está disponible.");
-        }
-
-        var solicitud = _solicitudesService.CrearSolicitud(
-            evento.Id,
-            evento.Nombre,
-            asiento.Numero);
-
-        _logger.LogInformation(
-            "AUDITORIA SOLICITUD_SIMULADA_CREADA " +
-            "CorrelacionId={CorrelacionId} SolicitudId={SolicitudId} " +
-            "EventoId={EventoId} NumeroAsiento={NumeroAsiento}",
-            CorrelacionId,
-            solicitud.SolicitudId,
-            evento.Id,
-            asiento.Numero);
-
-        // Post/Redirect/Get: redirigimos después del POST para que
-        // recargar la página de resultado no reenvíe el formulario.
-        return RedirectToAction(
-            nameof(Recibida),
-            new { solicitudId = solicitud.SolicitudId });
     }
-
+    
     [HttpGet]
     public IActionResult Recibida(Guid solicitudId)
     {

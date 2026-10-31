@@ -1,18 +1,40 @@
+using System.Net.Http.Json;
+using System.Text.Json;
 using Availability.Web.Models;
 
 namespace Availability.Web.Services;
 
 public class AsientosService
 {
-    public List<AsientoViewModel> ObtenerAsientos()
+    private readonly HttpClient _httpClient;
+
+    public AsientosService(HttpClient httpClient)
     {
-        // Datos temporales hasta conectar con Availability.API.
-        return new List<AsientoViewModel>
+        _httpClient = httpClient;
+    }
+
+    public async Task<List<AsientoViewModel>> ObtenerAsientosAsync(
+        int eventoId)
+    {
+        var respuesta = await _httpClient
+            .GetFromJsonAsync<List<AsientoApiResponse>>(
+                $"events/{eventoId}/seats");
+
+        // Una respuesta inválida no debe interpretarse como una sala vacía.
+        if (respuesta == null)
         {
-            new() { Numero = 1, Disponible = true },
-            new() { Numero = 2, Disponible = false },
-            new() { Numero = 3, Disponible = true },
-            new() { Numero = 4, Disponible = true }
-        };
+            throw new JsonException(
+                "Availability.API devolvió una respuesta vacía.");
+        }
+
+        // Adaptamos el contrato HTTP al modelo utilizado por las vistas.
+        return respuesta
+            .Select(asiento => new AsientoViewModel
+            {
+                SeatId = asiento.SeatId,
+                Numero = asiento.Number,
+                Disponible = asiento.IsAvailable
+            })
+            .ToList();
     }
 }
