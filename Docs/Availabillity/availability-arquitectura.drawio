@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="zUVqC8zFIPoB1CWhiGaN">
-    <mxGraphModel dx="3088" dy="3110" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2702" dy="2764" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -329,12 +329,33 @@
             </Array>
           </mxGeometry>
         </mxCell>
+        <mxCell id="DH6OHVRT9CFbe3sEJOoy-49" connectable="0" parent="Twqqt8sDEQhHJ3gu8GZg-147" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
+          <mxGeometry relative="1" x="-0.4923" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="GG_mx2uGcQPLXj2_ZyCx-16" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-117" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="GG_mx2uGcQPLXj2_ZyCx-9">
           <mxGeometry relative="1" x="0.1581" as="geometry">
             <Array as="points">
-              <mxPoint x="850" y="-150" />
-              <mxPoint x="850" y="-6.5" />
+              <mxPoint x="850" y="-120" />
             </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DH6OHVRT9CFbe3sEJOoy-50" connectable="0" parent="GG_mx2uGcQPLXj2_ZyCx-16" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
+          <mxGeometry relative="1" x="-0.4555" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DH6OHVRT9CFbe3sEJOoy-47" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-117" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="TX4009m4u_vXZrdfmmcY-1">
+          <mxGeometry relative="1" x="-0.0903" as="geometry">
+            <Array as="points">
+              <mxPoint x="1330" y="-140" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DH6OHVRT9CFbe3sEJOoy-48" connectable="0" parent="DH6OHVRT9CFbe3sEJOoy-47" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa/Crea" vertex="1">
+          <mxGeometry relative="1" x="-0.3884" y="-4" as="geometry">
+            <mxPoint x="-1" y="-4" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-117" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="ReservaController" vertex="1">
@@ -384,6 +405,11 @@
               <mxPoint x="655" y="120" />
               <mxPoint x="655" y="120" />
             </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DH6OHVRT9CFbe3sEJOoy-51" connectable="0" parent="Twqqt8sDEQhHJ3gu8GZg-146" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
+          <mxGeometry relative="1" x="-0.3014" y="-1" as="geometry">
+            <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="GG_mx2uGcQPLXj2_ZyCx-62" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-134" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=3;dashed=1;endArrow=block;endFill=0;" target="GG_mx2uGcQPLXj2_ZyCx-54">
@@ -635,18 +661,6 @@
             <mxPoint x="59" y="-2" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="TX4009m4u_vXZrdfmmcY-32" edge="1" parent="1" source="GG_mx2uGcQPLXj2_ZyCx-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="TX4009m4u_vXZrdfmmcY-25">
-          <mxGeometry relative="1" x="0.2593" as="geometry">
-            <Array as="points">
-              <mxPoint x="1240" y="840" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="b8oWBZvXcAfvx8Y_aiLH-33" connectable="0" parent="TX4009m4u_vXZrdfmmcY-32" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
-          <mxGeometry relative="1" x="-0.8148" y="-1" as="geometry">
-            <mxPoint x="10" as="offset" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="GG_mx2uGcQPLXj2_ZyCx-44" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="&lt;div&gt;&amp;lt;&amp;lt;Interfaz&amp;gt;&amp;gt;&lt;/div&gt;IReservationRequestPublisher " vertex="1">
           <mxGeometry height="80" width="200" x="800" y="770" as="geometry" />
         </mxCell>
@@ -888,7 +902,7 @@
         </mxCell>
         <mxCell id="b8oWBZvXcAfvx8Y_aiLH-48" connectable="0" parent="TX4009m4u_vXZrdfmmcY-76" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
           <mxGeometry relative="1" x="-0.8258" y="1" as="geometry">
-            <mxPoint x="-1" y="1" as="offset" />
+            <mxPoint x="-4" y="-23" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="TX4009m4u_vXZrdfmmcY-82" edge="1" parent="TX4009m4u_vXZrdfmmcY-85" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;strokeWidth=5;" target="TX4009m4u_vXZrdfmmcY-46" value="">
@@ -1128,6 +1142,12 @@
         </mxCell>
         <mxCell id="DH6OHVRT9CFbe3sEJOoy-32" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=11;container=0;" value="busca el evento, va a su sala y trae los asientos de esa sala" vertex="1">
           <mxGeometry height="34" width="167" x="-270" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="DH6OHVRT9CFbe3sEJOoy-53" edge="1" parent="1" source="DH6OHVRT9CFbe3sEJOoy-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;dashed=1;" target="GG_mx2uGcQPLXj2_ZyCx-44">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DH6OHVRT9CFbe3sEJOoy-52" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=8;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;las interfaces y sus clases reciben estos objetos como parámetro (no se dibuja flecha para no cargar el diagrama):&lt;br/&gt;- PublishAsync recibe un ReservationRequested&lt;br/&gt;- AddAsync recibe un ReservationRequest&lt;br/&gt;- Execute recibe un RequestReservationComand&lt;br/&gt;- Presentar recibe un RequestReservationResult&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="230" x="1014" y="888" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
