@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Booking" id="bk">
-    <mxGraphModel dx="5177" dy="2746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="18038" dy="9062" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -13,17 +13,19 @@
         <mxCell id="bk-6" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=light-dark(#008A00,#6CBA6B);fontColor=#ffffff;strokeColor=#005700;strokeWidth=5;opacity=80;fontSize=30;fontStyle=1;verticalAlign=top;align=center;spacingLeft=30;spacingTop=12;" value="Acceso a datos · Booking.Infrastructure" vertex="1">
           <mxGeometry height="380" width="1500" x="9" y="1090" as="geometry" />
         </mxCell>
-        <mxCell id="BS0r1bFjgohTazYwafoy-21" edge="1" parent="1" source="bk-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="bk-10">
+        <mxCell id="BS0r1bFjgohTazYwafoy-21" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="bk-10">
           <mxGeometry relative="1" x="0.2388" as="geometry">
             <Array as="points">
-              <mxPoint x="20" y="75" />
-              <mxPoint x="20" y="480" />
+              <mxPoint x="180" y="320" />
+              <mxPoint x="180" y="320" />
             </Array>
+            <mxPoint x="180" y="175" as="sourcePoint" />
+            <mxPoint x="210" y="439.5" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-53" connectable="0" parent="BS0r1bFjgohTazYwafoy-21" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
           <mxGeometry relative="1" x="-0.0243" y="3" as="geometry">
-            <mxPoint x="-3" y="-192" as="offset" />
+            <mxPoint x="-3" y="-39" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-188" edge="1" parent="1" source="bk-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="bk-23">
@@ -63,27 +65,27 @@
           <mxGeometry relative="1" x="-0.4203" as="geometry">
             <mxPoint as="offset" />
             <Array as="points">
-              <mxPoint x="270" y="250" />
+              <mxPoint x="270" y="220" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-121" edge="1" parent="1" source="bk-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="bk-15">
-          <mxGeometry relative="1" x="0.0051" as="geometry">
+          <mxGeometry relative="1" x="0.0292" as="geometry">
             <Array as="points">
-              <mxPoint x="1040" y="250" />
+              <mxPoint x="1040" y="230" />
               <mxPoint x="1040" y="635" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="NyWOKDfgpvcPHngKXhvz-51" connectable="0" parent="BS0r1bFjgohTazYwafoy-121" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
+        <mxCell id="NyWOKDfgpvcPHngKXhvz-51" connectable="0" parent="BS0r1bFjgohTazYwafoy-121" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa/Crea" vertex="1">
           <mxGeometry relative="1" x="-0.9296" y="-1" as="geometry">
-            <mxPoint as="offset" />
+            <mxPoint x="90" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-181" edge="1" parent="1" source="bk-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="bk-19">
-          <mxGeometry relative="1" x="0.027" as="geometry">
+          <mxGeometry relative="1" x="0.0386" as="geometry">
             <Array as="points">
-              <mxPoint x="990" y="210" />
+              <mxPoint x="990" y="190" />
               <mxPoint x="990" y="1040" />
               <mxPoint x="1280" y="1040" />
             </Array>
@@ -107,7 +109,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="bk-8" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="&amp;lt;&amp;lt;worker (BackgroundService)&amp;gt;&amp;gt;&lt;br&gt;BookingReservationWorker" vertex="1">
-          <mxGeometry height="288" width="220" x="410" y="-20" as="geometry">
+          <mxGeometry height="288" width="220" x="410" y="-30" as="geometry">
             <mxRectangle height="46" width="230" x="600" y="-40" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -374,9 +376,9 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="NyWOKDfgpvcPHngKXhvz-54" connectable="0" parent="BS0r1bFjgohTazYwafoy-113" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
+        <mxCell id="NyWOKDfgpvcPHngKXhvz-54" connectable="0" parent="BS0r1bFjgohTazYwafoy-113" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa/Crea" vertex="1">
           <mxGeometry relative="1" x="-0.9055" as="geometry">
-            <mxPoint as="offset" />
+            <mxPoint x="20" y="-31" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-116" edge="1" parent="1" source="bk-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="bk-25">
@@ -596,29 +598,34 @@
         <mxCell id="BS0r1bFjgohTazYwafoy-20" edge="1" parent="1" source="BS0r1bFjgohTazYwafoy-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="bk-7">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="270" y="100" />
+              <mxPoint x="70" y="-50" />
+              <mxPoint x="70" y="-50" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-18" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=7;" value="recibe las consultas HTTP (Availability pregunta el estado de una reserva y qué asientos de un evento están ocupados) y se las pasa al BookingService" vertex="1">
-          <mxGeometry height="45" width="171" x="10" y="-170" as="geometry" />
+          <mxGeometry height="45" width="171" x="-20" y="-170" as="geometry" />
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-37" edge="1" parent="1" source="BS0r1bFjgohTazYwafoy-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="bk-8">
           <mxGeometry relative="1" x="0.3818" as="geometry">
             <Array as="points">
-              <mxPoint x="440" y="-120" />
-              <mxPoint x="440" y="-120" />
+              <mxPoint x="470" y="-120" />
+              <mxPoint x="470" y="-120" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-36" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=7;" value="corre siempre de fondo, lee los pedidos del Service Bus (grupo3-booking-topic, suscripción booking) y se los pasa al BookingService" vertex="1">
           <mxGeometry height="45" width="171" x="390" y="-260" as="geometry" />
         </mxCell>
-        <mxCell id="BS0r1bFjgohTazYwafoy-39" edge="1" parent="1" source="BS0r1bFjgohTazYwafoy-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="bk-8">
+        <mxCell id="BS0r1bFjgohTazYwafoy-39" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;">
           <mxGeometry relative="1" x="0.5569" as="geometry">
             <Array as="points">
-              <mxPoint x="360" />
+              <mxPoint x="380" y="-90" />
+              <mxPoint x="450" y="-90" />
+              <mxPoint x="450" />
             </Array>
+            <mxPoint x="380" y="-275" as="sourcePoint" />
+            <mxPoint x="430" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-38" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=8;" value="si procesa bien hace Complete; si falla, Abandon para reintentar; si falla 5 veces o el mensaje viene roto, lo manda a dead-letter" vertex="1">
@@ -890,6 +897,17 @@
         </mxCell>
         <mxCell id="OikMxXfxcCu8PzNUp5qD-1" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=6;" value="BookingService y el worker de vencimiento usan sus valores (Retenida, Confirmada, Vencida...), pero no se dibujan esas flechas para no cargar el diagrama." vertex="1">
           <mxGeometry height="45" width="139.5" x="905.25" y="1390" as="geometry" />
+        </mxCell>
+        <mxCell id="OikMxXfxcCu8PzNUp5qD-4" edge="1" parent="1" source="OikMxXfxcCu8PzNUp5qD-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="bk-8">
+          <mxGeometry relative="1" x="0.0545" as="geometry">
+            <Array as="points">
+              <mxPoint x="330" y="-60" />
+              <mxPoint x="430" y="-60" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OikMxXfxcCu8PzNUp5qD-3" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=8;" value="&lt;strong&gt;No usa &lt;code dir=&quot;ltr&quot;&gt;IBookingService&lt;/code&gt; &lt;/strong&gt;como atributo: no le llega en el constructor. Lo pide cada vez, a través de la fábrica de scopes." vertex="1">
+          <mxGeometry height="45" width="171" x="160" y="-250" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
