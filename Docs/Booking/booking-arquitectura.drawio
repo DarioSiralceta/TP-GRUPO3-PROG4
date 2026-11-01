@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Booking" id="bk">
-    <mxGraphModel dx="4135" dy="2447" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="5177" dy="2746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -600,7 +600,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="BS0r1bFjgohTazYwafoy-18" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=9;" value="recibe las consultas HTTP (Availability pregunta el estado de una reserva) y se las pasa al BookingService" vertex="1">
+        <mxCell id="BS0r1bFjgohTazYwafoy-18" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=7;" value="recibe las consultas HTTP (Availability pregunta el estado de una reserva y qué asientos de un evento están ocupados) y se las pasa al BookingService" vertex="1">
           <mxGeometry height="45" width="171" x="10" y="-170" as="geometry" />
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-37" edge="1" parent="1" source="BS0r1bFjgohTazYwafoy-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="bk-8">
@@ -884,6 +884,12 @@
         </mxCell>
         <mxCell id="NyWOKDfgpvcPHngKXhvz-89" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=10;" value="corre de fondo y cada 30 segundos pasa a Vencida las reservas Retenidas que ya pasaron su hora" vertex="1">
           <mxGeometry height="45" width="171" x="880" y="-170" as="geometry" />
+        </mxCell>
+        <mxCell id="OikMxXfxcCu8PzNUp5qD-2" edge="1" parent="1" source="OikMxXfxcCu8PzNUp5qD-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="NyWOKDfgpvcPHngKXhvz-58">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="OikMxXfxcCu8PzNUp5qD-1" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=6;" value="BookingService y el worker de vencimiento usan sus valores (Retenida, Confirmada, Vencida...), pero no se dibujan esas flechas para no cargar el diagrama." vertex="1">
+          <mxGeometry height="45" width="139.5" x="905.25" y="1390" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

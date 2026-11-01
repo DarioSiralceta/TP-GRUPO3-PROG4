@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="zUVqC8zFIPoB1CWhiGaN">
-    <mxGraphModel dx="2702" dy="2764" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="4945" dy="3111" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1046,7 +1046,7 @@
         <mxCell id="b8oWBZvXcAfvx8Y_aiLH-37" edge="1" parent="1" source="b8oWBZvXcAfvx8Y_aiLH-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="TX4009m4u_vXZrdfmmcY-21">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1290" y="500" />
+              <mxPoint x="1260" y="500" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -1148,6 +1148,17 @@
         </mxCell>
         <mxCell id="DH6OHVRT9CFbe3sEJOoy-52" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=8;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;las interfaces y sus clases reciben estos objetos como parámetro (no se dibuja flecha para no cargar el diagrama):&lt;br/&gt;- PublishAsync recibe un ReservationRequested&lt;br/&gt;- AddAsync recibe un ReservationRequest&lt;br/&gt;- Execute recibe un RequestReservationComand&lt;br/&gt;- Presentar recibe un RequestReservationResult&lt;/span&gt;" vertex="1">
           <mxGeometry height="80" width="230" x="1014" y="888" as="geometry" />
+        </mxCell>
+        <mxCell id="kR2RRPymWQJs-G9HcucF-2" edge="1" parent="1" source="kR2RRPymWQJs-G9HcucF-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="TX4009m4u_vXZrdfmmcY-21">
+          <mxGeometry relative="1" x="0.2039" as="geometry">
+            <Array as="points">
+              <mxPoint x="1240" y="510" />
+              <mxPoint x="1240" y="510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kR2RRPymWQJs-G9HcucF-1" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=6;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;El caso de uso usa sus valores (RequestStatus.Received), pero no se dibuja esa flecha para no cargar el diagrama.&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="117" x="1275" y="479" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
