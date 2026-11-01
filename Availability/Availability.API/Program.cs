@@ -2,6 +2,7 @@ using Availability.Application.Events.Queries.GetEvents;
 using Availability.Application.Events.Queries.GetEventSeats;
 using Availability.Application.Interfaces;
 using Availability.Application.Reservations.Request;
+using Availability.Application.Reservations.Tracking;
 using Availability.Infraestructure.Clients;
 using Availability.Infraestructure.Messageing;
 using Availability.Infraestructure.Persistence;
@@ -12,11 +13,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Shared.Authentication.Extensions;
-
-
-
-
-
 
 
 
@@ -41,6 +37,7 @@ builder.Services.AddSingleton<IReservationRequestPublisher>(
         sp.GetRequiredService<ILogger<AzureServiceBusReservationRequestPublisher>>()));
 
 builder.Services.AddScoped<RequestReservationUseCase>();
+builder.Services.AddScoped<GetReservationStatusUseCase>();
 
 // Add services to the container.
 
@@ -56,6 +53,14 @@ builder.Services.AddHttpClient<IBookingAvailabilityClient, BookingAvailabilityHt
         var baseUrl = builder.Configuration["BookingApi:BaseUrl"]
             ?? throw new InvalidOperationException(
                 "Falta configurar BookingApi:BaseUrl.");
+
+        client.BaseAddress = new Uri(baseUrl);
+    });
+builder.Services.AddHttpClient<IBookingReservationClient, BookingReservationHttpClient>(
+    client =>
+    {
+        var baseUrl = builder.Configuration["BookingApi:BaseUrl"]
+            ?? throw new InvalidOperationException("Falta configurar BookingApi:BaseUrl.");
 
         client.BaseAddress = new Uri(baseUrl);
     });
