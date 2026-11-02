@@ -93,8 +93,8 @@ public class ReservasController : Controller
             SeatId = seatId
         };
 
-        // Tener una cookie de sesión no garantiza que exista
-        // un access token disponible para llamar a la API.
+        // La cookie mantiene la sesión del MVC.
+        // El access token permite autenticar la llamada a Availability.API.
         var accessToken = await HttpContext.GetTokenAsync("access_token");
 
         if (string.IsNullOrWhiteSpace(accessToken))
@@ -146,8 +146,8 @@ public class ReservasController : Controller
         catch (HttpRequestException ex)
             when (ex.StatusCode == HttpStatusCode.Unauthorized)
         {
-            // Regresamos al formulario mediante GET después del login;
-            // nunca reenviamos automáticamente el POST.
+            // Después del login regresamos al formulario mediante GET.
+            // No reenviamos automáticamente la solicitud.
             return VolverAlLogin(eventoId, seatId);
         }
         catch (HttpRequestException ex)
@@ -200,13 +200,11 @@ public class ReservasController : Controller
             eventoId,
             seatId);
 
-        // Solo conservamos el comprobante para mostrarlo tras redirigir.
-        // La API es responsable de persistir la solicitud.
-        // El proveedor predeterminado de TempData protege estos datos
-        // en una cookie del navegador.
+        // TempData conserva únicamente el último comprobante.
+        // La persistencia de las solicitudes corresponde a Availability.API.
         TempData[ClaveComprobante] = JsonSerializer.Serialize(modelo);
 
-        // Post/Redirect/Get evita reenviar el POST al recargar.
+        // Post/Redirect/Get evita reenviar el formulario al recargar.
         return RedirectToAction(
             nameof(Recibida),
             new { solicitudId = requestId });
@@ -216,7 +214,7 @@ public class ReservasController : Controller
     [HttpGet]
     public IActionResult Recibida(Guid solicitudId)
     {
-        // Peek permite recargar el último comprobante sin consumirlo.
+        // Peek permite recargar el comprobante sin consumirlo.
         var contenido = TempData.Peek(ClaveComprobante) as string;
 
         if (string.IsNullOrWhiteSpace(contenido))
@@ -239,15 +237,123 @@ public class ReservasController : Controller
     }
 
     [HttpGet]
-    public IActionResult Seguimiento(string? solicitudId)
+    public async Task<IActionResult> Seguimiento(string? solicitudId)
     {
-        // Dejamos de consultar el servicio simulado.
-        // Falta integrar el endpoint de seguimiento de Availability.
-        ViewBag.Error =
-            "La consulta del resultado todavía no está integrada. " +
-            "Conservá el identificador de tu solicitud.";
+        ViewBag.SolicitudId = solicitudId;
 
-        return View();
+        var returnUrl = Url.Action(
+            nameof(Seguimiento),
+            "Reservas",
+            new { solicitudId });
+
+        if (User.Identity?.IsAuthenticated != true)
+        {
+            return RedirectToAction(
+                "RequiereLogin",
+                "Account",
+                new { returnUrl });
+        }
+
+        if (string.IsNullOrWhiteSpace(solicitudId))
+        {
+            return View();
+        }
+
+        if (!Guid.TryParse(solicitudId, out var id) || id == Guid.Empty)
+        {
+            ViewBag.Error = "Ingresá un identificador de solicitud válido.";
+            return View();
+        }
+
+        var accessToken = await HttpContext.GetTokenAsync("access_token");
+
+        if (string.IsNullOrWhiteSpace(accessToken))
+        {
+            return RedirectToAction(
+                "Login",
+                "Account",
+                new { returnUrl });
+        }
+
+        try
+        {
+            // Availability.API valida la pertenencia de la solicitud
+            // y consulta a Booking para obtener su estado.
+            var resultado = await _reservasApiService
+                .ObtenerSeguimientoAsync(
+                    id,
+                    accessToken,
+                    CorrelacionId);
+
+            var modelo = new SeguimientoViewModel
+            {
+                SolicitudId = resultado.RequestId,
+                EventoId = resultado.EventId,
+                SeatId = resultado.SeatId,
+                Estado = resultado.Status,
+                MotivoRechazo = resultado.RejectionReason
+            };
+
+            _logger.LogInformation(
+                "AUDITORIA SEGUIMIENTO_CONSULTADO " +
+                "CorrelacionId={CorrelacionId} RequestId={RequestId} " +
+                "Estado={Estado}",
+                CorrelacionId,
+                id,
+                resultado.Status);
+
+            return View(modelo);
+        }
+        catch (HttpRequestException ex)
+            when (ex.StatusCode == HttpStatusCode.Unauthorized)
+        {
+            return RedirectToAction(
+                "Login",
+                "Account",
+                new { returnUrl });
+        }
+        catch (HttpRequestException ex)
+            when (ex.StatusCode == HttpStatusCode.Forbidden)
+        {
+            _logger.LogWarning(
+                "AUDITORIA SEGUIMIENTO_DENEGADO " +
+                "CorrelacionId={CorrelacionId} RequestId={RequestId}",
+                CorrelacionId,
+                id);
+
+            Response.StatusCode = StatusCodes.Status403Forbidden;
+            ViewBag.Error = "No tenés permiso para consultar esta solicitud.";
+
+            return View();
+        }
+        catch (HttpRequestException ex)
+            when (ex.StatusCode == HttpStatusCode.NotFound)
+        {
+            Response.StatusCode = StatusCodes.Status404NotFound;
+            ViewBag.Error =
+                "No se encontró una solicitud con ese identificador.";
+
+            return View();
+        }
+        catch (Exception ex) when (
+            ex is HttpRequestException
+            or TaskCanceledException
+            or JsonException)
+        {
+            _logger.LogError(
+                ex,
+                "AUDITORIA ERROR_SEGUIMIENTO " +
+                "CorrelacionId={CorrelacionId} RequestId={RequestId}",
+                CorrelacionId,
+                id);
+
+            Response.StatusCode = StatusCodes.Status503ServiceUnavailable;
+            ViewBag.Error =
+                "No pudimos consultar el resultado en este momento. " +
+                "Intentá nuevamente en unos instantes.";
+
+            return View();
+        }
     }
 
     private async Task<SolicitudReservaViewModel?> ObtenerModeloAsync(

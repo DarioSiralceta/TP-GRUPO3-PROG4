@@ -54,4 +54,39 @@ public class ReservasApiService
 
         return resultado.RequestId;
     }
+
+    public async Task<SeguimientoApiResponse> ObtenerSeguimientoAsync(
+        Guid solicitudId,
+        string accessToken,
+        string correlacionId)
+    {
+        using var peticion = new HttpRequestMessage(
+            HttpMethod.Get,
+            $"Reservations/{solicitudId}");
+
+        // Cada petición lleva el token de su usuario.
+        peticion.Headers.Authorization =
+            new AuthenticationHeaderValue("Bearer", accessToken);
+
+        peticion.Headers.Add("X-Correlation-ID", correlacionId);
+
+        using var respuesta = await _httpClient.SendAsync(peticion);
+
+        respuesta.EnsureSuccessStatusCode();
+
+        var resultado = await respuesta.Content
+            .ReadFromJsonAsync<SeguimientoApiResponse>();
+
+        if (resultado == null
+            || resultado.RequestId != solicitudId
+            || resultado.EventId <= 0
+            || resultado.SeatId <= 0
+            || string.IsNullOrWhiteSpace(resultado.Status))
+        {
+            throw new JsonException(
+                "La API devolvió un seguimiento inválido.");
+        }
+
+        return resultado;
+    }
 }
