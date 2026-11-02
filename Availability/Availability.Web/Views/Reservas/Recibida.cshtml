@@ -23,16 +23,18 @@
     Conservá este identificador para consultar el resultado.
 </p>
 
-<a asp-controller="Reservas"
-   asp-action="Seguimiento"
-   asp-route-solicitudId="@Model.SolicitudId"
-   class="btn btn-success mb-3">
-    Consultar estado
-</a>
+<div class="d-flex flex-wrap align-items-center gap-2">
+    <a asp-controller="Reservas"
+       asp-action="Seguimiento"
+       asp-route-solicitudId="@Model.SolicitudId"
+       class="btn btn-success">
+        Consultar estado
+    </a>
 
-<a asp-controller="Asientos"
-   asp-action="Index"
-   asp-route-eventoId="@Model.EventoId"
-   class="btn btn-primary">
-    Volver a los asientos
-</a>
+    <a asp-controller="Asientos"
+       asp-action="Index"
+       asp-route-eventoId="@Model.EventoId"
+       class="btn btn-primary">
+        Volver a los asientos
+    </a>
+</div>
