@@ -7,4 +7,6 @@ public class SeguimientoViewModel
     public string NombreEvento { get; set; } = string.Empty;
     public int NumeroAsiento { get; set; }
     public string Estado { get; set; } = string.Empty;
+    public int SeatId { get; set; }
+    public string? MotivoRechazo { get; set; }
 }

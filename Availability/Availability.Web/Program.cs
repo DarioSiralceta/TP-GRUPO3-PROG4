@@ -7,12 +7,28 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<AsientosService>();
-builder.Services.AddScoped<EventosService>();
+// Cliente HTTP para consultar los asientos del evento en Availability.API.
+builder.Services.AddHttpClient<AsientosService>(client =>
+{
+    var baseUrl = builder.Configuration["AvailabilityApi:BaseUrl"]
+        ?? throw new InvalidOperationException(
+            "Falta configurar AvailabilityApi:BaseUrl.");
 
-// Conserva las solicitudes simuladas entre peticiones.
-// Se pierden al reiniciar la aplicación.
-builder.Services.AddSingleton<SolicitudesService>();
+    client.BaseAddress = new Uri(baseUrl);
+    client.Timeout = TimeSpan.FromSeconds(15);
+});
+
+// HttpClient administra las llamadas HTTP a Availability.API.
+// La dirección se configura fuera del servicio para poder cambiar de entorno.
+builder.Services.AddHttpClient<EventosService>(client =>
+{
+    var baseUrl = builder.Configuration["AvailabilityApi:BaseUrl"]
+        ?? throw new InvalidOperationException(
+            "Falta configurar AvailabilityApi:BaseUrl.");
+
+    client.BaseAddress = new Uri(baseUrl);
+    client.Timeout = TimeSpan.FromSeconds(15);
+});
 
 // Keycloak realiza la autenticación mediante OpenID Connect.
 // Las cookies mantienen la sesión dentro del MVC.
@@ -62,6 +78,16 @@ builder.Services
     });
 
 builder.Services.AddAuthorization();
+
+builder.Services.AddHttpClient<ReservasApiService>(client =>
+{
+    var baseUrl = builder.Configuration["AvailabilityApi:BaseUrl"]
+        ?? throw new InvalidOperationException(
+            "Falta configurar AvailabilityApi:BaseUrl.");
+
+    client.BaseAddress = new Uri(baseUrl);
+    client.Timeout = TimeSpan.FromSeconds(15);
+});
 
 var app = builder.Build();
 

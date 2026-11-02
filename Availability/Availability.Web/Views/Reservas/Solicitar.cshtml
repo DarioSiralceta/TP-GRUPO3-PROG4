@@ -9,22 +9,40 @@
 <p><strong>Evento:</strong> @Model.NombreEvento</p>
 <p><strong>Asiento:</strong> @Model.NumeroAsiento</p>
 
-<div class="alert alert-warning">
-    Esta es una prueba. No se creará una reserva real.
-</div>
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-warning" role="alert">
+        @ViewBag.Error
+    </div>
+}
+else
+{
+    <div class="alert alert-info">
+        Enviaremos tu solicitud para que sea procesada.
+        La recepción no garantiza que la reserva quede confirmada.
+    </div>
 
-<form asp-controller="Reservas" asp-action="Confirmar" method="post">
-    <input type="hidden" name="eventoId" value="@Model.EventoId" />
-    <input type="hidden" name="numeroAsiento" value="@Model.NumeroAsiento" />
+    <form asp-controller="Reservas"
+          asp-action="Confirmar"
+          method="post">
 
-    <button type="submit" class="btn btn-primary">
-        Confirmar solicitud
-    </button>
+        <input type="hidden"
+               name="eventoId"
+               value="@Model.EventoId" />
 
-    <a asp-controller="Asientos"
-       asp-action="Index"
-       asp-route-eventoId="@Model.EventoId"
-       class="btn btn-secondary">
-        Volver a los asientos
-    </a>
-</form>
+        <input type="hidden"
+               name="seatId"
+               value="@Model.SeatId" />
+
+        <button type="submit" class="btn btn-primary">
+            Enviar solicitud
+        </button>
+    </form>
+}
+
+<a asp-controller="Asientos"
+   asp-action="Index"
+   asp-route-eventoId="@Model.EventoId"
+   class="btn btn-secondary mt-3">
+    Volver a los asientos
+</a>

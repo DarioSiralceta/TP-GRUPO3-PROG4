@@ -1,37 +1,54 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using Availability.Application.Interfaces;
 using Availability.Application.Reservations.Messages;
 using Azure.Messaging.ServiceBus;
+using Microsoft.Extensions.Logging;
 using System.Text.Json;
-
 
 namespace Availability.Infraestructure.Messageing
 {
-    public class AzureServiceBusReservationRequestPublisher : IReservationRequestPublisher, IAsyncDisposable
+    public class AzureServiceBusReservationRequestPublisher
+        : IReservationRequestPublisher, IAsyncDisposable
     {
-        private ServiceBusSender _sender;
+        private readonly ServiceBusSender _sender;
+        private readonly ILogger<AzureServiceBusReservationRequestPublisher> _logger;
 
-        public AzureServiceBusReservationRequestPublisher(ServiceBusClient client, string topicName)
+        public AzureServiceBusReservationRequestPublisher(
+            ServiceBusClient client,
+            string topicName,
+            ILogger<AzureServiceBusReservationRequestPublisher> logger)
         {
             _sender = client.CreateSender(topicName);
+            _logger = logger;
         }
 
         public async Task PublishAsync(ReservationRequested message)
         {
+            try
+            {
+                string jsonMessage = JsonSerializer.Serialize(message);
 
-            string jsonMessage = JsonSerializer.Serialize(message);
+                var serviceBusMessage = new ServiceBusMessage(jsonMessage)
+                {
+                    MessageId = message.RequestId.ToString(),
+                    ContentType = "application/json"
+                };
 
-            ServiceBusMessage serviceBusMessage = new ServiceBusMessage(jsonMessage);
+                await _sender.SendMessageAsync(serviceBusMessage);
 
-            await _sender.SendMessageAsync(serviceBusMessage);
+                _logger.LogInformation(
+                    "Solicitud {RequestId} publicada correctamente en Azure Service Bus.",
+                    message.RequestId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Error al publicar la solicitud {RequestId} en Azure Service Bus.",
+                    message.RequestId);
 
-            
-
-            
+                throw;
+            }
         }
 
         public async ValueTask DisposeAsync()

@@ -2,17 +2,27 @@
 
 @{
     ViewData["Title"] = "Seguimiento";
+
+    var claseEstado = Model?.Estado switch
+    {
+        "Confirmada" => "alert-success",
+        "Rechazada" => "alert-danger",
+        "Vencida" => "alert-warning",
+        _ => "alert-info"
+    };
 }
 
 <h1>Seguimiento de solicitud</h1>
 
-<p>Ingresá el identificador de prueba para consultar su estado.</p>
+<p>
+    Ingresá el identificador que recibiste al enviar tu solicitud.
+    Solo podés consultar tus propias solicitudes.
+</p>
 
-<div class="alert alert-warning">
-    Las solicitudes son simuladas y se borran al reiniciar la aplicación.
-</div>
+<form asp-controller="Reservas"
+      asp-action="Seguimiento"
+      method="get">
 
-<form asp-controller="Reservas" asp-action="Seguimiento" method="get">
     <div class="mb-3">
         <label for="solicitudId" class="form-label">
             Identificador de solicitud
@@ -21,18 +31,19 @@
         <input type="text"
                id="solicitudId"
                name="solicitudId"
+               value="@ViewBag.SolicitudId"
                class="form-control"
                required />
     </div>
 
     <button type="submit" class="btn btn-primary">
-        Consultar
+        Consultar estado
     </button>
 </form>
 
 @if (ViewBag.Error != null)
 {
-    <div class="alert alert-danger mt-3">
+    <div class="alert alert-danger mt-3" role="alert">
         @ViewBag.Error
     </div>
 }
@@ -42,10 +53,62 @@
     <div class="card mt-4">
         <div class="card-body">
             <h2 class="card-title">Resultado de la consulta</h2>
-            <p><strong>Identificador:</strong> @Model.SolicitudId</p>
-            <p><strong>Evento:</strong> @Model.NombreEvento</p>
-            <p><strong>Asiento:</strong> @Model.NumeroAsiento</p>
-            <p><strong>Estado simulado:</strong> @Model.Estado</p>
+
+            <p>
+                <strong>Identificador:</strong>
+                @Model.SolicitudId
+            </p>
+
+            <p>
+                <strong>Identificador del evento:</strong>
+                @Model.EventoId
+            </p>
+
+            <p>
+                <strong>Identificador del asiento:</strong>
+                @Model.SeatId
+            </p>
+
+            <div class="alert @claseEstado" role="status">
+                <strong>Estado:</strong> @Model.Estado
+
+                @if (Model.Estado == "Pendiente")
+                {
+                    <p class="mb-0 mt-2">
+                        La solicitud está registrada y todavía no tiene
+                        un resultado disponible. Volvé a consultar.
+                    </p>
+                }
+                else if (Model.Estado == "Retenida")
+                {
+                    <p class="mb-0 mt-2">
+                        El asiento está retenido temporalmente.
+                        La reserva todavía no está confirmada.
+                    </p>
+                }
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(Model.MotivoRechazo))
+            {
+                <p>
+                    <strong>Motivo de rechazo:</strong>
+                    @Model.MotivoRechazo
+                </p>
+            }
+
+            <a asp-controller="Reservas"
+               asp-action="Seguimiento"
+               asp-route-solicitudId="@Model.SolicitudId"
+               class="btn btn-outline-primary">
+                Actualizar estado
+            </a>
+
+            <a asp-controller="Asientos"
+               asp-action="Index"
+               asp-route-eventoId="@Model.EventoId"
+               class="btn btn-secondary">
+                Ver asientos del evento
+            </a>
         </div>
     </div>
 }

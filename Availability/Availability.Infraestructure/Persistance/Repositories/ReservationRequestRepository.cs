@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Availability.Application.Interfaces;
 using Availability.Domain.Entities;
 using Availability.Infraestructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Availability.Infraestructure.Persistence.Repositories
 {
@@ -19,6 +20,13 @@ namespace Availability.Infraestructure.Persistence.Repositories
         {
             await _context.ReservationRequests.AddAsync(request);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<ReservationRequest?> GetByIdAsync(Guid requestId)
+        {
+            return await _context.ReservationRequests
+                .AsNoTracking()
+                .FirstOrDefaultAsync(r => r.RequestId == requestId);
         }
     }
 }

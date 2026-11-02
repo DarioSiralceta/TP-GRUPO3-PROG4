@@ -7,5 +7,7 @@ namespace Availability.Application.Interfaces
     public interface IReservationRequestRepository
     {
         Task AddAsync(ReservationRequest request);
+
+        Task<ReservationRequest?> GetByIdAsync(Guid requestId);
     }
 }
