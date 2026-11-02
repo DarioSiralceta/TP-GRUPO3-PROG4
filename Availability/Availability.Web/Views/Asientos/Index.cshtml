@@ -1,0 +1,55 @@
+@model List<Availability.Web.Models.AsientoViewModel>
+
+@{
+    ViewData["Title"] = "Asientos";
+}
+
+<h1>Disponibilidad de asientos</h1>
+
+<h2>@ViewBag.NombreEvento</h2>
+
+<a asp-controller="Eventos" asp-action="Index">
+    Volver a eventos
+</a>
+
+<p>Datos de ejemplo para probar la pantalla.</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Asiento</th>
+            <th>Estado</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var asiento in Model)
+        {
+            <tr>
+                <td>@asiento.Numero</td>
+                <td>
+                    @if (asiento.Disponible)
+                    {
+                        <span class="text-success">Disponible</span>
+                    }
+                    else
+                    {
+                        <span class="text-danger">Ocupado</span>
+                    }
+                </td>
+                <td>
+                    @if (asiento.Disponible)
+                    {
+                        <a asp-controller="Reservas"
+                           asp-action="Solicitar"
+                           asp-route-eventoId="@ViewBag.EventoId"
+                           asp-route-numeroAsiento="@asiento.Numero"
+                           class="btn btn-primary btn-sm">
+                            Solicitar reserva
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Iniciar sesión para reservar";
+}
+
+<h1>Iniciá sesión para reservar</h1>
+
+<div class="alert alert-info">
+    Podés consultar los eventos y asientos sin iniciar sesión.
+    Para solicitar una reserva, necesitás identificarte.
+</div>
+
+<p>Después de iniciar sesión, volverás al formulario del asiento elegido.</p>
+
+<a asp-controller="Account"
+   asp-action="Login"
+   asp-route-returnUrl="@ViewBag.ReturnUrl"
+   class="btn btn-primary">
+    Iniciar sesión
+</a>
+
+<a asp-controller="Eventos"
+   asp-action="Index"
+   class="btn btn-secondary">
+    Volver a eventos
+</a>
