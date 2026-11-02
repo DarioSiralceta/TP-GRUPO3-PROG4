@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="zUVqC8zFIPoB1CWhiGaN">
-    <mxGraphModel dx="3415" dy="2500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1342" dy="1368" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -238,7 +238,7 @@
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-20" parent="Twqqt8sDEQhHJ3gu8GZg-16" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="+ RequestReservation(comand) (Requiere token)" vertex="1">
           <mxGeometry height="26" width="350" y="78" as="geometry" />
         </mxCell>
-        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-21" parent="Twqqt8sDEQhHJ3gu8GZg-16" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="GetReservationStatus(requestId) (Requiere token)" vertex="1">
+        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-21" parent="Twqqt8sDEQhHJ3gu8GZg-16" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="+ GetReservationStatus(requestId) (Requiere token)" vertex="1">
           <mxGeometry height="26" width="350" y="104" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-18" parent="Twqqt8sDEQhHJ3gu8GZg-108" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;container=0;" value="" vertex="1">
@@ -446,8 +446,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-150" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=6;container=0;" value="Se dibuja en detalle solo solicitar reserva. Los otros casos de uso siguen la misma estructura de anillos, cada uno con su propio repositorio:&lt;br&gt;- listar eventos: EventsController → GetEventsUseCase → IEventRepository (EventRepository), devuelve GetEventsResult.&lt;br&gt; - consultar disponibilidad: EventsController → GetEventSeatsUseCase → ISeatRepository (SeatRepository) + IBookingAvailabilityClient (BookingAvailabilityHttpClient), devuelve GetEventSeatsResult.&lt;br/&gt;   - consultar estado: le pregunta a Booking el estado de la solicitud. " vertex="1">
-          <mxGeometry height="69" width="230" x="480" y="468" as="geometry" />
+        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-150" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=6;container=0;" value="Se dibuja en detalle solo solicitar reserva. Los otros casos de uso siguen la misma estructura de anillos, cada uno con su propio repositorio:&lt;br&gt;- listar eventos: EventsController → GetEventsUseCase → IEventRepository (EventRepository), devuelve GetEventsResult.&lt;br&gt; - consultar disponibilidad: EventsController → GetEventSeatsUseCase → ISeatRepository (SeatRepository) + IBookingAvailabilityClient (BookingAvailabilityHttpClient), devuelve GetEventSeatsResult.&lt;br&gt;   - consultar estado: ReservationsController → GetReservationStatusUseCase → IReservationRequestRepository (ReservationRequestRepository) + IBookingReservationClient (BookingReservationHttpClient), devuelve GetReservationStatusResult. Si Booking todavía no la procesó, el estado es &quot;Pendiente&quot; " vertex="1">
+          <mxGeometry height="104" width="230" x="480" y="452" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-152" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-134" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="Twqqt8sDEQhHJ3gu8GZg-150">
           <mxGeometry relative="1" x="-0.0402" as="geometry">
@@ -643,10 +643,10 @@
           <mxGeometry height="26" width="239.07" y="79" as="geometry" />
         </mxCell>
         <mxCell id="GG_mx2uGcQPLXj2_ZyCx-34" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=3;dashed=1;endArrow=block;endFill=0;" target="GG_mx2uGcQPLXj2_ZyCx-25">
-          <mxGeometry relative="1" x="-0.7534" as="geometry">
+          <mxGeometry relative="1" x="-0.7452" as="geometry">
             <Array as="points">
               <mxPoint x="420" y="241" />
-              <mxPoint x="420" y="450" />
+              <mxPoint x="420" y="430" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -928,7 +928,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="TX4009m4u_vXZrdfmmcY-91" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=7;container=0;" value="&lt;p dir=&quot;ltr&quot;&gt;&lt;b&gt;Al iniciar la app, conecta cada interfaz con su clase concreta. ejemplo con el caso de uso solicitar reserva:&lt;/b&gt;&lt;br&gt;&lt;br&gt;ISolicitarReservaInputPort → RequestReservationUseCase&lt;br&gt;&lt;br&gt;ISolicitarReservaOutputPort → SolicitarReservaPresenter&lt;br&gt;&lt;br&gt;&lt;b&gt;Contratos compartidos por todos los casos de uso:&lt;/b&gt;&lt;br&gt;&lt;br&gt;&amp;nbsp;IReservationRequestRepository → ReservationRequestRepository&lt;br&gt;&lt;br&gt;IReservationRequestPublisher → AzureServiceBusReservationRequestPublisher&lt;br&gt;&lt;br&gt;IBookingAvailabilityClient → BookingAvailabilityHttpClient&lt;/p&gt;&lt;p dir=&quot;ltr&quot;&gt;&amp;nbsp; &amp;nbsp;ISeatRepository → SeatRepository&amp;nbsp;&lt;br&gt;&lt;br&gt;los otros tres casos de uso (listar eventos, consultar disponibilidad y consultar estado) se conectan igual.&lt;/p&gt;" vertex="1">
+        <mxCell id="TX4009m4u_vXZrdfmmcY-91" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=7;container=0;" value="&lt;p dir=&quot;ltr&quot;&gt;&lt;b&gt;Al iniciar la app, conecta cada interfaz con su clase concreta. ejemplo con el caso de uso solicitar reserva:&lt;/b&gt;&lt;br&gt;&lt;br&gt;ISolicitarReservaInputPort → RequestReservationUseCase&lt;br&gt;&lt;br&gt;ISolicitarReservaOutputPort → SolicitarReservaPresenter&lt;br&gt;&lt;br&gt;&lt;b&gt;Contratos compartidos por todos los casos de uso:&lt;/b&gt;&lt;br&gt;&lt;br&gt;&amp;nbsp;IReservationRequestRepository → ReservationRequestRepository&lt;br&gt;&lt;br&gt;IReservationRequestPublisher → AzureServiceBusReservationRequestPublisher&lt;br&gt;&lt;br&gt;IBookingAvailabilityClient → BookingAvailabilityHttpClient&lt;/p&gt;&lt;p dir=&quot;ltr&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;div&gt;&lt;div role=&quot;group&quot; aria-label=&quot;Código&quot; tabindex=&quot;0&quot; dir=&quot;ltr&quot;&gt;&lt;div&gt;&lt;pre style=&quot;color: rgb(234, 236, 240); background: transparent; font-family: var(--font-mono);&quot;&gt;&lt;code style=&quot;color: rgb(234, 236, 240); background: transparent; font-family: var(--font-mono); white-space: pre-wrap;&quot;&gt;   IBookingReservationClient → BookingReservationHttpClient&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;p dir=&quot;ltr&quot;&gt;&amp;nbsp; &amp;nbsp;ISeatRepository → SeatRepository&amp;nbsp;&lt;br&gt;&lt;br&gt;los otros tres casos de uso (listar eventos, consultar disponibilidad y consultar estado) se conectan igual.&lt;/p&gt;" vertex="1">
           <mxGeometry height="199" width="275" x="-360" y="768" as="geometry" />
         </mxCell>
         <mxCell id="TX4009m4u_vXZrdfmmcY-95" edge="1" parent="1" source="TX4009m4u_vXZrdfmmcY-93" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="Twqqt8sDEQhHJ3gu8GZg-99">
@@ -1101,10 +1101,10 @@
           <mxGeometry height="8" width="247" y="26" as="geometry" />
         </mxCell>
         <mxCell id="DH6OHVRT9CFbe3sEJOoy-28" edge="1" parent="1" source="DH6OHVRT9CFbe3sEJOoy-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=block;endFill=0;strokeWidth=3;" target="DH6OHVRT9CFbe3sEJOoy-5">
-          <mxGeometry relative="1" x="-0.5793" as="geometry">
+          <mxGeometry relative="1" x="-0.59" as="geometry">
             <Array as="points">
               <mxPoint x="360" y="422.5" />
-              <mxPoint x="360" y="555" />
+              <mxPoint x="360" y="570" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -1232,6 +1232,17 @@
         </mxCell>
         <mxCell id="u6Rt4-_JTVmISbs9_J0J-17" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=11;container=0;" value="&lt;font&gt;Consulta&amp;nbsp; el estado de una reserva&lt;/font&gt;" vertex="1">
           <mxGeometry height="34" width="183" x="-250" y="556" as="geometry" />
+        </mxCell>
+        <mxCell id="u6Rt4-_JTVmISbs9_J0J-20" edge="1" parent="1" source="u6Rt4-_JTVmISbs9_J0J-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="u6Rt4-_JTVmISbs9_J0J-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="770" y="760" />
+              <mxPoint x="770" y="760" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="u6Rt4-_JTVmISbs9_J0J-19" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=9;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;la usa consultar estado para preguntarle a Booking el estado de una reserva&lt;/span&gt;" vertex="1">
+          <mxGeometry height="34" width="183" x="580" y="731" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
