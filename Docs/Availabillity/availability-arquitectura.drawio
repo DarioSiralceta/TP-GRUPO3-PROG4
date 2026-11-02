@@ -1,11 +1,11 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="zUVqC8zFIPoB1CWhiGaN">
-    <mxGraphModel dx="5275" dy="3515" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="3415" dy="2500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fillColor=light-dark(#1BA1E2,#3EC1FF);fontColor=light-dark(#000000,#000000);strokeColor=light-dark(#006EAF,#0000FF);strokeWidth=5;align=center;labelBorderColor=none;textShadow=0;labelPosition=center;verticalLabelPosition=middle;verticalAlign=middle;labelBackgroundColor=none;spacingLeft=0;spacing=0;spacingRight=0;fontSize=50;spacingBottom=900;spacingTop=-700;opacity=80;opacityGroup=1;container=0;" value="&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; padding: 0px;&quot;&gt;&lt;blockquote style=&quot;margin: 0px 0px 0px 40px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; padding: 0px;&quot;&gt;&lt;b&gt;&lt;font style=&quot;font-size: 30px;&quot;&gt;Frameworks and drivers -&amp;nbsp;&amp;nbsp;&lt;/font&gt;&lt;span style=&quot;font-size: 30px; background-color: transparent;&quot;&gt;Availability.API y Availability.Infraestructure&lt;/span&gt;&lt;/b&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;" vertex="1">
-          <mxGeometry height="1670" width="1876.87" x="-40" y="-620" as="geometry" />
+          <mxGeometry height="1670" width="1876.87" x="-40" y="-586" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fillColor=light-dark(#008A00,#6CBA6B);fontColor=#ffffff;strokeColor=#005700;fontSize=50;fontStyle=1;spacing=0;align=center;spacingTop=-400;labelPosition=center;verticalLabelPosition=middle;verticalAlign=middle;spacingBottom=900;spacingRight=0;opacity=80;opacityGroup=1;container=0;" value="Adapters" vertex="1">
           <mxGeometry height="1450" width="1436.87" x="400" y="-430" as="geometry" />
@@ -90,7 +90,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-51" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=14;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;controla que el token sea válido antes de que el pedido llegue al controller&lt;/span&gt;" vertex="1">
-          <mxGeometry height="60" width="255" x="-330" y="-523" as="geometry" />
+          <mxGeometry height="60" width="255" x="-286" y="-523" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-55" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="Twqqt8sDEQhHJ3gu8GZg-50">
           <mxGeometry relative="1" x="0.1145" as="geometry">
@@ -125,28 +125,28 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-68" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=11;container=0;" value="guarda y busca las solicitudes en la base usando el DbContext" vertex="1">
-          <mxGeometry height="34" width="167" x="-258" y="202" as="geometry" />
+          <mxGeometry height="34" width="167" x="-242" y="202" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-71" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;dashed=1;" target="Twqqt8sDEQhHJ3gu8GZg-39">
-          <mxGeometry relative="1" as="geometry">
+          <mxGeometry relative="1" x="-0.3504" as="geometry">
             <Array as="points">
-              <mxPoint x="60" y="-20" />
+              <mxPoint x="-70" y="-22" />
+              <mxPoint x="-70" y="20" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-70" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=7;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;Describe la base de datos&lt;/span&gt;" vertex="1">
-          <mxGeometry height="16" width="140" x="-215" y="-30" as="geometry" />
+          <mxGeometry height="16" width="140" x="-228.5" y="-30" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-85" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="Twqqt8sDEQhHJ3gu8GZg-84">
-          <mxGeometry relative="1" x="-0.3431" as="geometry">
+          <mxGeometry relative="1" x="-0.4905" as="geometry">
             <Array as="points">
-              <mxPoint x="40" y="530" />
-              <mxPoint x="40" y="420" />
+              <mxPoint x="70" y="430" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="DH6OHVRT9CFbe3sEJOoy-44" connectable="0" parent="Twqqt8sDEQhHJ3gu8GZg-85" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="HTTP/JSON" vertex="1">
-          <mxGeometry relative="1" x="-0.1851" as="geometry">
+          <mxGeometry relative="1" x="-0.3099" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
@@ -169,7 +169,7 @@
         <mxCell id="TX4009m4u_vXZrdfmmcY-90" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="Twqqt8sDEQhHJ3gu8GZg-94">
           <mxGeometry relative="1" x="-0.3407" as="geometry">
             <Array as="points">
-              <mxPoint x="30" y="620" />
+              <mxPoint x="30" y="670" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -181,12 +181,13 @@
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-93" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-92" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="Twqqt8sDEQhHJ3gu8GZg-76">
           <mxGeometry relative="1" x="0.2657" as="geometry">
             <Array as="points">
-              <mxPoint x="-166.5" y="450" />
+              <mxPoint y="500" />
+              <mxPoint y="500" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-92" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=11;container=0;" value="&lt;font&gt;le pregunta a Booking qué asientos de un evento están ocupados&lt;/font&gt;" vertex="1">
-          <mxGeometry height="34" width="183" x="-258" y="439" as="geometry" />
+        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-92" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=12;container=0;" value="&lt;font&gt;pregunta los asientos ocupados&lt;/font&gt;" vertex="1">
+          <mxGeometry height="34" width="183" x="-250" y="472" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-94" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=40;fontStyle=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;container=0;" value="Azure Service Bus" vertex="1">
           <mxGeometry height="208" width="208" x="-600" y="542" as="geometry" />
@@ -194,13 +195,13 @@
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-97" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;strokeWidth=1;endArrow=none;endFill=0;" target="Twqqt8sDEQhHJ3gu8GZg-86">
           <mxGeometry relative="1" x="0.4348" as="geometry">
             <Array as="points">
-              <mxPoint x="-10" y="667" />
-              <mxPoint x="-10" y="710" />
+              <mxPoint y="727" />
+              <mxPoint y="727" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-96" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=7;container=0;" value="publica la solicitud al service bus para que después booking pueda tomarla. También implementa IAsyncDisposable (.NET): cierra el sender al apagarse" vertex="1">
-          <mxGeometry height="34" width="208" x="-283" y="650" as="geometry" />
+          <mxGeometry height="34" width="208" x="-262.5" y="710" as="geometry" />
         </mxCell>
         <mxCell id="Twqqt8sDEQhHJ3gu8GZg-99" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);container=0;" value="Program/Register Services" vertex="1">
           <mxGeometry height="142" width="190" x="200" y="860" as="geometry" />
@@ -928,18 +929,18 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="TX4009m4u_vXZrdfmmcY-91" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=7;container=0;" value="&lt;p dir=&quot;ltr&quot;&gt;&lt;b&gt;Al iniciar la app, conecta cada interfaz con su clase concreta. ejemplo con el caso de uso solicitar reserva:&lt;/b&gt;&lt;br&gt;&lt;br&gt;ISolicitarReservaInputPort → RequestReservationUseCase&lt;br&gt;&lt;br&gt;ISolicitarReservaOutputPort → SolicitarReservaPresenter&lt;br&gt;&lt;br&gt;&lt;b&gt;Contratos compartidos por todos los casos de uso:&lt;/b&gt;&lt;br&gt;&lt;br&gt;&amp;nbsp;IReservationRequestRepository → ReservationRequestRepository&lt;br&gt;&lt;br&gt;IReservationRequestPublisher → AzureServiceBusReservationRequestPublisher&lt;br&gt;&lt;br&gt;IBookingAvailabilityClient → BookingAvailabilityHttpClient&lt;/p&gt;&lt;p dir=&quot;ltr&quot;&gt;&amp;nbsp; &amp;nbsp;ISeatRepository → SeatRepository&amp;nbsp;&lt;br&gt;&lt;br&gt;los otros tres casos de uso (listar eventos, consultar disponibilidad y consultar estado) se conectan igual.&lt;/p&gt;" vertex="1">
-          <mxGeometry height="199" width="275" x="-350" y="721.5" as="geometry" />
+          <mxGeometry height="199" width="275" x="-360" y="768" as="geometry" />
         </mxCell>
         <mxCell id="TX4009m4u_vXZrdfmmcY-95" edge="1" parent="1" source="TX4009m4u_vXZrdfmmcY-93" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="Twqqt8sDEQhHJ3gu8GZg-99">
-          <mxGeometry relative="1" x="0.073" as="geometry">
+          <mxGeometry relative="1" x="-0.1823" as="geometry">
             <Array as="points">
-              <mxPoint x="-60" y="980" />
+              <mxPoint x="-60" y="1000" />
               <mxPoint x="-60" y="890" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="TX4009m4u_vXZrdfmmcY-93" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=8;container=0;" value="&lt;p dir=&quot;ltr&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p dir=&quot;ltr&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p dir=&quot;ltr&quot;&gt;además registra (sin interfaz): ReservaController, el AvailabilityDbContext con SQLite, la autenticación JWT con AddKeycloakAuthentication (confiando en Keycloak) y la conexión a Service Bus con su connection string&lt;/p&gt;" vertex="1">
-          <mxGeometry height="80" width="255" x="-341" y="940" as="geometry" />
+        <mxCell id="TX4009m4u_vXZrdfmmcY-93" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=9;container=0;" value="&lt;p dir=&quot;ltr&quot;&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;además registra (sin interfaz): ReservaController, el AvailabilityDbContext con SQLite, la autenticación JWT con AddKeycloakAuthentication (confiando en Keycloak) y la conexión a Service Bus con su connection string&lt;/span&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="80" width="255" x="-340" y="982" as="geometry" />
         </mxCell>
         <mxCell id="TX4009m4u_vXZrdfmmcY-99" edge="1" parent="1" source="TX4009m4u_vXZrdfmmcY-98" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;dashed=1;" target="Twqqt8sDEQhHJ3gu8GZg-39">
           <mxGeometry relative="1" as="geometry">
@@ -949,8 +950,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="TX4009m4u_vXZrdfmmcY-98" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=13;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;Decisión: el DbContext usa directamente las entidades del Domain. En este caso la base de datos no necesita datos específicos que al resto del negocio no le importen, así que evitamos los mappers&lt;/span&gt;" vertex="1">
-          <mxGeometry height="121.5" width="183" x="-258" y="0.5" as="geometry" />
+        <mxCell id="TX4009m4u_vXZrdfmmcY-98" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=11;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;Decisión: el DbContext usa directamente las entidades del Domain. En este caso la base de datos no necesita datos específicos que al resto del negocio no le importen, así que evitamos los mappers&lt;/span&gt;" vertex="1">
+          <mxGeometry height="104" width="155" x="-236" y="18" as="geometry" />
         </mxCell>
         <mxCell id="TX4009m4u_vXZrdfmmcY-102" edge="1" parent="1" source="TX4009m4u_vXZrdfmmcY-101" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;dashed=1;" target="Twqqt8sDEQhHJ3gu8GZg-117">
           <mxGeometry relative="1" as="geometry">
@@ -1003,7 +1004,7 @@
         </mxCell>
         <mxCell id="HzMQGikSgvFi88hIMbh_-2" connectable="0" parent="HzMQGikSgvFi88hIMbh_-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="valida el token con la clave pública" vertex="1">
           <mxGeometry relative="1" x="0.4575" as="geometry">
-            <mxPoint y="101" as="offset" />
+            <mxPoint y="31" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="b8oWBZvXcAfvx8Y_aiLH-27" edge="1" parent="1" source="b8oWBZvXcAfvx8Y_aiLH-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="TX4009m4u_vXZrdfmmcY-46">
@@ -1134,7 +1135,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="DH6OHVRT9CFbe3sEJOoy-32" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=11;container=0;" value="busca el evento, va a su sala y trae los asientos de esa sala" vertex="1">
-          <mxGeometry height="34" width="167" x="-270" y="320" as="geometry" />
+          <mxGeometry height="34" width="167" x="-242" y="320" as="geometry" />
         </mxCell>
         <mxCell id="DH6OHVRT9CFbe3sEJOoy-53" edge="1" parent="1" source="DH6OHVRT9CFbe3sEJOoy-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;dashed=1;" target="GG_mx2uGcQPLXj2_ZyCx-44">
           <mxGeometry relative="1" as="geometry">
@@ -1195,17 +1196,15 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="u6Rt4-_JTVmISbs9_J0J-14" edge="1" parent="1" source="u6Rt4-_JTVmISbs9_J0J-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="Twqqt8sDEQhHJ3gu8GZg-84" value=" ">
-          <mxGeometry relative="1" x="0.0619" as="geometry">
+          <mxGeometry relative="1" x="0.0473" as="geometry">
             <Array as="points">
-              <mxPoint x="50" y="600" />
-              <mxPoint x="50" y="570" />
-              <mxPoint x="-340" y="570" />
+              <mxPoint x="-340" y="610" />
               <mxPoint x="-340" y="470" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="u6Rt4-_JTVmISbs9_J0J-16" connectable="0" parent="u6Rt4-_JTVmISbs9_J0J-14" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="HTTP/JSON" vertex="1">
-          <mxGeometry relative="1" x="-0.2876" y="1" as="geometry">
+          <mxGeometry relative="1" x="-0.3108" y="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
@@ -1223,6 +1222,16 @@
         </mxCell>
         <mxCell id="u6Rt4-_JTVmISbs9_J0J-11" parent="u6Rt4-_JTVmISbs9_J0J-6" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);container=0;" value="+ GetReservationByIdAsync(requestId)" vertex="1">
           <mxGeometry height="26" width="218.94060995184591" y="68" as="geometry" />
+        </mxCell>
+        <mxCell id="u6Rt4-_JTVmISbs9_J0J-18" edge="1" parent="1" source="u6Rt4-_JTVmISbs9_J0J-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="u6Rt4-_JTVmISbs9_J0J-6">
+          <mxGeometry relative="1" x="0.0282" as="geometry">
+            <Array as="points">
+              <mxPoint x="90" y="580" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="u6Rt4-_JTVmISbs9_J0J-17" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=11;container=0;" value="&lt;font&gt;Consulta&amp;nbsp; el estado de una reserva&lt;/font&gt;" vertex="1">
+          <mxGeometry height="34" width="183" x="-250" y="556" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
