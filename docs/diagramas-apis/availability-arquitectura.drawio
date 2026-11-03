@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="zUVqC8zFIPoB1CWhiGaN">
-    <mxGraphModel dx="8029" dy="4550" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="5627" dy="3446" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -54,21 +54,10 @@
             <mxPoint x="-140" y="-291" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-33" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;defaultLabelBackgroundColor=page;" target="Twqqt8sDEQhHJ3gu8GZg-27">
-          <mxGeometry relative="1" x="0.0462" as="geometry">
+        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-33" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="Twqqt8sDEQhHJ3gu8GZg-27">
+          <mxGeometry relative="1" x="-0.6104" as="geometry">
             <Array as="points">
-              <mxPoint x="365" y="-219" />
-              <mxPoint x="350" y="-219" />
-              <mxPoint x="350" y="-190" />
-              <mxPoint x="390" y="-190" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="Twqqt8sDEQhHJ3gu8GZg-34" edge="1" parent="1" source="Twqqt8sDEQhHJ3gu8GZg-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;defaultLabelBackgroundColor=page;" target="Twqqt8sDEQhHJ3gu8GZg-27">
-          <mxGeometry relative="1" x="0.7802" as="geometry">
-            <Array as="points">
-              <mxPoint x="365" y="-170" />
-              <mxPoint x="410" y="-170" />
+              <mxPoint x="390" y="-270" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -626,10 +615,10 @@
         <mxCell id="GG_mx2uGcQPLXj2_ZyCx-53" parent="GG_mx2uGcQPLXj2_ZyCx-18" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="- repository:&amp;nbsp;&lt;span style=&quot;color: rgb(255, 255, 255); text-align: center;&quot;&gt;IReservationRequestRepository&lt;/span&gt;" vertex="1">
           <mxGeometry height="26" width="290" y="59" as="geometry" />
         </mxCell>
-        <mxCell id="DH6OHVRT9CFbe3sEJOoy-11" parent="GG_mx2uGcQPLXj2_ZyCx-18" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="- _seatRepository:&amp;nbsp;&lt;span style=&quot;color: rgb(255, 255, 255); text-align: center;&quot;&gt;ISeatRepository&lt;/span&gt;" vertex="1">
+        <mxCell id="DH6OHVRT9CFbe3sEJOoy-11" parent="GG_mx2uGcQPLXj2_ZyCx-18" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="- seatRepository:&amp;nbsp;&lt;span style=&quot;color: rgb(255, 255, 255); text-align: center;&quot;&gt;ISeatRepository&lt;/span&gt;" vertex="1">
           <mxGeometry height="26" width="290" y="85" as="geometry" />
         </mxCell>
-        <mxCell id="GG_mx2uGcQPLXj2_ZyCx-36" parent="GG_mx2uGcQPLXj2_ZyCx-18" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="- _publisher: IReservationRequestPublisher" vertex="1">
+        <mxCell id="GG_mx2uGcQPLXj2_ZyCx-36" parent="GG_mx2uGcQPLXj2_ZyCx-18" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="- publisher: IReservationRequestPublisher" vertex="1">
           <mxGeometry height="26" width="290" y="111" as="geometry" />
         </mxCell>
         <mxCell id="GG_mx2uGcQPLXj2_ZyCx-19" parent="GG_mx2uGcQPLXj2_ZyCx-18" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;labelPerimeter=1;" value="" vertex="1">
@@ -1144,8 +1133,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="DH6OHVRT9CFbe3sEJOoy-52" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=7;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;las interfaces y sus clases reciben estos objetos como parámetro (no se dibuja flecha para no cargar el diagrama):&lt;br/&gt;- PublishAsync recibe un ReservationRequested&lt;br/&gt;- AddAsync recibe un ReservationRequest&lt;br/&gt;- Execute recibe un RequestReservationComand&lt;br/&gt;- Presentar recibe un RequestReservationResult&lt;/span&gt;" vertex="1">
-          <mxGeometry height="69" width="200" x="1065" y="902" as="geometry" />
+        <mxCell id="DH6OHVRT9CFbe3sEJOoy-52" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=6;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;las interfaces y sus clases eciben o devuelven estos objetos como parámetro (no se dibuja flecha para no cargar el diagrama):&lt;br&gt;- PublishAsync recibe un ReservationRequested&lt;br&gt;- AddAsync recibe un ReservationRequest&lt;br&gt;- Execute recibe un RequestReservationComand&lt;br&gt;- Presentar recibe un RequestReservationResult&lt;br&gt;-GetByEventIdAsync devuelve una lista de GetEventSeatsResult (de consultar disponibilidad); solicitar reserva la usa para ver si el asiento es del evento&lt;/span&gt;" vertex="1">
+          <mxGeometry height="69" width="230" x="1065" y="902" as="geometry" />
         </mxCell>
         <mxCell id="kR2RRPymWQJs-G9HcucF-2" edge="1" parent="1" source="kR2RRPymWQJs-G9HcucF-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="TX4009m4u_vXZrdfmmcY-21">
           <mxGeometry relative="1" x="0.2039" as="geometry">
