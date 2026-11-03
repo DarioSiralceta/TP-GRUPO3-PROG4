@@ -273,12 +273,11 @@ public class BookingService : IBookingService
             "Initiating payment for booking {BookingId}...",
             booking.Id);
 
-        // Importe fijo conservado de la implementación recibida.
-        // Pendiente: integrar el importe y la moneda de Availability.
         var paymentResult = await _paymentServiceClient.ProcessPaymentAsync(
             booking.Id,
             booking.UserId,
-            15000.00m,
+            request.Amount,
+            request.Currency,
             cancellationToken);
 
         if (paymentResult.IsSuccess)

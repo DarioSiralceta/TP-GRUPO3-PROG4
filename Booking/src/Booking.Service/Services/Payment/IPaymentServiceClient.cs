@@ -17,7 +17,13 @@ public interface IPaymentServiceClient
     /// <param name="bookingId">Identificador único de la reserva.</param>
     /// <param name="userId">Identificador del usuario.</param>
     /// <param name="amount">Monto del cobro.</param>
+    /// <param name="currency">Moneda del cobro.</param>
     /// <param name="cancellationToken">Token de cancelación.</param>
     /// <returns>Resultado del cobro (exitoso o fallido).</returns>
-    Task<PaymentResult> ProcessPaymentAsync(Guid bookingId, string userId, decimal amount, CancellationToken cancellationToken = default);
+    Task<PaymentResult> ProcessPaymentAsync(
+        Guid bookingId,
+        string userId,
+        decimal amount,
+        string currency,
+        CancellationToken cancellationToken = default);
 }

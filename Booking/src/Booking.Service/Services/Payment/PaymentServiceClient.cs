@@ -36,6 +36,7 @@ public class PaymentServiceClient : IPaymentServiceClient
         Guid bookingId,
         string userId,
         decimal amount,
+        string currency,
         CancellationToken cancellationToken = default)
     {
         _logger.LogInformation(
@@ -74,7 +75,7 @@ public class PaymentServiceClient : IPaymentServiceClient
                 BookingId = bookingId.ToString(),
                 UserId = userId,
                 Amount = (double)amount,
-                Currency = "ARS"
+                Currency = currency
             };
 
             using var call = _paymentClient.ProcessPaymentAsync(

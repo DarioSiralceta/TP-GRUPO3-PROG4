@@ -23,6 +23,12 @@ public class ReservationRequestedMessage
 
     [JsonPropertyName("userId")]
     public string? UserId { get; set; }
+
+    [JsonPropertyName("amount")]
+    public decimal Amount { get; set; }
+
+    [JsonPropertyName("currency")]
+    public string Currency { get; set; } = string.Empty;
 }
 
 /// <summary>
