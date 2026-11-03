@@ -23,6 +23,11 @@ namespace Availability.Infraestructure.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("DateUtc")
                         .HasColumnType("TEXT");
 
@@ -32,6 +37,10 @@ namespace Availability.Infraestructure.Persistence.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
                         .HasColumnType("TEXT");
 
                     b.Property<int>("RoomId")
@@ -47,17 +56,21 @@ namespace Availability.Infraestructure.Persistence.Migrations
                         new
                         {
                             Id = 1,
+                            Currency = "ARS",
                             DateUtc = new DateTime(2026, 12, 10, 20, 0, 0, 0, DateTimeKind.Utc),
                             Location = "Teatro Central",
                             Name = "Concierto de prueba",
+                            Price = 20000m,
                             RoomId = 1
                         },
                         new
                         {
                             Id = 2,
+                            Currency = "ARS",
                             DateUtc = new DateTime(2026, 12, 15, 21, 0, 0, 0, DateTimeKind.Utc),
                             Location = "Teatro Central",
                             Name = "Obra de teatro",
+                            Price = 30000m,
                             RoomId = 1
                         });
                 });
@@ -68,7 +81,16 @@ namespace Availability.Infraestructure.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasMaxLength(3)
                         .HasColumnType("TEXT");
 
                     b.Property<int>("EventId")
