@@ -48,6 +48,8 @@ public class GetReservationStatusUseCase
             RequestId = request.RequestId,
             EventId = request.EventId,
             SeatId = request.SeatId,
+            Amount = request.Amount,
+            Currency = request.Currency,
             Status = booking?.Status ?? "Pendiente",
             RejectionReason = booking?.RejectionReason
         };

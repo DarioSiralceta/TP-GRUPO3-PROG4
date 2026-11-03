@@ -16,6 +16,10 @@ public class GetEventsResult
 
     public DateTime DateUtc { get; set; }
 
+    public decimal Price { get; set; }
+
+    public string Currency { get; set; } = string.Empty;
+
     public int RoomId { get; set; }
 
     public string RoomName { get; set; } = string.Empty;

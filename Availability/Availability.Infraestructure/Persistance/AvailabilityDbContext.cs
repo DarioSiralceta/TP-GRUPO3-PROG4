@@ -27,6 +27,11 @@ public class AvailabilityDbContext : DbContext
             entity.Property(r => r.UserId).IsRequired();
             entity.Property(r => r.Status).IsRequired();
             entity.Property(r => r.CreatedAtUtc).IsRequired();
+            entity.Property(r => r.Amount).HasPrecision(18, 2).IsRequired();
+
+            entity.Property(r => r.Currency)
+                .HasMaxLength(3)
+                .IsRequired();
         });
 
         modelBuilder.Entity<Room>(entity =>
@@ -56,6 +61,13 @@ public class AvailabilityDbContext : DbContext
             entity.HasOne(e => e.Room)
                 .WithMany()
                 .HasForeignKey(e => e.RoomId);
+            entity.Property(e => e.Price)
+                .HasPrecision(18, 2)
+                .IsRequired();
+
+            entity.Property(e => e.Currency)
+                .HasMaxLength(3)
+                .IsRequired();
         });
 
         // Datos iniciales del inventario físico
@@ -88,7 +100,9 @@ public class AvailabilityDbContext : DbContext
                 Name = "Concierto de prueba",
                 Location = "Teatro Central",
                 DateUtc = new DateTime(2026, 12, 10, 20, 0, 0, DateTimeKind.Utc),
-                RoomId = 1
+                RoomId = 1,
+                Price = 20000m,
+                Currency = "ARS"
             },
             new Event
             {
@@ -96,7 +110,9 @@ public class AvailabilityDbContext : DbContext
                 Name = "Obra de teatro",
                 Location = "Teatro Central",
                 DateUtc = new DateTime(2026, 12, 15, 21, 0, 0, DateTimeKind.Utc),
-                RoomId = 1
+                RoomId = 1,
+                Price = 30000m,
+                Currency = "ARS"
             }
         );
     }
