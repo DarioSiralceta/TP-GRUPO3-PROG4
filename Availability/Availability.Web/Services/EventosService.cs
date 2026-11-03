@@ -30,15 +30,17 @@ public class EventosService
             Id = evento.Id,
             Nombre = evento.Name,
             Lugar = evento.Location,
+            Precio = evento.Price,
+            Moneda = evento.Currency,
 
-            // La API informa UTC; mostramos la hora local del servidor MVC.
+            // Mostramos la hora local del servidor MVC.
             Fecha = evento.DateUtc.LocalDateTime
         }).ToList();
     }
 
     public async Task<EventoViewModel?> ObtenerPorIdAsync(int id)
     {
-        // Por ahora la API expone el listado, sin un GET individual.
+        // Buscamos el evento dentro del catálogo de la API.
         var eventos = await ObtenerEventosAsync();
 
         return eventos.FirstOrDefault(evento => evento.Id == id);

@@ -2,12 +2,23 @@
 
 @{
     ViewData["Title"] = "Solicitar reserva";
+    var cultura = System.Globalization.CultureInfo.GetCultureInfo("es-AR");
 }
 
 <h1>Solicitar reserva</h1>
 
 <p><strong>Evento:</strong> @Model.NombreEvento</p>
 <p><strong>Asiento:</strong> @Model.NumeroAsiento</p>
+
+<p>
+    <strong>Precio por asiento:</strong>
+    @Model.Precio.ToString("N2", cultura) @Model.Moneda
+</p>
+
+<p class="text-muted">
+    Precio de referencia del evento. El importe registrado con tu solicitud
+    estará disponible en Seguimiento.
+</p>
 
 @if (ViewBag.Error != null)
 {

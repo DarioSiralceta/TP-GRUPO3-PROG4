@@ -243,3 +243,20 @@ El middleware no registra cuerpos de peticiones, contraseñas ni tokens. Para di
 - Cerrar sesión y comprobar que las operaciones protegidas requieran autenticación.
 
 Esta lista es una guía de validación; no implica que todos los escenarios hayan sido probados.
+
+## Precio y moneda
+
+El catálogo de Availability.API devuelve `price` y `currency`.
+El MVC muestra estos datos en Eventos y en el formulario de solicitud,
+con dos decimales y el código de moneda recibido.
+
+El formulario envía únicamente `eventId` y `seatId`.
+Availability.API obtiene el precio del catálogo y guarda el importe
+y la moneda al registrar la solicitud.
+
+La pantalla de Seguimiento muestra `amount` y `currency` devueltos
+por la API. Corresponden al importe histórico de la solicitud,
+aunque posteriormente cambie el precio del evento.
+
+El comprobante de recepción confirma que la solicitud fue recibida;
+no confirma la reserva ni el cobro.

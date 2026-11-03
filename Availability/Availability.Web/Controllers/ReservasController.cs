@@ -94,7 +94,7 @@ public class ReservasController : Controller
         };
 
         // La cookie mantiene la sesión del MVC.
-        // El access token permite autenticar la llamada a Availability.API.
+        // El access token autentica la llamada a Availability.API.
         var accessToken = await HttpContext.GetTokenAsync("access_token");
 
         if (string.IsNullOrWhiteSpace(accessToken))
@@ -137,6 +137,8 @@ public class ReservasController : Controller
 
         try
         {
+            // El importe lo determina Availability.API.
+            // Solo enviamos los identificadores del evento y del asiento.
             requestId = await _reservasApiService.SolicitarAsync(
                 eventoId,
                 seatId,
@@ -146,7 +148,7 @@ public class ReservasController : Controller
         catch (HttpRequestException ex)
             when (ex.StatusCode == HttpStatusCode.Unauthorized)
         {
-            // Después del login regresamos al formulario mediante GET.
+            // Regresamos al formulario mediante GET después del login.
             // No reenviamos automáticamente la solicitud.
             return VolverAlLogin(eventoId, seatId);
         }
@@ -200,8 +202,8 @@ public class ReservasController : Controller
             eventoId,
             seatId);
 
-        // TempData conserva únicamente el último comprobante.
-        // La persistencia de las solicitudes corresponde a Availability.API.
+        // Conservamos únicamente el último comprobante.
+        // La persistencia de solicitudes corresponde a Availability.API.
         TempData[ClaveComprobante] = JsonSerializer.Serialize(modelo);
 
         // Post/Redirect/Get evita reenviar el formulario al recargar.
@@ -277,7 +279,7 @@ public class ReservasController : Controller
 
         try
         {
-            // Availability.API valida la pertenencia de la solicitud
+            // Availability.API verifica la pertenencia de la solicitud
             // y consulta a Booking para obtener su estado.
             var resultado = await _reservasApiService
                 .ObtenerSeguimientoAsync(
@@ -290,6 +292,11 @@ public class ReservasController : Controller
                 SolicitudId = resultado.RequestId,
                 EventoId = resultado.EventId,
                 SeatId = resultado.SeatId,
+
+                // Importe histórico guardado con la solicitud.
+                Importe = resultado.Amount,
+                Moneda = resultado.Currency,
+
                 Estado = resultado.Status,
                 MotivoRechazo = resultado.RejectionReason
             };
@@ -370,8 +377,7 @@ public class ReservasController : Controller
         var asientos = await _asientosService
             .ObtenerAsientosAsync(eventoId);
 
-        // El identificador real se utiliza para buscar y enviar el asiento.
-        // El número visible se obtiene de la API para mostrarlo.
+        // Buscamos por el identificador real del asiento.
         var asiento = asientos.FirstOrDefault(a => a.SeatId == seatId);
 
         if (asiento == null || !asiento.Disponible)
@@ -392,7 +398,11 @@ public class ReservasController : Controller
             EventoId = evento.Id,
             NombreEvento = evento.Nombre,
             SeatId = asiento.SeatId,
-            NumeroAsiento = asiento.Numero
+            NumeroAsiento = asiento.Numero,
+
+            // Precio de referencia para mostrar en el formulario.
+            Precio = evento.Precio,
+            Moneda = evento.Moneda
         };
     }
 

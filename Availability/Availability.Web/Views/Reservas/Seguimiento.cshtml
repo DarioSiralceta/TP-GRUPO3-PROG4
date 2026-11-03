@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "Seguimiento";
 
+    var cultura = System.Globalization.CultureInfo.GetCultureInfo("es-AR");
+
     var claseEstado = Model?.Estado switch
     {
         "Confirmada" => "alert-success",
@@ -69,6 +71,11 @@
                 @Model.SeatId
             </p>
 
+            <p>
+                <strong>Importe de la solicitud:</strong>
+                @Model.Importe.ToString("N2", cultura) @Model.Moneda
+            </p>
+
             <div class="alert @claseEstado" role="status">
                 <strong>Estado:</strong> @Model.Estado
 
@@ -96,19 +103,21 @@
                 </p>
             }
 
-            <a asp-controller="Reservas"
-               asp-action="Seguimiento"
-               asp-route-solicitudId="@Model.SolicitudId"
-               class="btn btn-outline-primary">
-                Actualizar estado
-            </a>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <a asp-controller="Reservas"
+                   asp-action="Seguimiento"
+                   asp-route-solicitudId="@Model.SolicitudId"
+                   class="btn btn-outline-primary">
+                    Actualizar estado
+                </a>
 
-            <a asp-controller="Asientos"
-               asp-action="Index"
-               asp-route-eventoId="@Model.EventoId"
-               class="btn btn-secondary">
-                Ver asientos del evento
-            </a>
+                <a asp-controller="Asientos"
+                   asp-action="Index"
+                   asp-route-eventoId="@Model.EventoId"
+                   class="btn btn-secondary">
+                    Ver asientos del evento
+                </a>
+            </div>
         </div>
     </div>
 }
