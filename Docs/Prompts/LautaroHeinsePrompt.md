@@ -13,6 +13,8 @@ Debe cumplir exactamente con las siguientes especificaciones:
 * UserId: Identificador del usuario
 * Details: Mensaje descriptivo indicando el inicio o fin del proceso, 
   especificando un número de asiento `X` y un número de evento `Y`.
-
 Devuelve ÚNICAMENTE el objeto JSON dentro de un bloque de código markdown, 
 sin ningún texto explicatorio antes ni después del msj del json.
+
+
+*usado para codificar la parte del emisor en availability*
