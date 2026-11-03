@@ -13,15 +13,19 @@ namespace Availability.Application.Reservations.Request
         private readonly IReservationRequestPublisher _publisher;
         private readonly IReservationRequestRepository _repository;
         private readonly ISeatRepository _seatRepository;
+        private readonly IEventRepository _eventRepository;
 
         public RequestReservationUseCase(
             IReservationRequestPublisher publisher,
             IReservationRequestRepository repository,
-            ISeatRepository seatRepository)
+            ISeatRepository seatRepository,
+            IEventRepository eventRepository)
         {
             _publisher = publisher;
             _repository = repository;
             _seatRepository = seatRepository;
+            _eventRepository = eventRepository;
+
         }
 
         public async Task<RequestReservationResult> Execute(
@@ -39,10 +43,9 @@ namespace Availability.Application.Reservations.Request
                 throw new ArgumentException("El usuario es obligatorio.");
             }
 
-            bool eventExists =
-                await _seatRepository.EventExistsAsync(comand.EventId);
+            var eventEntity = await _eventRepository.GetByIdAsync(comand.EventId);
 
-            if (!eventExists)
+            if (eventEntity is null)
             {
                 throw new ArgumentException(
                     $"No existe el evento con ID {comand.EventId}.");
@@ -68,6 +71,8 @@ namespace Availability.Application.Reservations.Request
                 EventId = comand.EventId,
                 SeatId = comand.SeatId,
                 UserId = userId,
+                Amount = eventEntity.Price,
+                Currency = eventEntity.Currency,
                 Status = RequestStatus.Received.ToString(),
                 CreatedAtUtc = DateTime.UtcNow
             };
@@ -79,7 +84,10 @@ namespace Availability.Application.Reservations.Request
                 RequestId = requestId,
                 EventId = comand.EventId,
                 SeatId = comand.SeatId,
-                UserId = userId
+                UserId = userId,
+                Amount = eventEntity.Price,
+                Currency = eventEntity.Currency
+
             };
 
             await _publisher.PublishAsync(message);

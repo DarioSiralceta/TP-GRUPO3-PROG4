@@ -13,6 +13,10 @@ namespace Availability.Domain.Entities
 
         public string UserId { get; set; } = string.Empty;
 
+        public decimal Amount { get; set; }
+
+        public string Currency { get; set; } = "ARS";
+
         public string Status { get; set; } = "Received";
 
         public DateTime CreatedAtUtc { get; set; }
