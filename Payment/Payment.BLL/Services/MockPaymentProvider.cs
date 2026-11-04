@@ -3,7 +3,7 @@ using Payment.BLL.Interfaces;
 using Payment.Domain.Enums;
 
 namespace Payment.BLL.Services;
-
+//Simulador de Pagos por Gabriel Rossi
 public class MockPaymentProvider : IPaymentProvider
 {
     private readonly PaymentStatus _result;

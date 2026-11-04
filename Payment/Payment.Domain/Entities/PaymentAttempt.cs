@@ -1,6 +1,8 @@
 using Payment.Domain.Enums;
 
 namespace Payment.Domain.Entities;
+/// Representa un intento de pago asociado a una reserva, con su importe,
+/// estado y datos de seguimiento. Gabriel Rossi.
 
 public class PaymentAttempt
 {
