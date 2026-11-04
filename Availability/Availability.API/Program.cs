@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Shared.Authentication.Extensions;
+using Shared.Authentication.Services;
 
 
 
@@ -64,6 +65,7 @@ builder.Services.AddHttpClient<IBookingReservationClient, BookingReservationHttp
 
         client.BaseAddress = new Uri(baseUrl);
     });
+builder.Services.AddHttpClient<KeycloakTokenService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
