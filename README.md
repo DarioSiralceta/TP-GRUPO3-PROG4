@@ -122,7 +122,7 @@ Cada microservicio gestiona su propia persistencia transaccional independiente e
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=AvailabilityDb;Trusted_Connection=True;MultipleActiveResultSets=true"
+    "DefaultConnection": "Data Source=availability.db"
   }
 }
 ```
@@ -132,7 +132,7 @@ Cada microservicio gestiona su propia persistencia transaccional independiente e
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=BookingDb;Trusted_Connection=True;MultipleActiveResultSets=true"
+    "DefaultConnection": "Host=localhost;Database=BookingDb;Username=postgres;Password=postgres"
   }
 }
 ```
@@ -142,7 +142,7 @@ Cada microservicio gestiona su propia persistencia transaccional independiente e
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=PaymentDb;Trusted_Connection=True;MultipleActiveResultSets=true"
+    "DefaultConnection": "Data Source=payment.db"
   }
 }
 ```
