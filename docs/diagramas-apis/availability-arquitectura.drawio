@@ -746,8 +746,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="TX4009m4u_vXZrdfmmcY-98" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=8;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;Decisión: Usa las entidades del Domain directo, sin mappers, porque la base no necesita datos propios, así que evitamos los mappers&lt;/span&gt;" vertex="1">
-          <mxGeometry height="50" width="173" x="-230" y="30" as="geometry" />
+        <mxCell id="TX4009m4u_vXZrdfmmcY-98" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=9;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;Decisión: Usa las entidades del Domain directo, sin mappers, porque la base no necesita datos propios.&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="173" x="-230" y="30" as="geometry" />
         </mxCell>
         <mxCell id="TX4009m4u_vXZrdfmmcY-125" edge="1" parent="1" source="TX4009m4u_vXZrdfmmcY-124" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="GG_mx2uGcQPLXj2_ZyCx-63">
           <mxGeometry relative="1" x="0.2682" as="geometry">
@@ -862,7 +862,7 @@
         <mxCell id="DH6OHVRT9CFbe3sEJOoy-9" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=9;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;contrato para consultar el catálogo: si un evento existe y qué asientos tiene su sala&lt;/span&gt;" vertex="1">
           <mxGeometry height="34" width="183" x="825.0400000000001" y="1200" as="geometry" />
         </mxCell>
-        <mxCell id="DH6OHVRT9CFbe3sEJOoy-28" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=block;endFill=0;strokeWidth=3;">
+        <mxCell id="DH6OHVRT9CFbe3sEJOoy-28" edge="1" parent="1" source="DH6OHVRT9CFbe3sEJOoy-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=block;endFill=0;strokeWidth=3;">
           <mxGeometry relative="1" x="-0.8045" as="geometry">
             <Array as="points">
               <mxPoint x="510" y="330.5" />
@@ -873,7 +873,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="DH6OHVRT9CFbe3sEJOoy-29" connectable="0" parent="DH6OHVRT9CFbe3sEJOoy-28" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=fontFamily,fontColor,fontStyle,textOpacity,labelBorderColor,labelBorderWidth,labelBackgroundColor,defaultLabelBackgroundColor,labelPadding;defaultLabelBackgroundColor=page;fontSize=15;" value="Implementa" vertex="1">
-          <mxGeometry relative="1" x="-0.2275" y="-1" as="geometry">
+          <mxGeometry relative="1" x="-0.4081" y="-1" as="geometry">
             <mxPoint x="133" y="95" as="offset" />
           </mxGeometry>
         </mxCell>
@@ -1144,6 +1144,27 @@
           <mxGeometry relative="1" x="-0.4909" y="1" as="geometry">
             <mxPoint x="-4" y="-23" as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="cQRvKhLf_Rp2hRYm_rX7-16" edge="1" parent="1" source="cQRvKhLf_Rp2hRYm_rX7-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="GG_mx2uGcQPLXj2_ZyCx-18">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="960" y="-70" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cQRvKhLf_Rp2hRYm_rX7-15" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=8;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;Los otros tres casos de uso (listar eventos, consultar disponibilidad y consultar estado) siguen los mismos anillos: su controller, su caso de uso y su repositorio.&lt;/span&gt;" vertex="1">
+          <mxGeometry height="60" width="167" x="1040" y="-110" as="geometry" />
+        </mxCell>
+        <mxCell id="cQRvKhLf_Rp2hRYm_rX7-18" edge="1" parent="1" source="cQRvKhLf_Rp2hRYm_rX7-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="Twqqt8sDEQhHJ3gu8GZg-16">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="90" y="-220" />
+              <mxPoint x="90" y="-220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cQRvKhLf_Rp2hRYm_rX7-17" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=11;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;Decisión del equipo: sin anillo de adapters aparte, este controller cumple ese papel&lt;/span&gt;" vertex="1">
+          <mxGeometry height="50" width="231" x="-288" y="-227" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
