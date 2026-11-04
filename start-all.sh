@@ -101,7 +101,7 @@ else warn "Availability.Web → falta Keycloak:ClientSecret (el login del MVC no
 # ---------------------------------------------------------------------------
 echo
 echo "4) Puertos de los servicios .NET"
-for port in 5194 5057 5062 7016 5009 7165 5089; do
+for port in 5194 5057 7004 5062 7016 5009 7165 5089; do
     port_in_use "$port" && fail "Puerto $port ocupado (¿quedó un servicio corriendo de antes?)"
 done
 [ "$ERRORS" -eq 0 ] && ok "Puertos libres"
@@ -162,7 +162,7 @@ echo "8) Microservicios .NET"
 trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 
 dotnet run --project "$BOOKING" --launch-profile http &
-dotnet run --project "$AVAILABILITY" --launch-profile http &
+dotnet run --project "$AVAILABILITY" --launch-profile https &
 # https porque Booking llama a Payment por gRPC en https://localhost:7016 (HTTP/2)
 dotnet run --project "$PAYMENT" --launch-profile https &
 # Estas variables van solo a Auth.TestApi. Con "export" les pisaban la audiencia
@@ -173,7 +173,7 @@ dotnet run --project "$AVAILABILITY_WEB/Availability.Web.csproj" --launch-profil
 
 echo
 echo "  Booking        http://localhost:5194/swagger"
-echo "  Availability   http://localhost:5057/swagger"
+echo "  Availability   https://localhost:7004/swagger"
 echo "  Payment        https://localhost:7016"
 echo "  MVC            https://localhost:7165"
 echo "  Keycloak       http://127.0.0.1:8081"
