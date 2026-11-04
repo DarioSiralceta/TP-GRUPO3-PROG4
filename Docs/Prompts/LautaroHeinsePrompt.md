@@ -48,3 +48,11 @@ El diagrama debe ilustrar la arquitectura completa y las interconexiones de los 
     Payment gRPC API (N-Layer): Microservicio de cobros con su propia base de datos (PaymentDb), conectado de manera síncrona mediante gRPC sobre HTTP/2 desde Booking REST API.
 
     Servicio de Notificaciones (Consumidor Asíncrono): Componente secundario suscrito al broker mediante el patrón Pub/Sub para procesar notificaciones en segundo plano.
+
+Prompt usado para acomodar la informacion de README.md en base a los demas hechos por el equipo (poner la informacion al dia)
+
+Utilizando como referencia todos los archivos README.md individuales de cada microservicio, los documentos complementarios y
+la estructura real del repositorio,
+audita y actualiza la información del README.md principal.
+Mantén estrictamente la estructura de secciones existente en el README.md Principal entregado, corrigiendo únicamente las inconsistencias de datos, 
+rutas de archivos, comandos de configuración, puertos y scripts de ejecución para que reflejen el estado actual del proyecto.

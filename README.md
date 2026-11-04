@@ -22,7 +22,8 @@
 TP-GRUPO3-PROG4
     ├── docs                                     # Documentación y diagramas del proyecto
     │   └── Prompts                              # Prompts de IA utilizados por el equipo
-    ├── start-all.sh                             # Script de inicio automatizado de infraestructura y servicios
+    ├── start-all.sh                             # Script de inicio automatizado (Linux/macOS)
+    ├── iniciar-sistema.bat                      # Script de inicio automatizado (Windows)
     ├── Availability                             # Componente de consulta de disponibilidad y frontend web
     │   ├── Availability.API                     # API REST de catálogo y recepción de solicitudes
     │   └── Availability.Web                     # Frontend ASP.NET Core MVC (OIDC / Keycloak)
@@ -79,16 +80,17 @@ Durante esa ventana temporal, la reserva se procesa en segundo plano y la inform
 ## Prerrequisitos de Entorno
 
 **Para compilar, desplegar y ejecutar la solución distribuida en un entorno local, se requiere contar con las siguientes herramientas e infraestructura instaladas:**
-* **.NET 8 SDK:** Necesario para la compilación, restauración de paquetes NuGet y ejecución de las soluciones en C# (*Availability.Web*, *Availability.API*, *Booking.API*, *Payment.API* y *Shared.Authentication*).
-* **Certificado HTTPS de Desarrollo:** Requerido para habilitar el cifrado SSL/TLS en entornos locales (`dotnet dev-certs https --trust`).
-* **SQL Server / LocalDB:** Motor de base de datos relacional requerido para alojar las bases de datos independientes de cada microservicio (`AvailabilityDb`, `BookingDb`, `PaymentDb`), respetando el patrón Database-per-service.
-* **Docker Desktop / Docker Compose:** Requerido para levantar el contenedor del servidor de autorización (**Keycloak 26.x**) e infraestructura de soporte.
-* **PowerShell 7+ / Bash CLI:** Entornos de ejecución para ejecutar el script de inicio unificado (`./start-all.sh`) o scripts de pruebas de integración e QA (`IntegrationTests.ps1`).
 
+- **.NET 8 SDK:** Necesario para la compilación, restauración de paquetes NuGet y ejecución de las soluciones en C# (*Availability.Web*, *Availability.API*, *Booking.API*, *Payment.API* y *Shared.Authentication*).
+- **Certificado HTTPS de Desarrollo:** Requerido para habilitar el cifrado SSL/TLS en entornos locales (`dotnet dev-certs https --trust`).
+- **SQL Server / PostgreSQL / LocalDB:** Motor de base de datos relacional requerido para alojar las bases de datos independientes de cada microservicio (`AvailabilityDb`, `BookingDb`, `PaymentDb`), respetando el patrón Database-per-service.
+- **Docker Desktop / Docker Compose:** Requerido para levantar el contenedor del servidor de autorización (**Keycloak 26.x**) e infraestructura de soporte.
+- **PowerShell / Bash CLI / Windows CMD:** Entornos de ejecución para los scripts automatizados de inicio unificado (`./start-all.sh` para Linux/macOS o `iniciar-sistema.bat` para Windows) y scripts de pruebas.
 
 ## Configuración de Variables de Entorno y Secretos
 
 ### 1. Azure Service Bus (Mensajería Asíncrona)
+
 La comunicación asíncrona entre Availability y Booking se gestiona mediante Azure Service Bus utilizando la configuración del tópico y la suscripción. La estructura se especifica en los archivos `appsettings.json` o mediante `dotnet user-secrets`:
 
 ```json
@@ -120,7 +122,7 @@ Cada microservicio gestiona su propia persistencia transaccional independiente e
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\mssqllocaldb;Database=AvailabilityDb;Trusted_Connection=True;MultipleActiveResultSets=true"
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=AvailabilityDb;Trusted_Connection=True;MultipleActiveResultSets=true"
   }
 }
 ```
@@ -130,7 +132,7 @@ Cada microservicio gestiona su propia persistencia transaccional independiente e
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\mssqllocaldb;Database=BookingDb;Trusted_Connection=True;MultipleActiveResultSets=true"
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=BookingDb;Trusted_Connection=True;MultipleActiveResultSets=true"
   }
 }
 ```
@@ -140,12 +142,13 @@ Cada microservicio gestiona su propia persistencia transaccional independiente e
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\mssqllocaldb;Database=PaymentDb;Trusted_Connection=True;MultipleActiveResultSets=true"
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=PaymentDb;Trusted_Connection=True;MultipleActiveResultSets=true"
   }
 }
 ```
 
 ### 3. Keycloak, JWT y Secretos
+
 El servidor Keycloak se despliega localmente vía Docker Compose en los puertos `http://localhost:8081` / `8080` (Realm: `realm-tp-prog4`).
 
 #### Estructura del archivo de variables en `Authorization/Keycloak/.env`:
@@ -173,31 +176,39 @@ dotnet user-secrets set "Keycloak:ClientSecret" "<MVC_CLIENT_SECRET>" --project 
 ## Guía de Despliegue y Ejecución Local
 
 ### Opción A: Despliegue Automatizado (Recomendado)
-El repositorio incluye el script `start-all.sh` en la raíz para preparar el entorno y ejecutar todos los componentes en paralelo con un único comando:
 
+El repositorio incluye scripts automatizados en la raíz para preparar el entorno y ejecutar todos los componentes en paralelo:
+
+#### En Linux / macOS (Bash):
 1. **Otorgar permisos de ejecución** *(primera vez)*:
-```bash
-chmod +x start-all.sh
-```
-2. **Ejecutar el script de inicio:**
-```bash
-./start-all.sh
-```
+   ```bash
+   chmod +x start-all.sh
+   ```
+2. **Ejecutar el script de inicio**:
+   ```bash
+   ./start-all.sh
+   ```
 3. **Detener la solución:** Presionar `Ctrl + C` en la terminal.
 
+#### En Windows (CMD / PowerShell):
+1. **Ejecutar el script por lotes**:
+    Hacer doble clic sobre el archivo `iniciar-sistema.bat` o ejecutarlo desde la terminal.
+2. **Detener la solución:** Presionar `Ctrl + C` en la terminal correspondiente.
+
 ### Opción B: Despliegue Manual Secuencial
+
 Si se prefiere ejecutar los componentes individualmente en terminales separadas, seguir este orden estricto:
 
 #### Paso 1: Servidor de Autorización (Keycloak)
 1. Navegar a la carpeta del contenedor:
-```bash
-cd Authorization/Keycloak
-```
+   ```bash
+   cd Authorization/Keycloak
+   ```
 2. Copiar `.env.example` a `.env` *(si no existe)* y levantar el contenedor:
 ```bash
 docker compose up -d
 ```
-3. Confirmar que la consola de administración esté activa en `http://localhost:8081/admin/` (Realm: `realm-tp-prog4`).
+3. Confirmar que la consola de administración esté activa en http://localhost:8081/admin/ (Realm: realm-tp-prog4).
 
 #### Paso 2: Payment gRPC API
 1. Abrir una nueva terminal y navegar a la API de Payment:
