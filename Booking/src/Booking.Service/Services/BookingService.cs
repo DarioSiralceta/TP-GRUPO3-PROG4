@@ -16,13 +16,7 @@ namespace Booking.Service.Services;
 
 public interface IBookingService
 {
-    Task<IEnumerable<BookingEntity>> GetAllBookingsAsync();
-
     Task<BookingEntity?> GetBookingByIdAsync(Guid id);
-
-    Task<SeatStatusDto> GetSeatStatusAsync(
-        string eventId,
-        string seatId);
 
     Task<List<string>> GetOccupiedSeatsAsync(string eventId);
 
@@ -51,45 +45,9 @@ public class BookingService : IBookingService
         _logger = logger;
     }
 
-    public async Task<IEnumerable<BookingEntity>> GetAllBookingsAsync()
-    {
-        return await _context.Bookings.ToListAsync();
-    }
-
     public async Task<BookingEntity?> GetBookingByIdAsync(Guid id)
     {
         return await _context.Bookings.FindAsync(id);
-    }
-
-    public async Task<SeatStatusDto> GetSeatStatusAsync(
-        string eventId,
-        string seatId)
-    {
-        var now = DateTime.UtcNow;
-
-        var booking = await _context.Bookings
-            .Where(b =>
-                b.EventId == eventId
-                && b.SeatId == seatId
-                && (
-                    b.Status == BookingStatus.Confirmada
-                    || (
-                        b.Status == BookingStatus.Retenida
-                        && b.ExpiresAt > now
-                    )
-                ))
-            .OrderByDescending(b =>
-                b.Status == BookingStatus.Confirmada)
-            .ThenByDescending(b => b.CreatedAt)
-            .FirstOrDefaultAsync();
-
-        return new SeatStatusDto
-        {
-            EventId = eventId,
-            SeatId = seatId,
-            IsOccupied = booking != null,
-            Status = booking?.Status.ToString() ?? "Disponible"
-        };
     }
 
     public async Task<List<string>> GetOccupiedSeatsAsync(string eventId)

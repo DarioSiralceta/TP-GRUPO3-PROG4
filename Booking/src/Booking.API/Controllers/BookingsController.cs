@@ -1,5 +1,4 @@
 using Booking.Infrastructure.Entities;
-using Booking.Service.DTOs;
 using Booking.Service.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
@@ -17,13 +16,6 @@ public class BookingsController : ControllerBase
         _bookingService = bookingService;
     }
 
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<BookingEntity>>> GetBookings()
-    {
-        var bookings = await _bookingService.GetAllBookingsAsync();
-        return Ok(bookings);
-    }
-
     [Authorize(Policy = "CanReadBooking")]
     [HttpGet("{id}")]
     public async Task<ActionResult<BookingEntity>> GetBooking(Guid id)
@@ -36,18 +28,10 @@ public class BookingsController : ControllerBase
         return Ok(booking);
     }
 
-    [HttpGet("events/{eventId}/seats/{seatId}")]
-    public async Task<ActionResult<SeatStatusDto>> GetSeatStatus(string eventId, string seatId) // Franco Brienza
-    {
-        var seatStatus = await _bookingService.GetSeatStatusAsync(eventId, seatId);
-        return Ok(seatStatus);
-    }
-
     [HttpGet("events/{eventId}/occupied-seats")]
     public async Task<ActionResult<List<string>>> GetOccupiedSeats(string eventId) // Franco Brienza
     {
         var occupiedSeats = await _bookingService.GetOccupiedSeatsAsync(eventId);
         return Ok(occupiedSeats);
     }
-
 }
