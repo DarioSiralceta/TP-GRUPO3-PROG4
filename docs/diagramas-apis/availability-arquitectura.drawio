@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="zUVqC8zFIPoB1CWhiGaN">
-    <mxGraphModel dx="8186" dy="5121" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2904" dy="2226" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -862,8 +862,8 @@
         <mxCell id="DH6OHVRT9CFbe3sEJOoy-9" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=9;container=0;" value="&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;contrato para consultar el catálogo: si un evento existe y qué asientos tiene su sala&lt;/span&gt;" vertex="1">
           <mxGeometry height="34" width="183" x="825.0400000000001" y="1200" as="geometry" />
         </mxCell>
-        <mxCell id="DH6OHVRT9CFbe3sEJOoy-28" edge="1" parent="1" source="DH6OHVRT9CFbe3sEJOoy-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=block;endFill=0;strokeWidth=3;">
-          <mxGeometry relative="1" x="-0.8045" as="geometry">
+        <mxCell id="DH6OHVRT9CFbe3sEJOoy-28" edge="1" parent="1" source="DH6OHVRT9CFbe3sEJOoy-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=block;endFill=0;strokeWidth=3;" target="DH6OHVRT9CFbe3sEJOoy-5">
+          <mxGeometry relative="1" x="-0.8051" as="geometry">
             <Array as="points">
               <mxPoint x="510" y="330.5" />
               <mxPoint x="510" y="494.5" />
