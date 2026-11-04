@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Booking" id="bk">
-    <mxGraphModel dx="6624" dy="3812" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="5535" dy="3215" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -29,14 +29,15 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-188" edge="1" parent="1" source="bk-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="bk-23">
-          <mxGeometry relative="1" x="0.0662" as="geometry">
+          <mxGeometry relative="1" x="-0.1702" as="geometry">
             <Array as="points">
-              <mxPoint x="90" y="240" />
+              <mxPoint x="-30" y="160" />
+              <mxPoint x="-30" y="240" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="NyWOKDfgpvcPHngKXhvz-52" connectable="0" parent="BS0r1bFjgohTazYwafoy-188" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Valida Tokens" vertex="1">
-          <mxGeometry relative="1" x="0.5268" y="-1" as="geometry">
+          <mxGeometry relative="1" x="0.4681" y="-1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
@@ -52,6 +53,18 @@
         </mxCell>
         <mxCell id="5DxliVCWTZ8f8gvX24lP-2" connectable="0" parent="5DxliVCWTZ8f8gvX24lP-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
           <mxGeometry relative="1" x="0.9488" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i3XHSeH4YauJPTgYVcAR-1" edge="1" parent="1" source="bk-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="NyWOKDfgpvcPHngKXhvz-18">
+          <mxGeometry relative="1" x="-0.0559" as="geometry">
+            <Array as="points">
+              <mxPoint x="50" y="1000" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i3XHSeH4YauJPTgYVcAR-2" connectable="0" parent="i3XHSeH4YauJPTgYVcAR-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
+          <mxGeometry relative="1" x="-0.9296" y="-2" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
@@ -201,6 +214,19 @@
             <mxPoint x="-4" y="96" as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="i3XHSeH4YauJPTgYVcAR-3" edge="1" parent="1" source="bk-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="bk-18">
+          <mxGeometry relative="1" x="-0.0826" as="geometry">
+            <Array as="points">
+              <mxPoint x="30" y="460" />
+              <mxPoint x="30" y="1370" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i3XHSeH4YauJPTgYVcAR-4" connectable="0" parent="i3XHSeH4YauJPTgYVcAR-3" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
+          <mxGeometry relative="1" x="0.5046" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="bk-10" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="&amp;lt;&amp;lt;interfaz&amp;gt;&amp;gt;&lt;br&gt;IBookingService" vertex="1">
           <mxGeometry height="176" width="300" x="120" y="351.5" as="geometry" />
         </mxCell>
@@ -247,7 +273,7 @@
         </mxCell>
         <mxCell id="NyWOKDfgpvcPHngKXhvz-71" connectable="0" parent="BS0r1bFjgohTazYwafoy-85" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
           <mxGeometry relative="1" x="-0.2135" y="-2" as="geometry">
-            <mxPoint x="2" y="-70" as="offset" />
+            <mxPoint x="2" y="87" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-87" edge="1" parent="1" source="bk-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=block;endFill=0;strokeWidth=3;" target="bk-10">
@@ -668,24 +694,24 @@
         <mxCell id="BS0r1bFjgohTazYwafoy-57" edge="1" parent="1" source="BS0r1bFjgohTazYwafoy-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;dashed=1;" target="bk-10">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="10" y="400" />
-              <mxPoint x="10" y="400" />
+              <mxPoint x="-50" y="370" />
+              <mxPoint x="-50" y="370" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-55" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=11;" value="contrato del cerebro. Dice &lt;strong&gt;qué&lt;/strong&gt; se le puede pedir a Booking, sin decir cómo" vertex="1">
-          <mxGeometry height="45" width="200" x="-230" y="380" as="geometry" />
+          <mxGeometry height="45" width="200" x="-230" y="353" as="geometry" />
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-64" edge="1" parent="1" source="BS0r1bFjgohTazYwafoy-63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;dashed=1;" target="bk-10">
           <mxGeometry relative="1" x="-0.7136" as="geometry">
             <Array as="points">
-              <mxPoint x="40" y="450" />
-              <mxPoint x="40" y="450" />
+              <mxPoint x="40" y="420" />
+              <mxPoint x="40" y="420" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-63" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=10;" value="La interfaz junta todo lo que el piso de arriba le puede pedir al cerebro, venga de la puerta que venga" vertex="1">
-          <mxGeometry height="45" width="200" x="-230" y="440" as="geometry" />
+          <mxGeometry height="45" width="200" x="-230" y="410" as="geometry" />
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-90" edge="1" parent="1" source="BS0r1bFjgohTazYwafoy-89" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="bk-11">
           <mxGeometry relative="1" as="geometry">
