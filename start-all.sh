@@ -156,20 +156,54 @@ stop_if_errors
 
 # ---------------------------------------------------------------------------
 echo
-echo "8) Microservicios .NET"
+echo "8) Microservicios .NET (una consola por servicio)"
 
-# Ctrl+C detiene todos los procesos dotnet en segundo plano
-trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
+REPO_ROOT_WIN="$(pwd -W)"
+RUN_TMP_DIR="$(mktemp -d)"
 
-dotnet run --project "$BOOKING" --launch-profile http &
-dotnet run --project "$AVAILABILITY" --launch-profile http &
+TITLES=(Booking Availability Payment AuthTestApi AvailabilityWeb)
+
+# Genera un .bat temporal que fija el título con el comando "title" (adentro del
+# propio .bat, no como argumento de "start") y corre el servicio. Pasarle el
+# título directo a "start" como argumento falla: Git Bash no preserva las
+# comillas al traducir argv a la línea de comandos de Windows cuando el texto
+# no tiene espacios, y sin comillas reales "start" confunde el título con el
+# programa a ejecutar ("no se puede encontrar el archivo <Título>").
+# "pause" al final deja la consola abierta si el servicio crashea al iniciar,
+# para poder leer el error antes de que la ventana se cierre sola.
+make_launcher() {
+    local title="$1" extra_env="$2" project="$3" profile="$4"
+    local bat="$RUN_TMP_DIR/$title.bat"
+    {
+        echo "@echo off"
+        echo "title $title"
+        echo "cd /d \"$REPO_ROOT_WIN\""
+        [ -n "$extra_env" ] && echo "$extra_env"
+        echo "dotnet run --project \"$project\" --launch-profile $profile"
+        echo "pause"
+    } > "$bat"
+    cmd.exe //c start "" "$bat"
+}
+
+# Al cerrar esta terminal (ENTER, Ctrl+C o salida normal) cierra las 5 consolas por título.
+cleanup_consoles() {
+    for t in "${TITLES[@]}"; do
+        taskkill //F //FI "WINDOWTITLE eq $t*" >/dev/null 2>&1
+    done
+    rm -rf "$RUN_TMP_DIR"
+}
+trap cleanup_consoles EXIT
+
+make_launcher "Booking" "" "$BOOKING" "http"
+# https porque Availability.Web llama a Availability.API en https://localhost:7004
+make_launcher "Availability" "" "$AVAILABILITY" "https"
 # https porque Booking llama a Payment por gRPC en https://localhost:7016 (HTTP/2)
-dotnet run --project "$PAYMENT" --launch-profile https &
+make_launcher "Payment" "" "$PAYMENT" "https"
 # Estas variables van solo a Auth.TestApi. Con "export" les pisaban la audiencia
 # a Booking y Availability, y rechazaban sus tokens con 401.
-Keycloak__Authority="$KEYCLOAK_REALM_URL" Keycloak__Audience="payment-api" \
-    dotnet run --project Authorization/Auth.TestApi/Auth.TestApi.csproj --launch-profile http &
-dotnet run --project "$AVAILABILITY_WEB/Availability.Web.csproj" --launch-profile https &
+make_launcher "AuthTestApi" "set Keycloak__Authority=$KEYCLOAK_REALM_URL
+set Keycloak__Audience=payment-api" "Authorization/Auth.TestApi/Auth.TestApi.csproj" "http"
+make_launcher "AvailabilityWeb" "" "$AVAILABILITY_WEB/Availability.Web.csproj" "https"
 
 echo
 echo "  Booking        http://localhost:5194/swagger"
@@ -178,6 +212,6 @@ echo "  Payment        https://localhost:7016"
 echo "  MVC            https://localhost:7165"
 echo "  Keycloak       http://127.0.0.1:8081"
 echo
-
-# Mantener el script activo para consolidar los logs en la terminal
-wait
+echo "  Cada microservicio abrió su propia consola (Booking, Availability, Payment, AuthTestApi, AvailabilityWeb)."
+echo "  Presioná ENTER en esta terminal para cerrarlas todas."
+read -r
