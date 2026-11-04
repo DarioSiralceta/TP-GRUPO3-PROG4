@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Page-1" id="zUVqC8zFIPoB1CWhiGaN">
-    <mxGraphModel dx="4800" dy="3265" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="5129" dy="3446" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1355,6 +1355,29 @@
           <mxGeometry relative="1" x="-0.4531" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="cQRvKhLf_Rp2hRYm_rX7-2" edge="1" parent="1" source="cQRvKhLf_Rp2hRYm_rX7-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;dashed=1;" target="TX4009m4u_vXZrdfmmcY-25">
+          <mxGeometry relative="1" x="0.1857" as="geometry">
+            <Array as="points">
+              <mxPoint x="1410" y="1150" />
+              <mxPoint x="1410" y="800" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cQRvKhLf_Rp2hRYm_rX7-1" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=8;container=0;" value="el &lt;strong&gt;aviso&lt;/strong&gt; que se &lt;strong&gt;publica&lt;/strong&gt; en el broker para Booking" vertex="1">
+          <mxGeometry height="34" width="105" x="1420" y="1134" as="geometry" />
+        </mxCell>
+        <mxCell id="cQRvKhLf_Rp2hRYm_rX7-4" edge="1" parent="1" source="cQRvKhLf_Rp2hRYm_rX7-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;dashed=1;" target="TX4009m4u_vXZrdfmmcY-53">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1591.5" y="1070" />
+              <mxPoint x="1591.5" y="1070" />
+            </Array>
+            <mxPoint x="1610" y="730" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cQRvKhLf_Rp2hRYm_rX7-3" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=10;container=0;" value="la &lt;strong&gt;constancia&lt;/strong&gt; que se &lt;strong&gt;guarda&lt;/strong&gt; en la base" vertex="1">
+          <mxGeometry height="34" width="105" x="1578" y="1123" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

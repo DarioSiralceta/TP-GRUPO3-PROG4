@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Booking" id="bk">
-    <mxGraphModel dx="5177" dy="2746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="6624" dy="3812" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -8,7 +8,7 @@
           <mxGeometry height="380" width="1500" y="-100" as="geometry" />
         </mxCell>
         <mxCell id="bk-5" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=light-dark(#A20025,#FF5D5D);fontColor=#ffffff;strokeColor=#6F0000;strokeWidth=5;opacity=80;fontSize=30;fontStyle=1;verticalAlign=top;align=center;spacingLeft=30;spacingTop=12;" value="Lógica de negocio · Booking.Service" vertex="1">
-          <mxGeometry height="740" width="1500" y="320" as="geometry" />
+          <mxGeometry height="740" width="1500" y="324" as="geometry" />
         </mxCell>
         <mxCell id="bk-6" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=light-dark(#008A00,#6CBA6B);fontColor=#ffffff;strokeColor=#005700;strokeWidth=5;opacity=80;fontSize=30;fontStyle=1;verticalAlign=top;align=center;spacingLeft=30;spacingTop=12;" value="Acceso a datos · Booking.Infrastructure" vertex="1">
           <mxGeometry height="380" width="1500" x="9" y="1090" as="geometry" />
@@ -87,27 +87,26 @@
         <mxCell id="BS0r1bFjgohTazYwafoy-121" edge="1" parent="1" source="bk-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="bk-15">
           <mxGeometry relative="1" x="0.0292" as="geometry">
             <Array as="points">
-              <mxPoint x="1040" y="230" />
-              <mxPoint x="1040" y="635" />
+              <mxPoint x="1400" y="230" />
+              <mxPoint x="1400" y="635" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="NyWOKDfgpvcPHngKXhvz-51" connectable="0" parent="BS0r1bFjgohTazYwafoy-121" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa/Crea" vertex="1">
-          <mxGeometry relative="1" x="-0.9296" y="-1" as="geometry">
+          <mxGeometry relative="1" x="-0.9498" y="-1" as="geometry">
             <mxPoint x="90" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-181" edge="1" parent="1" source="bk-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="bk-19">
-          <mxGeometry relative="1" x="0.0386" as="geometry">
+          <mxGeometry relative="1" x="0.109" as="geometry">
             <Array as="points">
-              <mxPoint x="990" y="190" />
-              <mxPoint x="990" y="1040" />
-              <mxPoint x="1280" y="1040" />
+              <mxPoint x="1440" y="190" />
+              <mxPoint x="1440" y="1283" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="NyWOKDfgpvcPHngKXhvz-50" connectable="0" parent="BS0r1bFjgohTazYwafoy-181" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
-          <mxGeometry relative="1" x="-0.9582" y="-1" as="geometry">
+          <mxGeometry relative="1" x="-0.9636" y="-1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
@@ -159,7 +158,7 @@
           <mxGeometry height="26" width="220" y="262" as="geometry" />
         </mxCell>
         <mxCell id="bk-9" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="Program" vertex="1">
-          <mxGeometry height="166" width="160" x="1290" as="geometry" />
+          <mxGeometry height="166" width="160" x="1284.5" y="-30" as="geometry" />
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-40" parent="bk-9" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;+ ConfigurarAutenticacion()&lt;br&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="26" width="160" y="36" as="geometry" />
@@ -177,9 +176,9 @@
           <mxGeometry height="26" width="160" y="140" as="geometry" />
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-122" edge="1" parent="1" source="bk-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="bk-15">
-          <mxGeometry relative="1" x="0.0306" as="geometry">
+          <mxGeometry relative="1" x="-0.1344" as="geometry">
             <Array as="points">
-              <mxPoint x="270" y="610" />
+              <mxPoint x="400" y="610" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -191,15 +190,15 @@
         <mxCell id="NyWOKDfgpvcPHngKXhvz-37" edge="1" parent="1" source="bk-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="NyWOKDfgpvcPHngKXhvz-18">
           <mxGeometry relative="1" x="-0.1968" as="geometry">
             <Array as="points">
-              <mxPoint x="20" y="510" />
-              <mxPoint x="20" y="1040" />
+              <mxPoint x="70" y="510" />
+              <mxPoint x="70" y="1040" />
               <mxPoint x="670" y="1040" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="NyWOKDfgpvcPHngKXhvz-39" connectable="0" parent="NyWOKDfgpvcPHngKXhvz-37" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
-          <mxGeometry relative="1" x="-0.9307" y="2" as="geometry">
-            <mxPoint x="-53" y="86" as="offset" />
+          <mxGeometry relative="1" x="-0.9243" y="2" as="geometry">
+            <mxPoint x="-4" y="96" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="bk-10" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="&amp;lt;&amp;lt;interfaz&amp;gt;&amp;gt;&lt;br&gt;IBookingService" vertex="1">
@@ -221,20 +220,20 @@
           <mxGeometry height="26" width="300" y="150" as="geometry" />
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-83" edge="1" parent="1" source="bk-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="bk-12">
-          <mxGeometry relative="1" x="-0.0775" as="geometry">
+          <mxGeometry relative="1" x="-0.2389" as="geometry">
             <Array as="points">
-              <mxPoint x="490" y="733" />
-              <mxPoint x="490" y="490" />
+              <mxPoint x="470" y="680" />
+              <mxPoint x="470" y="490" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-84" connectable="0" parent="BS0r1bFjgohTazYwafoy-83" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
-          <mxGeometry relative="1" x="-0.6342" y="-1" as="geometry">
-            <mxPoint x="8" y="-4" as="offset" />
+          <mxGeometry relative="1" x="-0.6333" y="-1" as="geometry">
+            <mxPoint x="-36" y="-1" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-86" connectable="0" parent="BS0r1bFjgohTazYwafoy-83" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
-          <mxGeometry relative="1" x="-0.6342" y="-1" as="geometry">
+          <mxGeometry relative="1" x="-0.6333" y="-1" as="geometry">
             <mxPoint x="-201" y="173" as="offset" />
           </mxGeometry>
         </mxCell>
@@ -254,48 +253,48 @@
         <mxCell id="BS0r1bFjgohTazYwafoy-87" edge="1" parent="1" source="bk-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=block;endFill=0;strokeWidth=3;" target="bk-10">
           <mxGeometry relative="1" x="-0.2163" as="geometry">
             <Array as="points">
-              <mxPoint x="450" y="680" />
-              <mxPoint x="450" y="495" />
+              <mxPoint x="180" y="560" />
+              <mxPoint x="180" y="560" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-88" connectable="0" parent="BS0r1bFjgohTazYwafoy-87" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Implementa" vertex="1">
           <mxGeometry relative="1" x="-0.0286" y="-1" as="geometry">
-            <mxPoint x="-1" y="-78" as="offset" />
+            <mxPoint x="-1" y="-7" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-124" edge="1" parent="1" source="bk-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="bk-15">
-          <mxGeometry relative="1" x="0.2175" as="geometry">
+          <mxGeometry relative="1" x="0.2165" as="geometry">
             <Array as="points">
-              <mxPoint x="1030" y="830" />
-              <mxPoint x="1030" y="660" />
+              <mxPoint x="1000" y="830" />
+              <mxPoint x="1000" y="660" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="NyWOKDfgpvcPHngKXhvz-33" connectable="0" parent="BS0r1bFjgohTazYwafoy-124" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
-          <mxGeometry relative="1" x="-0.8944" as="geometry">
+          <mxGeometry relative="1" x="-0.8941" as="geometry">
             <mxPoint x="642" y="-105" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-135" edge="1" parent="1" source="bk-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="bk-14">
-          <mxGeometry relative="1" x="-0.0083" as="geometry">
+          <mxGeometry relative="1" x="-0.0331" as="geometry">
             <Array as="points">
-              <mxPoint x="510" y="760" />
-              <mxPoint x="510" y="390" />
-              <mxPoint x="1230" y="390" />
+              <mxPoint x="510" y="730" />
+              <mxPoint x="510" y="380" />
+              <mxPoint x="1230" y="380" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="NyWOKDfgpvcPHngKXhvz-35" connectable="0" parent="BS0r1bFjgohTazYwafoy-135" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
-          <mxGeometry relative="1" x="-0.9354" as="geometry">
+          <mxGeometry relative="1" x="-0.9366" as="geometry">
             <mxPoint x="-12" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-167" edge="1" parent="1" source="bk-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="bk-18">
           <mxGeometry relative="1" x="0.0896" as="geometry">
             <Array as="points">
-              <mxPoint x="440" y="782.5" />
-              <mxPoint x="440" y="1190" />
+              <mxPoint x="430" y="782.5" />
+              <mxPoint x="430" y="1190" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -314,11 +313,11 @@
         </mxCell>
         <mxCell id="NyWOKDfgpvcPHngKXhvz-32" connectable="0" parent="NyWOKDfgpvcPHngKXhvz-31" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
           <mxGeometry relative="1" x="-0.6056" as="geometry">
-            <mxPoint x="103" as="offset" />
+            <mxPoint x="52" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="bk-11" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="BookingService" vertex="1">
-          <mxGeometry height="278" width="300" x="40" y="663" as="geometry" />
+          <mxGeometry height="278" width="300" x="90" y="660" as="geometry" />
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-72" parent="bk-11" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="- context: BookingDbContext&amp;nbsp;" vertex="1">
           <mxGeometry height="26" width="300" y="36" as="geometry" />
@@ -417,7 +416,7 @@
         </mxCell>
         <mxCell id="NyWOKDfgpvcPHngKXhvz-57" connectable="0" parent="NyWOKDfgpvcPHngKXhvz-56" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="pide token (Client Credentials)" vertex="1">
           <mxGeometry relative="1" x="0.446" y="3" as="geometry">
-            <mxPoint x="102" y="-3" as="offset" />
+            <mxPoint x="101" y="11" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="bk-13" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="PaymentServiceClient" vertex="1">
@@ -454,7 +453,12 @@
           <mxGeometry height="26" width="300" y="98" as="geometry" />
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-133" edge="1" parent="1" source="bk-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;strokeWidth=5;" target="bk-16">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1194.8" y="830" />
+              <mxPoint x="1194.8" y="830" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="NyWOKDfgpvcPHngKXhvz-49" connectable="0" parent="BS0r1bFjgohTazYwafoy-133" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
           <mxGeometry relative="1" x="-0.2657" y="-1" as="geometry">
@@ -462,7 +466,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="bk-15" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="&amp;lt;&amp;lt;DTO&amp;gt;&amp;gt;&lt;div&gt;ReservationRequestedMessage&lt;/div&gt;" vertex="1">
-          <mxGeometry height="202" width="300" x="1080" y="560" as="geometry" />
+          <mxGeometry height="202" width="300" x="1044.75" y="570" as="geometry" />
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-117" parent="bk-15" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;+ RequestId: Guid&amp;nbsp;&lt;/div&gt;" vertex="1">
           <mxGeometry height="26" width="300" y="46" as="geometry" />
@@ -542,7 +546,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="bk-18" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="BookingEntity" vertex="1">
-          <mxGeometry height="244" width="300" x="550" y="1158" as="geometry" />
+          <mxGeometry height="244" width="300" x="510.25" y="1147.5" as="geometry" />
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-157" parent="bk-18" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;+ Id: Guid&amp;nbsp;&lt;/div&gt;" vertex="1">
           <mxGeometry height="26" width="300" y="36" as="geometry" />
@@ -569,7 +573,7 @@
           <mxGeometry height="26" width="300" y="218" as="geometry" />
         </mxCell>
         <mxCell id="bk-19" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="AzureServiceBusOptions" vertex="1">
-          <mxGeometry height="166" width="360" x="1060" y="1200" as="geometry" />
+          <mxGeometry height="166" width="360" x="1030" y="1200" as="geometry" />
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-176" parent="bk-19" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;+ SectionName: string = &quot;AzureServiceBus&quot;   (constante)&lt;br/&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="26" width="360" y="36" as="geometry" />
@@ -608,7 +612,7 @@
           <mxGeometry height="140" width="140" x="580" y="-307.5" as="geometry" />
         </mxCell>
         <mxCell id="bk-23" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=24;fontStyle=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" value="Authorization Server (Keycloak)" vertex="1">
-          <mxGeometry height="174" width="174" x="-336" y="190" as="geometry" />
+          <mxGeometry height="174" width="174" x="-336" y="150" as="geometry" />
         </mxCell>
         <mxCell id="bk-24" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=26;fontStyle=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" value="PostgreSQL" vertex="1">
           <mxGeometry height="177" width="177" x="40" y="1500" as="geometry" />
@@ -840,7 +844,7 @@
           <mxGeometry height="26" width="300" y="128" as="geometry" />
         </mxCell>
         <mxCell id="NyWOKDfgpvcPHngKXhvz-58" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=45;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="&amp;lt;&amp;lt;enum&amp;gt;&amp;gt;&lt;div&gt;BookingStatus&lt;/div&gt;" vertex="1">
-          <mxGeometry height="149" width="120" x="915" y="1170" as="geometry" />
+          <mxGeometry height="149" width="120" x="880" y="1177.5" as="geometry" />
         </mxCell>
         <mxCell id="NyWOKDfgpvcPHngKXhvz-63" parent="NyWOKDfgpvcPHngKXhvz-58" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontColor=light-dark(#000000,#000000);" value="&lt;div&gt;Retenida&lt;/div&gt;" vertex="1">
           <mxGeometry height="26" width="120" y="45" as="geometry" />
@@ -889,15 +893,15 @@
           <mxGeometry relative="1" x="-0.1147" as="geometry">
             <Array as="points">
               <mxPoint x="1060" y="59" />
-              <mxPoint x="1060" y="210" />
-              <mxPoint x="1450" y="210" />
-              <mxPoint x="1450" y="1450" />
+              <mxPoint x="1060" y="160" />
+              <mxPoint x="1460" y="160" />
+              <mxPoint x="1460" y="1450" />
               <mxPoint x="351.3" y="1450" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="NyWOKDfgpvcPHngKXhvz-88" connectable="0" parent="NyWOKDfgpvcPHngKXhvz-87" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Usa" vertex="1">
-          <mxGeometry relative="1" x="-0.8052" y="-3" as="geometry">
+          <mxGeometry relative="1" x="-0.8064" y="-3" as="geometry">
             <mxPoint y="-3" as="offset" />
           </mxGeometry>
         </mxCell>
@@ -916,7 +920,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="OikMxXfxcCu8PzNUp5qD-1" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=6;" value="BookingService y el worker de vencimiento usan sus valores (Retenida, Confirmada, Vencida...), pero no se dibujan esas flechas para no cargar el diagrama." vertex="1">
-          <mxGeometry height="45" width="139.5" x="905.25" y="1366" as="geometry" />
+          <mxGeometry height="45" width="139.5" x="868.5" y="1346.5" as="geometry" />
         </mxCell>
         <mxCell id="OikMxXfxcCu8PzNUp5qD-4" edge="1" parent="1" source="OikMxXfxcCu8PzNUp5qD-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;dashed=1;endArrow=none;endFill=0;" target="bk-8">
           <mxGeometry relative="1" x="0.0545" as="geometry">
