@@ -168,6 +168,23 @@ Keycloak se ejecuta en Docker. El contenedor utiliza internamente el puerto `808
 
 El realm utilizado es `realm-tp-prog4`.
 
+## Autenticación y autorización
+
+El sistema utiliza **Keycloak** como servidor de autenticación y autorización, mediante OAuth2, OpenID Connect y JWT.
+
+- **Frontend MVC:** inicio de sesión con Keycloak y Google mediante OpenID Connect y cookies.
+- **Availability API:** validación del JWT del usuario y autenticación de servicio hacia Booking.
+- **Booking API:** validación de JWT y obtención de tokens para Payment.
+- **Payment API:** validación de JWT y autorización mediante el rol `payments.process`.
+- **Shared.Authentication:** biblioteca compartida que centraliza la validación de tokens y las políticas de autorización.
+
+### Documentación
+
+- [Configuración de Keycloak](Authorization/Keycloak/README.md)
+- [Biblioteca Shared.Authentication](Authorization/Shared.Authentication/README.md)
+- [Integración MVC con Keycloak y Google](Authorization/Guias-Integracion/README-MVC-KEYCLOAK.md)
+- [Integración Booking–Payment con JWT y gRPC](Authorization/Guias-Integracion/README-PAYMENT-KEYCLOAK.md)
+
 #### Estructura del archivo de variables en `Authorization/Keycloak/.env`:
 ```dotenv
 KEYCLOAK_ADMIN_PASSWORD=<KEYCLOAK_ADMIN_PASS>
