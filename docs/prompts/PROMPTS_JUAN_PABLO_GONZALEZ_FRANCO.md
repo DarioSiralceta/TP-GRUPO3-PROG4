@@ -175,7 +175,7 @@ Los prompts están resumidos y agrupados por tema, en orden; no son una transcri
 
 **77.** Repaso el flujo: del controller azul todo entra al verde, que llama a solicitar reserva; el caso de uso llama al output port, y como Program lo conectó, se ejecuta el presenter, ¿no?
 
-**78.** En la guía dice que el caso de uso hace todos los pasos de solicitar reserva. ¿Hay algo especial que tenga que saber de las clases chiquitas, la que entra, la que sale y el mensaje que viaja a Booking?
+**78.** En el repaso del flujo dice que el caso de uso hace todos los pasos de solicitar reserva. ¿Hay algo especial que tenga que saber de las clases chiquitas, la que entra, la que sale y el mensaje que viaja a Booking?
 
 **79.** ReservationRequested es lo que viaja a Booking y RequestReservationResult es lo que ve el usuario.
 
@@ -189,7 +189,7 @@ Los prompts están resumidos y agrupados por tema, en orden; no son una transcri
 
 **84.** Quiero entender cómo se mueven las cosas por el piso rojo: las clases chicas (PaymentResult, ReservationRequestedMessage y el converter) me confunden.
 
-**85.** En la guía dice que ReservationsController no decide nada del negocio y que ver eventos y asientos no requiere token: ¿dónde está eso? Ah, es otro caso de uso.
+**85.** En repaso del flujo dice que ReservationsController no decide nada del negocio y que ver eventos y asientos no requiere token: ¿dónde está eso? Ah, es otro caso de uso.
 
 **86.** Te explico el flujo: ReservaController recibe del controller azul, traduce y llama a Execute; al terminar, el caso de uso llama a Presentar y se arma el ViewModel. Presentar sabe armar el ViewModel porque lo tiene como atributo. El Result es lo que se le pasa al presenter, ¿no?
 
