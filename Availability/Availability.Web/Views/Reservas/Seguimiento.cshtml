@@ -1,0 +1,123 @@
+@model Availability.Web.Models.SeguimientoViewModel?
+
+@{
+    ViewData["Title"] = "Seguimiento";
+
+    var cultura = System.Globalization.CultureInfo.GetCultureInfo("es-AR");
+
+    var claseEstado = Model?.Estado switch
+    {
+        "Confirmada" => "alert-success",
+        "Rechazada" => "alert-danger",
+        "Vencida" => "alert-warning",
+        _ => "alert-info"
+    };
+}
+
+<h1>Seguimiento de solicitud</h1>
+
+<p>
+    Ingresá el identificador que recibiste al enviar tu solicitud.
+    Solo podés consultar tus propias solicitudes.
+</p>
+
+<form asp-controller="Reservas"
+      asp-action="Seguimiento"
+      method="get">
+
+    <div class="mb-3">
+        <label for="solicitudId" class="form-label">
+            Identificador de solicitud
+        </label>
+
+        <input type="text"
+               id="solicitudId"
+               name="solicitudId"
+               value="@ViewBag.SolicitudId"
+               class="form-control"
+               required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Consultar estado
+    </button>
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger mt-3" role="alert">
+        @ViewBag.Error
+    </div>
+}
+
+@if (Model != null)
+{
+    <div class="card mt-4">
+        <div class="card-body">
+            <h2 class="card-title">Resultado de la consulta</h2>
+
+            <p>
+                <strong>Identificador:</strong>
+                @Model.SolicitudId
+            </p>
+
+            <p>
+                <strong>Identificador del evento:</strong>
+                @Model.EventoId
+            </p>
+
+            <p>
+                <strong>Identificador del asiento:</strong>
+                @Model.SeatId
+            </p>
+
+            <p>
+                <strong>Importe de la solicitud:</strong>
+                @Model.Importe.ToString("N2", cultura) @Model.Moneda
+            </p>
+
+            <div class="alert @claseEstado" role="status">
+                <strong>Estado:</strong> @Model.Estado
+
+                @if (Model.Estado == "Pendiente")
+                {
+                    <p class="mb-0 mt-2">
+                        La solicitud está registrada y todavía no tiene
+                        un resultado disponible. Volvé a consultar.
+                    </p>
+                }
+                else if (Model.Estado == "Retenida")
+                {
+                    <p class="mb-0 mt-2">
+                        El asiento está retenido temporalmente.
+                        La reserva todavía no está confirmada.
+                    </p>
+                }
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(Model.MotivoRechazo))
+            {
+                <p>
+                    <strong>Motivo de rechazo:</strong>
+                    @Model.MotivoRechazo
+                </p>
+            }
+
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <a asp-controller="Reservas"
+                   asp-action="Seguimiento"
+                   asp-route-solicitudId="@Model.SolicitudId"
+                   class="btn btn-outline-primary">
+                    Actualizar estado
+                </a>
+
+                <a asp-controller="Asientos"
+                   asp-action="Index"
+                   asp-route-eventoId="@Model.EventoId"
+                   class="btn btn-secondary">
+                    Ver asientos del evento
+                </a>
+            </div>
+        </div>
+    </div>
+}

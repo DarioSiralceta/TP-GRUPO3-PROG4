@@ -1,0 +1,24 @@
+
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.4.6
+    container_name: keycloak-tp-test
+
+    ports:
+      - "127.0.0.1:8081:8080"
+
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:?Falta la contraseña de administrador}
+
+      BOOKING_CLIENT_SECRET: ${BOOKING_CLIENT_SECRET:?Falta el secreto de Booking}
+      AVAILABILITY_CLIENT_SECRET: ${AVAILABILITY_CLIENT_SECRET:?Falta el secreto de Availability}
+      MVC_CLIENT_SECRET: ${MVC_CLIENT_SECRET:?Falta el secreto de MVC}
+
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:?Falta el Client ID de Google}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:?Falta el Client Secret de Google}
+
+    volumes:
+      - ./realm-tp-prog4-realm.json:/opt/keycloak/data/import/realm-tp-prog4-realm.json:ro
+
+    command: start-dev --import-realm

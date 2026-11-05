@@ -1,0 +1,153 @@
+{
+  "realm": "realm-tp-prog4",
+  "enabled": true,
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "roles": {
+    "realm": [
+      {
+        "name": "payments.process",
+        "description": "Permite solicitar el procesamiento de pagos mediante Payment gRPC"
+      },
+      {
+        "name": "booking.read",
+        "description": "Permite consultar el estado de las reservas en Booking"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "availability-service",
+      "name": "availability-service",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "standardFlowEnabled": false,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "fullScopeAllowed": true,
+      "redirectUris": [],
+      "webOrigins": [],
+      "protocolMappers": [
+        {
+          "name": "booking-api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "id.token.claim": "false",
+            "lightweight.claim": "false",
+            "access.token.claim": "true",
+            "introspection.token.claim": "true",
+            "included.custom.audience": "booking-api"
+          }
+        }
+      ],
+      "secret": "${AVAILABILITY_CLIENT_SECRET}"
+    },
+    {
+      "clientId": "availability-web",
+      "name": "Availability Web MVC",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "fullScopeAllowed": true,
+      "rootUrl": "https://localhost:7165",
+      "baseUrl": "https://localhost:7165",
+      "redirectUris": [
+        "https://localhost:7165/signin-oidc"
+      ],
+      "webOrigins": [
+        "https://localhost:7165"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "https://localhost:7165/signout-callback-oidc"
+      },
+      "secret": "${MVC_CLIENT_SECRET}",
+      "protocolMappers": [
+        {
+          "name": "availability-api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "consentRequired": false,
+          "config": {
+            "included.custom.audience": "availability-api",
+            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    },
+    {
+      "clientId": "booking-service",
+      "name": "Booking Service",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "standardFlowEnabled": false,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "fullScopeAllowed": true,
+      "redirectUris": [],
+      "webOrigins": [],
+      "protocolMappers": [
+        {
+          "name": "payment-api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "id.token.claim": "false",
+            "lightweight.claim": "false",
+            "access.token.claim": "true",
+            "introspection.token.claim": "true",
+            "included.custom.audience": "payment-api"
+          }
+        }
+      ],
+      "secret": "${BOOKING_CLIENT_SECRET}"
+    }
+  ],
+  "users": [
+    {
+      "username": "service-account-availability-service",
+      "enabled": true,
+      "serviceAccountClientId": "availability-service",
+      "realmRoles": [
+        "booking.read"
+      ]
+    },
+    {
+      "username": "service-account-booking-service",
+      "enabled": true,
+      "serviceAccountClientId": "booking-service",
+      "realmRoles": [
+        "payments.process"
+      ]
+    }
+  ],
+  "identityProviders": [
+    {
+      "alias": "google",
+      "providerId": "google",
+      "enabled": true,
+      "trustEmail": false,
+      "storeToken": false,
+      "config": {
+        "clientId": "${GOOGLE_CLIENT_ID}",
+        "clientSecret": "${GOOGLE_CLIENT_SECRET}",
+        "defaultScope": "openid profile email"
+      }
+    }
+  ]
+}
