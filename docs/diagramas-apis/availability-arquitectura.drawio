@@ -735,8 +735,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="TX4009m4u_vXZrdfmmcY-91" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=9;container=0;" value="&lt;p dir=&quot;ltr&quot;&gt;l arrancar, conecta cada interfaz con su clase (ej: IBookingService → BookingService). Además registra la base, la autenticación, el cliente gRPC y los workers. &lt;strong&gt;No son métodos reales: agrupan por tema las líneas de Program&lt;/strong&gt;&lt;/p&gt;" vertex="1">
-          <mxGeometry height="80" width="218.94" x="-303.94" y="961" as="geometry" />
+        <mxCell id="TX4009m4u_vXZrdfmmcY-91" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFFFFF,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFFFFF,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=9;container=0;" value="&lt;p dir=&quot;ltr&quot;&gt;Al arrancar, conecta cada interfaz con su clase (ej: IReservationRequestPublisher → AzureServiceBusReservationRequestPublisher). Los otros métodos configuran la base, Keycloak y el Service Bus. No son métodos reales: agrupan por tema las líneas de Program&lt;/p&gt;" vertex="1">
+          <mxGeometry height="94" width="218.94" x="-303.94" y="961" as="geometry" />
         </mxCell>
         <mxCell id="TX4009m4u_vXZrdfmmcY-99" edge="1" parent="1" source="TX4009m4u_vXZrdfmmcY-98" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;dashed=1;" target="Twqqt8sDEQhHJ3gu8GZg-39">
           <mxGeometry relative="1" as="geometry">

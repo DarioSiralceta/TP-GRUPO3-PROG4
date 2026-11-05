@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Booking" id="bk">
-    <mxGraphModel dx="1587" dy="1051" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1388" dy="941" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -637,7 +637,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="BS0r1bFjgohTazYwafoy-51" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=8;" value="Al arrancar, conecta cada interfaz con su clase (ej: IReservationRequestPublisher → AzureServiceBusReservationRequestPublisher). Los otros métodos configuran la base, Keycloak y el Service Bus. &lt;strong&gt;No son métodos reales: agrupan por tema las líneas de Program&lt;/strong&gt;" vertex="1">
+        <mxCell id="BS0r1bFjgohTazYwafoy-51" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=light-dark(#000000,#000000);darkOpacity=0.05;fillColor=light-dark(#FFF9B2,#E6FFCC);strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=light-dark(#FFF2A1,#E6FFCC);shadow=1;size=20;autosizeText=1;fontSize=9;" value="Al arrancar, conecta cada interfaz con su clase (ej: IBookingService → BookingService). Además registra la base, la autenticación, el cliente gRPC y los workers. No son métodos reales: agrupan por tema las líneas de Program" vertex="1">
           <mxGeometry height="85" width="181" x="1263.5" y="-200" as="geometry" />
         </mxCell>
         <mxCell id="BS0r1bFjgohTazYwafoy-57" edge="1" parent="1" source="BS0r1bFjgohTazYwafoy-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;endArrow=none;endFill=0;dashed=1;" target="bk-10">
