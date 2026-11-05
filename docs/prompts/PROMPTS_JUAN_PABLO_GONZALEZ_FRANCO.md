@@ -2,6 +2,8 @@
 
 Rol en el TP: documentación de arquitectura (diagramas de Availability y Booking, y guías de estudio de cada API).
 
+Los prompts están resumidos y agrupados por tema, en orden; no son una transcripción literal ni un historial exacto. Es una selección de las consultas sobre los temas relacionados al trabajo y  al rol que desempeñé.
+
 **Herramienta:** Claude (Anthropic)  
 **Rama:** `docs/availability`
 
