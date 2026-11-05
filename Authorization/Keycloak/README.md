@@ -1,24 +1,50 @@
-# Keycloak — Instalación para el TP Programación IV
+# Keycloak — Autenticación y autorización
 
 ## Objetivo
 
-Levantar Keycloak mediante Docker Compose, con la configuración de autenticación y autorización utilizada por el sistema de reservas.
+Implementar un servidor de autenticación y autorización mediante **Keycloak 26.4.6**, utilizando OAuth2, OpenID Connect y JWT para proteger el sistema distribuido de reservas.
 
-La importación automática incluye:
+Keycloak se ejecuta en Docker y utiliza el realm `realm-tp-prog4`.
 
-- Realm `realm-tp-prog4`.
-- Clientes `booking-service`, `availability-service` y `availability-web`.
-- Roles `payments.process` y `booking.read`.
-- Audiencias `payment-api`, `booking-api` y `availability-api`.
-- Proveedor de identidad Google.
+### Configuración implementada
 
-## Requisitos
+- Autenticación de usuarios mediante Keycloak y Google.
+- Inicio de sesión del frontend MVC con OpenID Connect, Authorization Code y PKCE.
+- Autenticación entre microservicios mediante Client Credentials.
+- Emisión y validación de tokens JWT.
+- Control de acceso mediante roles y audiencias.
 
-- Docker Desktop instalado y en ejecución.
+## 1. Clientes configurados
+
+| Cliente | Función |
+|---|---|
+| `availability-web` | Login del usuario desde el frontend MVC |
+| `availability-service` | Obtener tokens para comunicarse con Booking |
+| `booking-service` | Obtener tokens para comunicarse con Payment |
+| `payment-api` | Identificar la API receptora de pagos |
+
+Las APIs validan los tokens destinados a sus respectivas audiencias:
+
+| API | Audiencia |
+|---|---|
+| Availability | `availability-api` |
+| Booking | `booking-api` |
+| Payment | `payment-api` |
+
+### Roles y permisos
+
+- `booking.read`: autoriza las consultas protegidas a Booking.
+- `payments.process`: autoriza el procesamiento de pagos en Payment.
+
+Estos permisos se verifican mediante las políticas definidas en `Shared.Authentication`.
+
+## 2. Requisitos
+
+- Docker Desktop y Docker Compose.
 - Credenciales OAuth de Google para el entorno de demostración.
-- Puerto local disponible para Keycloak.
+- Puerto `8081` disponible.
 
-## 1. Preparar las variables
+## 3. Configuración de credenciales
 
 En `Authorization/Keycloak`, copiar `.env.example` a un archivo nuevo llamado `.env`.
 
@@ -35,30 +61,11 @@ GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 ```
 
-Los Client Secrets de los servicios deben ser valores privados adecuados para desarrollo.
+Los valores reales deben ser proporcionados por el equipo mediante un canal privado.
 
-Las credenciales de Google deben corresponder a una aplicación OAuth configurada en Google Cloud.
+**Nunca subir `.env`, Client Secrets ni credenciales de Google al repositorio.**
 
-**Nunca subir `.env` al repositorio.**
-
-## 2. Configurar el puerto
-
-El archivo `docker-compose.yml` utiliza actualmente:
-
-```yaml
-ports:
-  - "127.0.0.1:8081:8080"
-```
-
-Por lo tanto, Keycloak queda disponible en:
-
-`http://127.0.0.1:8081`
-
-Para utilizar otro puerto local, modificar el número `8081` del lado izquierdo de la asignación.
-
-El puerto elegido también debe coincidir con la configuración del emisor de tokens utilizada por las aplicaciones y con las URI autorizadas en Google Cloud.
-
-## 3. Levantar Keycloak
+## 4. Iniciar Keycloak
 
 Desde una terminal ubicada en `Authorization/Keycloak`:
 
@@ -67,73 +74,109 @@ docker compose config --quiet
 docker compose up -d
 ```
 
-Verificar los logs:
+Consultar los logs:
 
 ```powershell
 docker compose logs --tail=50
 ```
 
-Se espera encontrar:
+Keycloak queda disponible en:
 
-- `Realm 'realm-tp-prog4' imported`
-- `Import finished successfully`
-- El mensaje de inicio de Keycloak.
+`http://127.0.0.1:8081`
 
-## 4. Entrar a la consola de administración
-
-Abrir:
+La consola de administración se encuentra en:
 
 `http://127.0.0.1:8081/admin/`
 
-Iniciar sesión con:
+Usuario administrador: `admin`.
 
-- Usuario: `admin`.
-- Contraseña: valor de `KEYCLOAK_ADMIN_PASSWORD`.
+Contraseña: valor configurado en `KEYCLOAK_ADMIN_PASSWORD`.
 
-Seleccionar el Realm `realm-tp-prog4`.
+Seleccionar el realm `realm-tp-prog4`.
 
-## 5. Probar Google
+## 5. Autenticación con Google
 
-Abrir la consola de cuenta:
+Se configuró Google como proveedor de identidad externo de Keycloak.
 
-`http://127.0.0.1:8081/realms/realm-tp-prog4/account/`
+El flujo de autenticación es:
 
-Seleccionar Google para iniciar sesión.
+1. El usuario selecciona iniciar sesión desde Availability.Web.
+2. El MVC redirige al usuario a Keycloak.
+3. Keycloak permite autenticarse mediante Google.
+4. Google devuelve el resultado de autenticación a Keycloak.
+5. Keycloak completa el flujo OpenID Connect y devuelve al usuario al MVC.
+6. El MVC establece una sesión mediante cookies y conserva el access token para las llamadas protegidas.
 
-Para que funcione, Google Cloud debe autorizar esta URI de retorno:
+### Direcciones de retorno
+
+**Google → Keycloak:**
 
 ```text
 http://127.0.0.1:8081/realms/realm-tp-prog4/broker/google/endpoint
 ```
 
-La prueba de Google desde la Account Console no sustituye la integración pendiente del MVC.
+**Keycloak → MVC:**
 
-## 6. Configurar las aplicaciones .NET
-
-Las aplicaciones que validan JWT deben utilizar la misma dirección de Keycloak que emite sus tokens.
-
-Ejemplo local con puerto 8081:
-
-```json
-{
-  "Keycloak": {
-    "Authority": "http://127.0.0.1:8081/realms/realm-tp-prog4",
-    "Audience": "payment-api"
-  }
-}
+```text
+https://localhost:7165/signin-oidc
 ```
 
-Las audiencias son:
+Las direcciones deben coincidir con las URI autorizadas en Google Cloud y con la configuración de Keycloak.
 
-| Aplicación receptora | Audiencia |
-|---|---|
-| Payment | `payment-api` |
-| Booking | `booking-api` |
-| Availability | `availability-api` |
+El login con Google fue probado correctamente desde el frontend MVC.
 
-Los servicios que solicitan tokens deben utilizar los Client Secrets correspondientes, almacenados mediante User Secrets o variables de entorno.
+## 6. Autenticación entre microservicios
 
-## 7. Detener Keycloak
+La comunicación entre servicios utiliza OAuth2 mediante el flujo **Client Credentials**.
+
+### Availability → Booking
+
+1. Availability solicita un access token a Keycloak utilizando `availability-service`.
+2. Keycloak emite un JWT destinado a `booking-api`.
+3. Availability envía el token en la cabecera `Authorization: Bearer`.
+4. Booking valida el token y los permisos correspondientes.
+
+### Booking → Payment
+
+1. Booking solicita un access token utilizando `booking-service`.
+2. Keycloak emite un JWT con audiencia `payment-api` y el rol `payments.process`.
+3. Booking envía el JWT en los metadatos de la llamada gRPC.
+4. Payment valida el token y aplica la política `CanProcessPayment`.
+
+### Validación de JWT
+
+La biblioteca `Shared.Authentication` centraliza la validación de:
+
+- Firma del token.
+- Emisor (`iss`).
+- Audiencia (`aud`).
+- Vencimiento (`exp`).
+- Roles y permisos mediante políticas de autorización.
+
+Cada API debe utilizar una dirección de Keycloak compatible con el emisor de los tokens recibidos.
+
+## 7. Verificaciones y pruebas
+
+Se verificaron:
+
+- Inicio de Keycloak mediante Docker.
+- Importación y disponibilidad del realm `realm-tp-prog4`.
+- Obtención de tokens mediante Client Credentials.
+- Configuración de audiencias y roles.
+- Inicio de sesión con Google desde Availability.Web.
+- Acceso del frontend al catálogo de eventos y asientos.
+
+**Pendiente de validación en el entorno local:** el circuito completo de solicitud, procesamiento y seguimiento de una reserva.
+
+## 8. Consideraciones de seguridad
+
+- Las credenciales se almacenan en `.env`, User Secrets o variables de entorno, según el componente.
+- Los Client Secrets no deben incluirse en el código fuente.
+- Los tokens deben enviarse mediante cabeceras de autorización o metadatos gRPC, nunca como parámetros de URL.
+- El uso de HTTP para Keycloak y `start-dev` corresponde exclusivamente al entorno local de desarrollo.
+- Para producción se requiere HTTPS y una configuración de seguridad apropiada.
+
+## 9. Detener Keycloak
 
 Desde `Authorization/Keycloak`:
 
@@ -141,19 +184,10 @@ Desde `Authorization/Keycloak`:
 docker compose down
 ```
 
-La configuración actual utiliza Keycloak en modo desarrollo y no tiene una base de datos persistente externa.
+La instancia local utiliza Keycloak en modo desarrollo con importación automática del realm. Las modificaciones manuales que no se incorporen a la configuración exportada pueden perderse al recrear el contenedor.
 
-Al recrear el contenedor se importará nuevamente el Realm desde el JSON. Los cambios manuales realizados después de la importación no se conservan.
+No utilizar `docker compose down -v` si se desea conservar los datos almacenados en volúmenes.
 
-## Consideraciones para la entrega
+---
 
-Esta configuración se probó localmente con Keycloak 26.4.6.
-
-Para la entrega final todavía debe coordinarse:
-
-- La distribución privada de credenciales de demostración.
-- La configuración definitiva de puertos y URLs.
-- La integración de las APIs y el MVC.
-- Las demás dependencias del sistema distribuido.
-
-El uso de HTTP y `start-dev` está destinado únicamente al entorno local de desarrollo.
+Para la implementación de validación JWT, políticas y obtención de tokens, consultar `Authorization/Shared.Authentication/README.md`.

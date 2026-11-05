@@ -2,63 +2,78 @@
 
 ## 1. Descripción
 
-Biblioteca compartida de autenticación y autorización para los microservicios del TP de reserva de asientos.
+`Shared.Authentication` es una biblioteca compartida desarrollada en **C# / .NET 8** que centraliza la autenticación y autorización de los microservicios del sistema de reservas.
 
-Utiliza **Keycloak** como servidor de identidad y **JWT Bearer** para validar los tokens de acceso.
-
-Desarrollada en **C# / .NET 8**.
+Utiliza **Keycloak** como servidor de identidad y **JWT Bearer** para proteger las comunicaciones entre las APIs.
 
 ### Funcionalidades implementadas
 
-- Validación de JWT emitidos por Keycloak.
-- Validación de emisor, audiencia, vencimiento y firma.
-- Políticas de autorización basadas en roles de Keycloak.
+- Validación de tokens JWT emitidos por Keycloak.
+- Validación de firma, emisor, audiencia y vencimiento.
+- Políticas de autorización basadas en roles.
 - Obtención de access tokens mediante OAuth2 Client Credentials.
 - Configuración reutilizable mediante `IConfiguration`.
+- Integración con Availability, Booking y Payment.
 
 ## 2. Configuración de Keycloak
 
 **Realm:** `realm-tp-prog4`
 
-| Cliente | Audiencia | Rol |
+**Authority local:**
+
+```text
+http://127.0.0.1:8081/realms/realm-tp-prog4
+```
+
+### Clientes y permisos
+
+| Cliente | Audiencia del token | Rol / Función |
 |---|---|---|
-| `booking-service` | `payment-api` | `payments.process` |
+| `availability-web` | `availability-api` | Autenticación de usuarios desde MVC |
 | `availability-service` | `booking-api` | `booking.read` |
-| `availability-web` | Pendiente de integración | Login de usuarios con Google |
+| `booking-service` | `payment-api` | `payments.process` |
 
-Las dos primeras configuraciones se probaron correctamente desde Keycloak y PowerShell.
+El frontend MVC utiliza OpenID Connect y cookies para autenticar usuarios mediante Keycloak y Google.
 
-El proveedor de identidad Google también se configuró y se probó mediante la Account Console de Keycloak.
+Las APIs utilizan JWT Bearer para validar los access tokens recibidos.
 
-## 3. Integración en las APIs .NET 8
+## 3. Integración en las APIs
 
 ### 3.1. Agregar la referencia al proyecto
 
-Desde Visual Studio:
+Desde Visual Studio Community:
 
-1. Clic derecho sobre **Dependencies** del proyecto que necesita autenticación.
+1. Clic derecho sobre **Dependencies** del proyecto.
 2. Seleccionar **Add Project Reference**.
 3. Marcar `Shared.Authentication`.
 4. Confirmar.
 
-### 3.2. Configurar appsettings.Development.json
+### 3.2. Configurar la autenticación
+
+Cada API debe definir los valores de `Authority` y `Audience` en su configuración.
 
 Ejemplo para Payment:
 
 ```json
 {
   "Keycloak": {
-    "Authority": "http://127.0.0.1:8080/realms/realm-tp-prog4",
+    "Authority": "http://127.0.0.1:8081/realms/realm-tp-prog4",
     "Audience": "payment-api"
   }
 }
 ```
 
-Para Booking se utiliza `booking-api` como audiencia.
+Las audiencias utilizadas son:
 
-La URL `127.0.0.1` corresponde al entorno local de desarrollo; debe adaptarse cuando los servicios se ejecuten en contenedores.
+| API receptora | Audience |
+|---|---|
+| Availability.API | `availability-api` |
+| Booking.API | `booking-api` |
+| Payment.API | `payment-api` |
 
-### 3.3. Registrar la autenticación y autorización
+**Importante:** la dirección del servidor Keycloak debe ser compatible con el emisor (`iss`) del JWT. Para la validación del emisor, `localhost` y `127.0.0.1` no son valores equivalentes.
+
+### 3.3. Registrar autenticación y autorización
 
 En `Program.cs`:
 
@@ -69,7 +84,7 @@ builder.Services.AddKeycloakAuthentication(builder.Configuration);
 builder.Services.AddKeycloakAuthorization();
 ```
 
-Después de crear la aplicación:
+En el pipeline de ASP.NET Core:
 
 ```csharp
 app.UseAuthentication();
@@ -78,39 +93,81 @@ app.UseAuthorization();
 
 Estos middlewares deben ejecutarse antes de los endpoints protegidos.
 
-### 3.4. Proteger endpoints
+## 4. Validación de JWT
 
-Ejemplo de Minimal API para Payment:
-
-```csharp
-app.MapPost("/payments", () =>
-{
-    return Results.Ok();
-})
-.RequireAuthorization("CanProcessPayment");
-```
-
-Esta política exige un JWT válido con el rol `payments.process`.
-
-Para consultas protegidas de Booking:
+La extensión `AddKeycloakAuthentication` configura el esquema de autenticación JWT Bearer.
 
 ```csharp
-app.MapGet("/bookings/{id}/status", (string id) =>
-{
-    return Results.Ok();
-})
-.RequireAuthorization("CanReadBooking");
+options.Authority = authority;
+options.Audience = audience;
+
+options.TokenValidationParameters =
+    new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true
+    };
 ```
 
-La política exige el rol `booking.read`.
+### Validaciones realizadas
 
-Los ejemplos ilustran únicamente la autorización; no implementan la lógica de negocio.
+- **Issuer (`iss`):** comprueba que el token provenga del servidor de identidad esperado.
+- **Audience (`aud`):** verifica que el token esté destinado a la API receptora.
+- **Lifetime (`exp`):** comprueba que el token no esté vencido.
+- **Firma:** valida la autenticidad e integridad del token.
 
-## 4. Obtención de tokens mediante Client Credentials
+La API obtiene la información pública de Keycloak necesaria para validar los JWT.
 
-La biblioteca contiene `KeycloakTokenService`, que permite solicitar un access token desde C#.
+## 5. Políticas de autorización
 
-Registrar en `Program.cs`:
+La biblioteca incluye políticas reutilizables para controlar el acceso a operaciones protegidas.
+
+### CanReadBooking
+
+Utilizada para las consultas protegidas de Booking.
+
+Requiere un token válido con el permiso `booking.read`.
+
+Flujo:
+
+1. Availability solicita un token mediante `availability-service`.
+2. Keycloak emite un JWT con audiencia `booking-api`.
+3. Availability envía el token a Booking.
+4. Booking valida el JWT y el permiso correspondiente.
+
+### CanProcessPayment
+
+Utilizada para proteger Payment.API.
+
+Requiere un token válido con el rol `payments.process`.
+
+Flujo:
+
+1. Booking obtiene un token mediante `booking-service`.
+2. Keycloak emite un JWT con audiencia `payment-api`.
+3. Booking adjunta el token a la llamada gRPC.
+4. Payment valida el JWT y aplica la política `CanProcessPayment`.
+
+Ejemplo de protección del servicio gRPC:
+
+```csharp
+app.MapGrpcService<PaymentGrpcService>()
+   .RequireAuthorization("CanProcessPayment");
+```
+
+La autenticación verifica la identidad del solicitante y la autorización determina si tiene permiso para realizar la operación.
+
+## 6. Obtención de tokens mediante Client Credentials
+
+La biblioteca incluye `KeycloakTokenService`, que permite obtener tokens de acceso mediante OAuth2 Client Credentials.
+
+Este flujo se utiliza para las comunicaciones **servicio a servicio**, sin intervención del usuario final.
+
+### Registrar el servicio
+
+En `Program.cs`:
 
 ```csharp
 using Shared.Authentication.Services;
@@ -118,7 +175,7 @@ using Shared.Authentication.Services;
 builder.Services.AddHttpClient<KeycloakTokenService>();
 ```
 
-Ejemplo de uso desde un servicio:
+### Solicitar un access token
 
 ```csharp
 string jwt = await tokenService.GetAccessTokenAsync(
@@ -128,34 +185,105 @@ string jwt = await tokenService.GetAccessTokenAsync(
 );
 ```
 
-**Importante:** no escribir Client Secrets directamente en el código ni subirlos al repositorio. Utilizar User Secrets para desarrollo o variables de entorno.
+El método realiza una solicitud al endpoint de tokens de Keycloak:
 
-Para llamadas gRPC, el token debe enviarse en los metadatos de autorización como `Bearer`.
+```text
+/realms/realm-tp-prog4/protocol/openid-connect/token
+```
 
-## 5. Responsabilidades de los componentes
+Utilizando:
 
-| Componente | Integración requerida |
+```text
+grant_type=client_credentials
+```
+
+Keycloak valida las credenciales del cliente y devuelve un access token.
+
+### Envío del token
+
+En comunicaciones HTTP REST:
+
+```text
+Authorization: Bearer <JWT>
+```
+
+En comunicaciones gRPC, el token se transmite mediante los metadatos de autorización:
+
+```text
+authorization: Bearer <JWT>
+```
+
+Los Client Secrets deben almacenarse mediante User Secrets o variables de entorno, nunca directamente en el código fuente.
+
+## 7. Integración con los componentes
+
+| Componente | Responsabilidad |
 |---|---|
-| Frontend MVC | OpenID Connect con Keycloak, login con Google y sesión mediante cookies |
-| Availability API | Validación de JWT de usuarios y Client Credentials para consultar Booking |
-| Booking API | Validación de tokens de servicio de Availability y obtención de JWT para llamar a Payment |
-| Payment gRPC API | Validación de JWT con audiencia `payment-api` y rol `payments.process` |
+| Availability.Web | Autenticación de usuarios con Keycloak y Google mediante OpenID Connect y cookies |
+| Availability.API | Validar JWT del usuario y obtener tokens para consultar Booking |
+| Booking.API | Validar tokens provenientes de Availability y obtener tokens para llamar a Payment |
+| Payment.API | Validar tokens provenientes de Booking y aplicar `CanProcessPayment` |
+| Shared.Authentication | Centralizar validación JWT, políticas y obtención de tokens |
 
-## 6. Pruebas realizadas
+### Flujo general de autenticación
 
-- Solicitud sin token: `401 Unauthorized`.
-- Token con audiencia incorrecta: `401 Unauthorized`.
-- Token válido de `booking-service` con permiso correcto: `200 OK`.
-- Obtención automática de JWT desde `KeycloakTokenService`.
-- Integración HTTP simulada: C# obtiene un token y accede correctamente a un endpoint protegido.
+```text
+Usuario
+   |
+   | OpenID Connect / Google
+   v
+Keycloak
+   |
+   | Access Token del usuario
+   v
+Availability.Web
+   |
+   | JWT - aud: availability-api
+   v
+Availability.API
+   |
+   | Client Credentials
+   | availability-service
+   | JWT - aud: booking-api
+   v
+Booking.API
+   |
+   | Client Credentials
+   | booking-service
+   | JWT - aud: payment-api
+   | Rol: payments.process
+   v
+Payment.API (gRPC)
+```
 
-**Pruebas pendientes:** `403 Forbidden` por ausencia de rol, integración real con gRPC, login desde MVC y despliegue compartido.
+Cada API valida los tokens que recibe y aplica las políticas correspondientes.
 
-## 7. Consideraciones
+## 8. Pruebas y verificaciones
 
-- La configuración actual de Keycloak con HTTP se utiliza únicamente para desarrollo local.
-- Para producción debe utilizarse HTTPS y reforzarse la validación y gestión de credenciales.
-- `Auth.TestApi` es una aplicación de pruebas, no un microservicio de producción.
-- Las rutas de prueba que solicitan tokens no deben exponerse públicamente.
-- La integración de JWT en las APIs reales todavía está pendiente.
-- La configuración de Keycloak deberá exportarse o automatizarse para que el resto del equipo pueda reproducirla.
+Se realizaron pruebas de:
+
+- Obtención de tokens mediante Client Credentials.
+- Validación de JWT con audiencia correcta.
+- Rechazo de solicitudes sin token (`401 Unauthorized`).
+- Rechazo de tokens con audiencia incorrecta (`401 Unauthorized`).
+- Acceso a endpoints protegidos con tokens válidos.
+- Configuración de roles y audiencias en Keycloak.
+- Inicio de sesión con Google desde Availability.Web.
+
+La integración de autenticación entre Availability, Booking y Payment está incorporada al código del proyecto.
+
+**Validación pendiente en el entorno local utilizado para las últimas pruebas:** completar el circuito funcional de reservas y verificar su procesamiento hasta Payment. El POST de reserva desde MVC presentó una respuesta `401 Unauthorized`, cuyo origen todavía no se determinó.
+
+## 9. Consideraciones de seguridad
+
+- Los Client Secrets no deben almacenarse en archivos versionados.
+- Los access tokens deben validarse antes de autorizar operaciones protegidas.
+- Cada API debe comprobar la audiencia correspondiente.
+- Los roles permiten aplicar el principio de mínimo privilegio.
+- El uso de HTTP para Keycloak está destinado exclusivamente al desarrollo local.
+- En producción se requiere HTTPS y una gestión segura de las credenciales.
+- `Auth.TestApi` se utiliza para pruebas de autenticación y no forma parte del circuito principal de reservas.
+
+---
+
+Para la instalación, configuración del realm, clientes, roles y proveedor Google, consultar `Authorization/Keycloak/README.md`.
