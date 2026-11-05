@@ -10,9 +10,7 @@ using Shared.Authentication.Services;
 
 namespace Booking.Service.Services.Payment;
 
-/// <summary>
-/// Cliente gRPC para invocar al microservicio Payment.
-/// </summary>
+// Franco Brienza: gRPC Payment client.
 public class PaymentServiceClient : IPaymentServiceClient
 {
     private readonly ILogger<PaymentServiceClient> _logger;
@@ -32,7 +30,7 @@ public class PaymentServiceClient : IPaymentServiceClient
         _paymentClient = paymentClient;
     }
 
-    public async Task<PaymentResult> ProcessPaymentAsync( // Franco Brienza
+    public async Task<PaymentResult> ProcessPaymentAsync(
         Guid bookingId,
         string userId,
         decimal amount,

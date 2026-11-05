@@ -1,4 +1,3 @@
-// src/Booking.API/Workers/BookingReservationWorker.cs
 using System;
 using System.Diagnostics;
 using System.Text.Json;
@@ -15,19 +14,7 @@ using Microsoft.Extensions.Options;
 
 namespace Booking.API.Workers;
 
-/// <summary>
-/// Background Worker (Hosted Service) en Booking API encargado de consumir las solicitudes de reserva
-/// publicadas por el sitio Availability en Azure Service Bus (Topic: grupo3-booking-topic).
-/// 
-/// Decisiones arquitectónicas y patrones implementados:
-/// - Competing Consumers Pattern: Al suscribirse todas las réplicas de Booking a la misma suscripción del Topic,
-///   Azure Service Bus distribuye cada mensaje a una única réplica (Paso 4 del flujo: "Una de las réplicas de Booking toma el mensaje").
-/// - Eventual Consistency: Permite que Availability responda de inmediato al cliente (Paso 3) y Booking procese
-///   de forma asíncrona la validación y el cobro.
-/// - Scoped Service Factory: Al ser un BackgroundService Singleton y DbContext/BookingService Scoped, se utiliza IServiceScopeFactory
-///   para aislar el ciclo de vida por mensaje.
-/// - Auditoría (Req 3f): Emite logs identificando el inicio [AUDIT_START] y fin [AUDIT_END] de la cadena de sucesos.
-/// </summary>
+// AI contribution: Gemini Flash 3.8 — Azure Service Bus reservation consumer.
 public class BookingReservationWorker : BackgroundService
 {
     private readonly IServiceScopeFactory _scopeFactory;
@@ -61,7 +48,6 @@ public class BookingReservationWorker : BackgroundService
 
         try
         {
-            // Extraer el Topic Name si viene especificado como EntityPath en la Connection String
             var properties = ServiceBusConnectionStringProperties.Parse(_options.ConnectionString);
             var topicName = !string.IsNullOrWhiteSpace(properties.EntityPath)
                 ? properties.EntityPath
@@ -72,11 +58,10 @@ public class BookingReservationWorker : BackgroundService
             _logger.LogInformation("Iniciando BookingReservationWorker para Topic: '{Topic}' y Suscripción: '{Subscription}'",
                 topicName, subscriptionName);
 
-            // Inicializar cliente y procesador de Service Bus
             _client = new ServiceBusClient(_options.ConnectionString);
             _processor = _client.CreateProcessor(topicName, subscriptionName, new ServiceBusProcessorOptions
             {
-                AutoCompleteMessages = false, // Control explícito de confirmación (ACK / NACK)
+                AutoCompleteMessages = false,
                 MaxConcurrentCalls = _options.MaxConcurrentCalls > 0 ? _options.MaxConcurrentCalls : 1
             });
 
@@ -85,7 +70,6 @@ public class BookingReservationWorker : BackgroundService
 
             await _processor.StartProcessingAsync(stoppingToken);
 
-            // Mantener el worker activo hasta que se solicite la cancelación
             await Task.Delay(Timeout.Infinite, stoppingToken);
         }
         catch (OperationCanceledException)
@@ -98,16 +82,12 @@ public class BookingReservationWorker : BackgroundService
         }
     }
 
-    /// <summary>
-    /// Manejador de mensajes entrantes desde el Topic de Service Bus.
-    /// </summary>
     private async Task MessageHandlerAsync(ProcessMessageEventArgs args)
     {
         var stopwatch = Stopwatch.StartNew();
         var rawBody = args.Message.Body.ToString();
         var messageId = args.Message.MessageId;
 
-        // Req 3f: Log de auditoría para identificar inicio de la cadena de sucesos en Booking
         _logger.LogInformation(
             "[AUDIT_START] [Microservicio: Booking API] Mensaje recibido desde Service Bus. MessageId: {MessageId}, DeliveryCount: {DeliveryCount}, Timestamp: {Timestamp:O}",
             messageId, args.Message.DeliveryCount, DateTime.UtcNow);
@@ -127,21 +107,18 @@ public class BookingReservationWorker : BackgroundService
                 "[AUDIT_CHAIN_PROGRESS] Procesando SolicitudId: {RequestId}, EventoId: {EventId}, AsientoId: {SeatId}, UsuarioId: {UserId}",
                 request.RequestId, request.EventId, request.SeatId, request.UserId);
 
-            // Crear un scope por cada mensaje para resolver DbContext y servicios scoped
+            // Resolve scoped services once per message.
             using (var scope = _scopeFactory.CreateScope())
             {
                 var bookingService = scope.ServiceProvider.GetRequiredService<IBookingService>();
 
-                // Ejecuta la verificación de asiento y la llamada a cobro con Payment
                 var result = await bookingService.ProcessReservationRequestAsync(request, args.CancellationToken);
 
-                // Req 3f: Log de auditoría para identificar el fin exitoso de la cadena de sucesos
                 _logger.LogInformation(
                     "[AUDIT_END] [Microservicio: Booking API] Cadena de reserva finalizada para RequestId: {RequestId}. Estado: {Status}, MotivoRechazo: {Reason}, Duración: {ElapsedMs}ms",
                     result.Id, result.Status, result.RejectionReason ?? "N/A", stopwatch.ElapsedMilliseconds);
             }
 
-            // Confirmar mensaje procesado (ACK) para eliminarlo de la suscripción
             await args.CompleteMessageAsync(args.Message, args.CancellationToken);
         }
         catch (Exception ex)
@@ -149,7 +126,7 @@ public class BookingReservationWorker : BackgroundService
             _logger.LogError(ex, "[AUDIT_ERROR] Error no controlado durante el procesamiento del mensaje {MessageId}. Intentos: {DeliveryCount}",
                 messageId, args.Message.DeliveryCount);
 
-            // Si se superó el límite de reintentos, mover a Dead Letter para no bloquear la cola
+            // Dead-letter after five deliveries; otherwise retry.
             if (args.Message.DeliveryCount >= 5)
             {
                 _logger.LogError("[AUDIT_DEADLETTER] Mensaje {MessageId} excede reintentos máximos. Enviando a Dead Letter Queue.", messageId);
@@ -157,15 +134,11 @@ public class BookingReservationWorker : BackgroundService
             }
             else
             {
-                // Abandonar mensaje para reintento automático por parte de Service Bus
                 await args.AbandonMessageAsync(args.Message, cancellationToken: args.CancellationToken);
             }
         }
     }
 
-    /// <summary>
-    /// Manejador de errores de transporte y conexión de Azure Service Bus.
-    /// </summary>
     private Task ErrorHandlerAsync(ProcessErrorEventArgs args)
     {
         _logger.LogError(args.Exception,

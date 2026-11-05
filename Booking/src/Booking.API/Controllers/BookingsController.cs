@@ -16,6 +16,7 @@ public class BookingsController : ControllerBase
         _bookingService = bookingService;
     }
 
+    // AI contribution: Gemini Flash 3.8 — authorization for booking-by-ID.
     [Authorize(Policy = "CanReadBooking")]
     [HttpGet("{id}")]
     public async Task<ActionResult<BookingEntity>> GetBooking(Guid id)
@@ -29,7 +30,7 @@ public class BookingsController : ControllerBase
     }
 
     [HttpGet("events/{eventId}/occupied-seats")]
-    public async Task<ActionResult<List<string>>> GetOccupiedSeats(string eventId) // Franco Brienza
+    public async Task<ActionResult<List<string>>> GetOccupiedSeats(string eventId)
     {
         var occupiedSeats = await _bookingService.GetOccupiedSeatsAsync(eventId);
         return Ok(occupiedSeats);

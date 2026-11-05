@@ -1,4 +1,3 @@
-// src/Booking.Service/Services/BookingService.cs
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,10 +24,6 @@ public interface IBookingService
         CancellationToken cancellationToken = default);
 }
 
-/// <summary>
-/// Servicio de Booking con arquitectura N-Layer y dominio anémico.
-/// Gestiona disponibilidad, retenciones y procesamiento del pago.
-/// </summary>
 public class BookingService : IBookingService
 {
     private readonly BookingDbContext _context;
@@ -50,6 +45,7 @@ public class BookingService : IBookingService
         return await _context.Bookings.FindAsync(id);
     }
 
+    // Franco Brienza: occupied-seat lookup.
     public async Task<List<string>> GetOccupiedSeatsAsync(string eventId)
     {
         var now = DateTime.UtcNow;
@@ -94,7 +90,7 @@ public class BookingService : IBookingService
         ReservationRequestedMessage request,
         CancellationToken cancellationToken = default)
     {
-        // Evitamos procesar nuevamente una solicitud ya registrada.
+        // Return prior results so message retries remain idempotent.
         var existingBooking = await _context.Bookings
             .FirstOrDefaultAsync(
                 b => b.Id == request.RequestId,
@@ -111,8 +107,7 @@ public class BookingService : IBookingService
             return existingBooking;
         }
 
-        // Liberamos las retenciones vencidas de este asiento.
-        // El worker de vencimiento se ocupa de los demás asientos.
+        // Free this seat now; the background worker handles other expired holds.
         var expiredCount = await ExpireRetentionsForSeatAsync(
             request.EventId,
             request.SeatId,
@@ -130,8 +125,7 @@ public class BookingService : IBookingService
 
         var now = DateTime.UtcNow;
 
-        // Un asiento está ocupado si tiene una reserva confirmada
-        // o una retención que todavía no venció.
+        // An unexpired hold and a confirmed booking both occupy the seat.
         var isOccupied = await _context.Bookings.AnyAsync(
             b =>
                 b.EventId == request.EventId
@@ -198,8 +192,7 @@ public class BookingService : IBookingService
             ex.InnerException is PostgresException pgEx
             && pgEx.SqlState == "23505")
         {
-            // La restricción única de PostgreSQL detecta una colisión
-            // cuando dos solicitudes intentan ocupar el mismo asiento.
+            // The partial unique index resolves concurrent reservation races.
             _logger.LogWarning(
                 "Database partial unique constraint caught concurrent " +
                 "booking collision for Seat {SeatId}. " +

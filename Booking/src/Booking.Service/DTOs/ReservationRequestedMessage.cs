@@ -4,10 +4,6 @@ using System.Text.Json.Serialization;
 
 namespace Booking.Service.DTOs;
 
-/// <summary>
-/// Mensaje publicado por el microservicio Availability a través de Azure Service Bus (Topic: grupo3-booking-topic).
-/// Cumple con el contrato de integración asíncrona entre Availability y Booking.
-/// </summary>
 public class ReservationRequestedMessage
 {
     [JsonPropertyName("requestId")]
@@ -31,10 +27,7 @@ public class ReservationRequestedMessage
     public string Currency { get; set; } = string.Empty;
 }
 
-/// <summary>
-/// Permite deserializar números o strings de manera transparente evitando incompatibilidades
-/// si Availability envía EventId o SeatId como entero o como string.
-/// </summary>
+// Accept numeric IDs as well as strings from Availability.
 public class FlexibleStringJsonConverter : JsonConverter<string>
 {
     public override string? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

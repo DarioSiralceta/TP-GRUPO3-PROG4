@@ -1,4 +1,3 @@
-// src/Booking.API/Program.cs
 using System.Text.Json.Serialization;
 using Booking.API.Workers;
 using Booking.Infrastructure.Configuration;
@@ -13,11 +12,10 @@ using Shared.Authentication.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Keycloak Authentication and Authorization from Shared.Authentication
+// AI contribution: Gemini Flash 3.8 — Keycloak authentication and authorization registration.
 builder.Services.AddKeycloakAuthentication(builder.Configuration);
 builder.Services.AddKeycloakAuthorization();
 
-// Controllers and OpenAPI / Swagger
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
@@ -26,11 +24,9 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Service Bus Options Configuration
 builder.Services.Configure<AzureServiceBusOptions>(
     builder.Configuration.GetSection(AzureServiceBusOptions.SectionName));
 
-// Business services and clients (N-Layer architecture)
 builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IPaymentServiceClient, PaymentServiceClient>();
 builder.Services.AddHttpClient<KeycloakTokenService>();
@@ -44,17 +40,15 @@ if (!Uri.TryCreate(paymentGrpcAddress, UriKind.Absolute, out var paymentAddress)
 builder.Services.AddGrpcClient<PaymentService.PaymentServiceClient>(options =>
     options.Address = paymentAddress);
 
-// Register PostgreSQL DbContext
 builder.Services.AddDbContext<BookingDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Background Worker for processing reservation messages from Availability via Azure Service Bus
+// AI contributions: Gemini Flash 3.8 (reservation consumer) and Copilot (retention cleanup).
 builder.Services.AddHostedService<BookingReservationWorker>();
 builder.Services.AddHostedService<BookingRetentionExpirationWorker>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -63,6 +57,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// AI contribution: Gemini Flash 3.8 — authorization middleware pipeline.
 app.UseAuthentication();
 app.UseAuthorization();
 

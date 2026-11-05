@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Booking.API.Workers;
 
+// AI contribution: Copilot — periodic retention-expiration worker.
 public sealed class BookingRetentionExpirationWorker : BackgroundService
 {
     private static readonly TimeSpan SweepInterval = TimeSpan.FromSeconds(30);
@@ -29,6 +30,7 @@ public sealed class BookingRetentionExpirationWorker : BackgroundService
                 var context = scope.ServiceProvider.GetRequiredService<BookingDbContext>();
                 var now = DateTime.UtcNow;
 
+                // Update expired holds in one statement instead of loading each row.
                 var expiredCount = await context.Bookings
                     .Where(booking =>
                         booking.Status == BookingStatus.Retenida &&
