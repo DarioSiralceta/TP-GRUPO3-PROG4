@@ -38,3 +38,11 @@ El metodo ProcessPaymentAsync se debe encargar de crear el PaymentAttempt y pers
 
 Implementa PaymentGrpcService para que llame a IPaymentService.ProcessPaymentAsync con los datos del request que se recibe de booking y traduzca el PaymentAttempt devuelto a ProcessPaymentResponse (incluyendo transaction_id = attempt.Id.ToString()). Cuando el resultado del cobro no es exitoso, PaymentGrpcService se tiene que encargar de mapear el campo error_message con un texto correspondiente segun el codigo del status
 
+## Prompt 4
+
+Edita el start-all.sh para que ejecute cada proyecto en consolas separadas
+
+## Prompt 5
+
+Hace una review del codigo de toda la solucion en busca de algun bug/error o camino no contemplado segun las consignas del archivo Trabajo_practico.pdf
+
