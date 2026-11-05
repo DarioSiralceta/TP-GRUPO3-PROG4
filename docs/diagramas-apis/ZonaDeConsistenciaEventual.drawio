@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram name="Página-1" id="qbT68Df-BEj8UMrrWdYI">
-    <mxGraphModel dx="2684" dy="1150" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2606" dy="1102" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -70,8 +70,8 @@
         <mxCell id="KHTzkPGP2iW08yCxFxuA-35" parent="KHTzkPGP2iW08yCxFxuA-32" style="text;strokeColor=#d79b00;fillColor=#ffcd28;align=center;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;gradientColor=#ffa500;" value="Subscriptions" vertex="1">
           <mxGeometry height="26" width="160" y="74" as="geometry" />
         </mxCell>
-        <mxCell id="KHTzkPGP2iW08yCxFxuA-47" connectable="0" parent="1" style="group" value="" vertex="1">
-          <mxGeometry height="300" width="280" x="580" y="435" as="geometry" />
+        <mxCell id="KHTzkPGP2iW08yCxFxuA-47" connectable="0" parent="1" style="group;fontSize=10;" value="" vertex="1">
+          <mxGeometry height="380" width="361" x="580" y="435" as="geometry" />
         </mxCell>
         <mxCell id="KHTzkPGP2iW08yCxFxuA-37" parent="KHTzkPGP2iW08yCxFxuA-47" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;gradientColor=#ea6b66;strokeColor=#b85450;" value="" vertex="1">
           <mxGeometry height="300" width="280" as="geometry" />
@@ -105,6 +105,12 @@
         </mxCell>
         <mxCell id="cFcjcI3JYilsYECRctOr-8" parent="KHTzkPGP2iW08yCxFxuA-47" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;labelBackgroundColor=none;gradientColor=#ea6b66;" value="SQL" vertex="1">
           <mxGeometry height="30" width="60" x="40" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="25Fy0_szNWtlkFJp8CQT-3" parent="KHTzkPGP2iW08yCxFxuA-47" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;fillColor=#f8cecc;gradientColor=#ea6b66;strokeColor=#b85450;gradientDirection=north;" value="" vertex="1">
+          <mxGeometry height="95" width="280" y="292.5" as="geometry" />
+        </mxCell>
+        <mxCell id="25Fy0_szNWtlkFJp8CQT-4" parent="KHTzkPGP2iW08yCxFxuA-47" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=10;" value="&lt;p&gt;&lt;b&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;Estados de la Reserva&lt;br&gt;&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;&lt;div&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 0));&quot;&gt;Pendiente&amp;nbsp; &lt;/span&gt;-&amp;nbsp;&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Solicitud recibida, esperando procesamiento.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(0, 204, 0));&quot;&gt;Confirmada&amp;nbsp; &lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;- Reserva y Pago Exitosos&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(204, 0, 0));&quot;&gt;Rechazada&amp;nbsp; &lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;-&amp;nbsp; No se pudo completar la Operacion&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="343.7" x="-31.850000000000023" y="300" as="geometry" />
         </mxCell>
         <mxCell id="cFcjcI3JYilsYECRctOr-17" connectable="0" parent="1" style="group" value="" vertex="1">
           <mxGeometry height="224" width="410" x="1100" y="385" as="geometry" />
@@ -176,13 +182,13 @@
           <mxGeometry height="120" width="180" x="-135" y="250" as="geometry" />
         </mxCell>
         <mxCell id="cFcjcI3JYilsYECRctOr-38" connectable="0" parent="1" style="group;strokeColor=none;dashed=1;dashPattern=12 12;fillColor=none;" value="" vertex="1">
-          <mxGeometry height="174" width="520" x="-60" y="561" as="geometry" />
+          <mxGeometry height="249" width="520" x="-60" y="561" as="geometry" />
         </mxCell>
         <mxCell id="cFcjcI3JYilsYECRctOr-35" parent="cFcjcI3JYilsYECRctOr-38" style="rounded=1;whiteSpace=wrap;html=1;roundedPerimeter=1;" value="" vertex="1">
-          <mxGeometry height="174" width="520" as="geometry" />
+          <mxGeometry height="249.00000000000003" width="520" as="geometry" />
         </mxCell>
-        <mxCell id="cFcjcI3JYilsYECRctOr-36" parent="cFcjcI3JYilsYECRctOr-38" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 102));&quot;&gt;Zona de Consistencia Eventual (teorema CAP-AP)&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;&lt;span style=&quot;font-size: 15px;&quot;&gt;Ventana de desacoplamiento asincrono entre la respuesta de recepcion en Availability y confirmacion final de la reserva en Booking&lt;/span&gt;.&lt;/p&gt;" vertex="1">
-          <mxGeometry height="141" width="460" x="30" y="11" as="geometry" />
+        <mxCell id="cFcjcI3JYilsYECRctOr-36" parent="cFcjcI3JYilsYECRctOr-38" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 102));&quot;&gt;Zona de Consistencia Eventual (Modelo AP del Teorema CAP)&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Intervalo de consistencia eventual producido por el procesamiento asincrónico mediante Azure Service Bus.&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Availability confirma la recepción de la solicitud mediante un requestId, mientras Booking procesa la reserva y determina su estado final.&lt;/font&gt;&lt;/p&gt;&lt;p&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Durante este intervalo, el cliente puede observar un estado pendiente hasta que Booking complete la operación.&lt;/font&gt;&lt;/p&gt;" vertex="1">
+          <mxGeometry height="201.77586206896552" width="460" x="30" y="15.74137931034483" as="geometry" />
         </mxCell>
         <mxCell id="cFcjcI3JYilsYECRctOr-39" connectable="0" parent="1" style="group;fillColor=none;gradientColor=#97d077;strokeColor=none;" value="" vertex="1">
           <mxGeometry height="270" width="300" x="990" y="70" as="geometry" />

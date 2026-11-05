@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram name="Página-1" id="iPq1vpY6kwJidSUUlqQW">
-    <mxGraphModel dx="1779" dy="1102" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1238" dy="767" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -50,16 +50,25 @@
           <mxGeometry height="40" width="136" x="368.3299999999999" y="60" as="geometry" />
         </mxCell>
         <mxCell id="9j3x0rpM0Y1U1jFV12CW-20" connectable="0" parent="1" style="group;fillColor=none;gradientColor=#7ea6e0;strokeColor=none;" value="" vertex="1">
-          <mxGeometry height="193" width="263" x="450" y="70" as="geometry" />
+          <mxGeometry height="310" width="328.17" x="440.83" y="70" as="geometry" />
         </mxCell>
         <mxCell id="9j3x0rpM0Y1U1jFV12CW-10" parent="9j3x0rpM0Y1U1jFV12CW-20" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.rect;fillColor2=none;strokeWidth=1;size=20;indent=5;labelPerimeter=1;fillColor=#dae8fc;gradientColor=#7ea6e0;strokeColor=#6c8ebf;" value="" vertex="1">
           <mxGeometry height="163" width="240" as="geometry" />
         </mxCell>
         <mxCell id="9j3x0rpM0Y1U1jFV12CW-16" parent="9j3x0rpM0Y1U1jFV12CW-20" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;gradientColor=#7ea6e0;strokeColor=#6c8ebf;" value="Azure Service Bus" vertex="1">
-          <mxGeometry height="86.31" width="160" x="40" y="29.999999999999993" as="geometry" />
+          <mxGeometry height="86.31" width="191.5" x="24.25" y="29.999999999999993" as="geometry" />
         </mxCell>
-        <mxCell id="9j3x0rpM0Y1U1jFV12CW-17" parent="9j3x0rpM0Y1U1jFV12CW-16" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=center;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;gradientColor=#7ea6e0;" value="Cola / Topic + Subscription&lt;div&gt;(Mensajeria Asincronica)&lt;/div&gt;" vertex="1">
-          <mxGeometry height="60.309999999999995" width="160" y="26" as="geometry" />
+        <mxCell id="9j3x0rpM0Y1U1jFV12CW-17" parent="9j3x0rpM0Y1U1jFV12CW-20" style="text;strokeColor=#6c8ebf;fillColor=#dae8fc;align=center;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;gradientColor=#7ea6e0;" value="Topic: ReservaConfirmada&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Subscription: NotificationService&lt;/span&gt;&lt;div&gt;&lt;div&gt;(Mensajeria Asincronica)&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60.31" width="191.5" x="24.25" y="56" as="geometry" />
+        </mxCell>
+        <mxCell id="1bdAkCYMDWjELj7ziOit-1" parent="9j3x0rpM0Y1U1jFV12CW-20" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="70" width="270" x="-26.83" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="1bdAkCYMDWjELj7ziOit-3" parent="9j3x0rpM0Y1U1jFV12CW-20" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;b&gt;Dead Letter Queue (DLQ)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="210" x="-9.999999999999986" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="1bdAkCYMDWjELj7ziOit-4" parent="9j3x0rpM0Y1U1jFV12CW-20" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Almacena mensajes que no pudieron procesarse luego de los reintentos configurados." vertex="1">
+          <mxGeometry height="30" width="263" x="-23" y="210" as="geometry" />
         </mxCell>
         <mxCell id="9j3x0rpM0Y1U1jFV12CW-71" connectable="0" parent="9j3x0rpM0Y1U1jFV12CW-20" style="group;fillColor=none;gradientColor=#7ea6e0;strokeColor=none;" value="" vertex="1">
           <mxGeometry height="63" width="63" x="200" y="130" as="geometry" />
@@ -153,16 +162,16 @@
           <mxGeometry height="220" width="278.33" y="17" as="geometry" />
         </mxCell>
         <mxCell id="9j3x0rpM0Y1U1jFV12CW-21" parent="9j3x0rpM0Y1U1jFV12CW-95" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;gradientColor=#97d077;strokeColor=#82b366;" value="Notification Service" vertex="1">
-          <mxGeometry height="86" width="210" x="34.17000000000007" y="117" as="geometry" />
+          <mxGeometry height="114" width="210" x="34.17" y="107" as="geometry" />
         </mxCell>
-        <mxCell id="9j3x0rpM0Y1U1jFV12CW-22" parent="9j3x0rpM0Y1U1jFV12CW-21" style="text;strokeColor=#82b366;fillColor=#d5e8d4;align=center;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;gradientColor=#97d077;" value="Microservicio de Notificaciones" vertex="1">
-          <mxGeometry height="26" width="210" y="26" as="geometry" />
+        <mxCell id="9j3x0rpM0Y1U1jFV12CW-22" parent="9j3x0rpM0Y1U1jFV12CW-21" style="text;strokeColor=#82b366;fillColor=#d5e8d4;align=center;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;gradientColor=#97d077;" value="&lt;b&gt;Microservicio de Notificaciones&lt;/b&gt;&lt;div&gt;Procesa ReservaConfirmadaEvent y determina el canal de envío.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="54" width="210" y="26" as="geometry" />
         </mxCell>
         <mxCell id="9j3x0rpM0Y1U1jFV12CW-23" parent="9j3x0rpM0Y1U1jFV12CW-21" style="line;strokeWidth=1;fillColor=#d5e8d4;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=#82b366;labelPerimeter=1;gradientColor=#97d077;" value="" vertex="1">
-          <mxGeometry height="8" width="210" y="52" as="geometry" />
+          <mxGeometry height="8" width="210" y="80" as="geometry" />
         </mxCell>
         <mxCell id="9j3x0rpM0Y1U1jFV12CW-24" parent="9j3x0rpM0Y1U1jFV12CW-21" style="text;strokeColor=#82b366;fillColor=#d5e8d4;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;gradientColor=#97d077;" value="Solo diseño / consumer Asincronico" vertex="1">
-          <mxGeometry height="26" width="210" y="60" as="geometry" />
+          <mxGeometry height="26" width="210" y="88" as="geometry" />
         </mxCell>
         <mxCell id="9j3x0rpM0Y1U1jFV12CW-25" parent="9j3x0rpM0Y1U1jFV12CW-95" style="shape=message;html=1;html=1;outlineConnect=0;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;labelPerimeter=1;fillColor=#d5e8d4;gradientColor=#97d077;strokeColor=#82b366;" value="" vertex="1">
           <mxGeometry height="63" width="94.5" x="91.92000000000007" y="37" as="geometry" />
@@ -176,8 +185,8 @@
         <mxCell id="9j3x0rpM0Y1U1jFV12CW-48" parent="9j3x0rpM0Y1U1jFV12CW-79" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=26;gradientColor=#97d077;" value="3" vertex="1">
           <mxGeometry height="30" width="60" x="1.5000000000001137" y="18.5" as="geometry" />
         </mxCell>
-        <mxCell id="9j3x0rpM0Y1U1jFV12CW-96" parent="1" style="text;whiteSpace=wrap;html=1;fontColor=light-dark(#FFFFFF,#FFFFFF);align=center;" value="&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;Publica el evento&lt;/span&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;&amp;nbsp;&#39;ReservaConfirmadaEvent&#39;&lt;/span&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="40" width="270" x="212" y="153" as="geometry" />
+        <mxCell id="9j3x0rpM0Y1U1jFV12CW-96" parent="1" style="text;whiteSpace=wrap;html=1;fontColor=light-dark(#FFFFFF,#FFFFFF);align=center;" value="&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;Publica el evento&lt;/span&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;&amp;nbsp;&#39;ReservaConfirmadaEvent&#39;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;Solo despues de Confirmar&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;&amp;nbsp;la reserva&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="270" x="212" y="153" as="geometry" />
         </mxCell>
         <mxCell id="9j3x0rpM0Y1U1jFV12CW-97" connectable="0" parent="1" style="group;fillColor=none;strokeColor=none;gradientColor=#b3b3b3;" value="" vertex="1">
           <mxGeometry height="273" width="253" x="30" y="70" as="geometry" />
@@ -210,7 +219,7 @@
           <mxGeometry height="30" width="60" x="1.5" y="20" as="geometry" />
         </mxCell>
         <mxCell id="9j3x0rpM0Y1U1jFV12CW-98" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Se suscribe al evento" vertex="1">
-          <mxGeometry height="30" width="75" x="760" y="180" as="geometry" />
+          <mxGeometry height="30" width="75" x="760" y="186.31" as="geometry" />
         </mxCell>
         <mxCell id="9j3x0rpM0Y1U1jFV12CW-99" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="envia notificaciones" vertex="1">
           <mxGeometry height="30" width="75" x="1006.09" y="300" as="geometry" />

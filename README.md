@@ -18,30 +18,38 @@
 ### Arbol de carpetas
 
 ```
-TP-GRUPO3-PROG4
-    ├── docs                                     # Documentación y diagramas del proyecto
-    │   └── Prompts                              # Prompts de IA utilizados por el equipo
-    ├── start-all.sh                             # Script de inicio automatizado (Linux/macOS)
-    ├── iniciar-sistema.bat                      # Script de inicio automatizado (Windows)
-    ├── Availability                             # Componente de consulta de disponibilidad y frontend web
-    │   ├── Availability.API                     # API REST de catálogo y recepción de solicitudes
-    │   ├── Availability.Web                     # Frontend ASP.NET Core MVC (OIDC / Keycloak)
-    |   └── Availability.Infraestructure         # Biblioteca compartida de infraestructura y servicios
-    ├── Booking                                  # Microservicio de gestión de reservas y máquina de estados
-    │   └── src 
-    │       ├── Booking.API                      # API REST, worker de Azure Service Bus y cliente gRPC
-    |	    ├── Booking.Infrastructure          
-    |	    └── Booking.Service                  # Lógica de aplicación, cliente gRPC y contratos de Payment
-    ├── Payment                                  # Microservicio de procesamiento de pagos
-    │       ├── Payment.API                      # Servidor gRPC de cobros (Protos/payment.proto)
-    |       ├── Payment.BLL                      # Biblioteca de lógica de negocio y servicios de dominio
-    |       └── Payment.DAL                      # Biblioteca de persistencia y repositorios (SQLite)
-    ├── Authorization                            # Infraestructura de seguridad e identidad
-    │   ├── Auth.TestApi                         # API de pruebas de autenticación
-    │   ├── Keycloak                             # Configuración Docker Compose, realm (.json) y plantilla de variables
-    │   └── Shared.Authentication                # Biblioteca C# / .NET 8 compartida para validación de JWT    ├── FormatoLogsAuditoria.md                  # Estándar obligatorio de logging de auditoría y trazabilidad
-    ├── TablaDeComponentes.md                    # Descripción de roles y componentes del sistema
-    └── README.md                                # Guía rápida de inicio local e integración
+TP-GRUPO3-PROG4/
+├── Authorization/                              # Seguridad y autenticación
+│   ├── Auth.TestApi/                           # API de pruebas de autenticación
+│   ├── Keycloak/                               # Docker Compose, realm y variables de Keycloak
+│   └── Shared.Authentication/                  # Biblioteca compartida para validar JWT
+│
+├── Availability/                               # Disponibilidad y sitio web
+│   ├── Availability.API/                       # API REST de eventos, asientos y reservas
+│   ├── Availability.Web/                       # Aplicación MVC con OpenID Connect
+│   └── Availability.Infraestructure/           # Persistencia SQLite y mensajería
+│
+├── Booking/                                    # Gestión y procesamiento de reservas
+│   └── src/
+│       ├── Booking.API/                        # API REST y worker de Azure Service Bus
+│       ├── Booking.Infrastructure/             # Persistencia PostgreSQL e infraestructura
+│       └── Booking.Service/                    # Lógica de aplicación y cliente gRPC de Payment
+│
+├── Payment/                                    # Procesamiento de pagos
+│   ├── Payment.API/                            # Servidor gRPC de pagos
+│   ├── Payment.BLL/                            # Lógica de negocio
+│   ├── Payment.DAL/                            # Acceso a datos y repositorios
+│   └── Payment.Domain/                         # Entidades y modelos de dominio
+│
+├── docs/                                       # Documentación del proyecto
+│   ├── Diagramas-apis/                         # Diagramas de las APIs
+│   └── Prompts/                                # Prompts de IA utilizados por el equipo
+│
+├── tp-grupo3.sln                               # Solución de Visual Studio
+├── docker-compose.yml                          # Contenedor PostgreSQL para Booking
+├── start-all.sh                                # Inicio automatizado para Bash
+├── iniciar-sistema.bat                         # Inicio automatizado para Windows
+└── README.md                                   # Documentación principal del proyecto
 ```
 
 ## Resumen del Sistema
