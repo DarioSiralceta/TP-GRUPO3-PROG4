@@ -1,4 +1,3 @@
-### Lautaro Heinse
 # Estándar de Logs de Auditoría
 
 Este documento define el formato obligatorio de logging estructurado que deben implementar todos los microservicios 
