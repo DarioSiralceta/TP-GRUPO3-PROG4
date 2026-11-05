@@ -1,0 +1,396 @@
+<mxfile host="Electron">
+  <diagram name="Payment" id="py">
+    <mxGraphModel dx="3850" dy="2289" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="py-2" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=40;fontStyle=1;fontColor=light-dark(#000000,#FFFFFF);" value="Payment gRPC API · N-Layer" vertex="1">
+          <mxGeometry height="60" width="1000" y="-260" as="geometry" />
+        </mxCell>
+        <mxCell id="py-3" parent="1" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=16;fontColor=light-dark(#333333,#DDDDDD);" value="Base armada desde la rama &lt;b&gt;feature/gRPC&lt;/b&gt; (Federico y gaborossi) al 28/10, 20:40. Solo están las clases con su nombre: atributos, métodos, flechas y notas se completan después. Las dependencias van de arriba hacia abajo: API → BLL → DAL, y BLL y DAL usan Domain." vertex="1">
+          <mxGeometry height="60" width="1500" y="-195" as="geometry" />
+        </mxCell>
+        <mxCell id="py-4" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=light-dark(#1BA1E2,#3EC1FF);fontColor=light-dark(#000000,#000000);strokeColor=light-dark(#006EAF,#0000FF);strokeWidth=5;opacity=80;fontSize=30;fontStyle=1;verticalAlign=top;align=left;spacingLeft=30;spacingTop=12;" value="Presentación · Payment.API (gRPC)" vertex="1">
+          <mxGeometry height="380" width="1180" y="-100" as="geometry" />
+        </mxCell>
+        <mxCell id="py-5" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=light-dark(#A20025,#FF5D5D);fontColor=#ffffff;strokeColor=#6F0000;strokeWidth=5;opacity=80;fontSize=30;fontStyle=1;verticalAlign=top;align=left;spacingLeft=30;spacingTop=12;" value="&lt;span class=&quot;&quot;&gt;&lt;span style=&quot;&quot;&gt;Lógica de negocio · Payment.BLL&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;&quot;&gt;&lt;sup class=&quot;superscript&quot;&gt;&lt;/sup&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="400" width="1180" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="py-6" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=light-dark(#008A00,#6CBA6B);fontColor=#ffffff;strokeColor=#005700;strokeWidth=5;opacity=80;fontSize=30;fontStyle=1;verticalAlign=top;align=left;spacingLeft=30;spacingTop=12;" value="Acceso a datos · Payment.DAL" vertex="1">
+          <mxGeometry height="400" width="1180" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="py-8" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="PaymentGrpcService" vertex="1">
+          <mxGeometry height="180" width="470" x="10" y="-10" as="geometry" />
+        </mxCell>
+        <mxCell id="cfHNCpF53c6xYyRTL883-1" parent="py-8" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="- readonly IPaymentService _paymentService&lt;br/&gt;- readonly ILogger&amp;lt;PaymentGrpcService&amp;gt; _logger" vertex="1">
+          <mxGeometry height="30" width="470" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-1" parent="py-8" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="+ PaymentGrpcService(IPaymentService paymentService, ILogger&amp;lt;PaymentGrpcService&amp;gt; logger)&lt;br/&gt;+ Task&amp;lt;ProcessPaymentResponse&amp;gt; ProcessPayment(ProcessPaymentRequest request, ServerCallContext context)&lt;br/&gt;- static Protos.PaymentStatus MapStatus(DomainPaymentStatus status)&lt;br/&gt;- static string MapErrorMessage(DomainPaymentStatus status)" vertex="1">
+          <mxGeometry height="114" width="470" y="66" as="geometry" />
+        </mxCell>
+        <mxCell id="py-9" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="«contrato gRPC»&lt;br&gt;payment.proto" vertex="1">
+          <mxGeometry height="180" width="300" x="550" y="-60" as="geometry" />
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-11" parent="py-9" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="+ rpc ProcessPayment(ProcessPaymentRequest) returns (ProcessPaymentResponse)&lt;br&gt;&lt;br&gt;ProcessPaymentRequest: booking_id, user_id, amount, currency&lt;br&gt;ProcessPaymentResponse: status, transaction_id, error_message&lt;br&gt;enum PaymentStatus: UNSPECIFIED=0, SUCCESS=1, DECLINED=2, UNAVAILABLE=3" vertex="1">
+          <mxGeometry height="134" width="300" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="py-10" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="Program" vertex="1">
+          <mxGeometry height="150" width="300" x="870" y="-72" as="geometry" />
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-2" parent="py-10" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;+ AddGrpc() y registro de dependencias (DI)&lt;br&gt;+ AddKeycloakAuthentication() / AddKeycloakAuthorization()&lt;br&gt;+ PaymentDbContext con UseSqlite(ConnectionStrings:PaymentDb)&lt;br&gt;+ UseAuthentication() / UseAuthorization()&lt;br&gt;+ MapGrpcService&amp;lt;PaymentGrpcService&amp;gt;()&lt;br&gt;.RequireAuthorization(&quot;CanProcessPayment&quot;)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="114" width="300" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="py-11" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="«interfaz»&lt;br&gt;IPaymentService" vertex="1">
+          <mxGeometry height="80" width="340" x="20" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-14" parent="py-11" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="+ Task&amp;lt;PaymentAttempt&amp;gt; ProcessPaymentAsync(string bookingId, string userId, decimal amount, string currency)" vertex="1">
+          <mxGeometry height="34" width="340" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="py-12" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="PaymentService" vertex="1">
+          <mxGeometry height="171" width="380" x="50" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-22" parent="py-12" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="- readonly IPaymentProvider _paymentProvider&lt;br/&gt;- readonly IPaymentRepository _paymentRepository&lt;br/&gt;- readonly ILogger&amp;lt;PaymentService&amp;gt; _logger" vertex="1">
+          <mxGeometry height="45" width="380" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-23" parent="py-12" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="+ PaymentService(IPaymentProvider paymentProvider, IPaymentRepository paymentRepository, ILogger&amp;lt;PaymentService&amp;gt; logger)&lt;br/&gt;+ Task&amp;lt;PaymentAttempt&amp;gt; ProcessPaymentAsync(string bookingId, string userId, decimal amount, string currency)" vertex="1">
+          <mxGeometry height="90" width="380" y="81" as="geometry" />
+        </mxCell>
+        <mxCell id="py-13" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="MockPaymentProvider" vertex="1">
+          <mxGeometry height="96" width="300" x="570" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-18" parent="py-13" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="- readonly PaymentStatus _result" vertex="1">
+          <mxGeometry height="30" width="300" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-19" parent="py-13" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="+ MockPaymentProvider(IConfiguration configuration)&lt;br&gt;+ PaymentStatus ProcessPayment()" vertex="1">
+          <mxGeometry height="30" width="300" y="66" as="geometry" />
+        </mxCell>
+        <mxCell id="py-14" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="«interfaz»&lt;br&gt;IPaymentRepository" vertex="1">
+          <mxGeometry height="90" width="370" x="50" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-31" parent="py-14" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="+ Task AddAsync(PaymentAttempt attempt)" vertex="1">
+          <mxGeometry height="44" width="370" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="py-15" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="PaymentRepository" vertex="1">
+          <mxGeometry height="120" width="380" x="20" y="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-34" parent="py-15" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="- readonly PaymentDbContext _context" vertex="1">
+          <mxGeometry height="30" width="380" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-35" parent="py-15" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="+ PaymentRepository(PaymentDbContext context)&lt;br/&gt;+ Task AddAsync(PaymentAttempt attempt)" vertex="1">
+          <mxGeometry height="54" width="380" y="66" as="geometry" />
+        </mxCell>
+        <mxCell id="py-16" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="PaymentDbContext" vertex="1">
+          <mxGeometry height="96" width="390" x="430" y="930" as="geometry" />
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-39" parent="py-16" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="&#xa;+ DbSet&amp;lt;PaymentAttempt&amp;gt; PaymentAttempts&#xa;&#xa;" vertex="1">
+          <mxGeometry height="30" width="390" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-40" parent="py-16" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="+ PaymentDbContext(DbContextOptions&amp;lt;PaymentDbContext&amp;gt; options)" vertex="1">
+          <mxGeometry height="30" width="390" y="66" as="geometry" />
+        </mxCell>
+        <mxCell id="py-19" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=30;fontStyle=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" value="Booking API" vertex="1">
+          <mxGeometry height="208" width="208" x="-420" y="-100" as="geometry" />
+        </mxCell>
+        <mxCell id="py-20" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=24;fontStyle=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" value="Authorization Server (Keycloak)" vertex="1">
+          <mxGeometry height="208" width="208" x="-420" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="py-21" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=26;fontStyle=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" value="Base de datos&amp;nbsp;" vertex="1">
+          <mxGeometry height="208" width="208" x="-420" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="py-22" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontColor=light-dark(#000000,#FFFFFF);" value="&lt;b&gt;Leyenda&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="300" y="1220" as="geometry" />
+        </mxCell>
+        <mxCell id="py-23" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="1270" as="sourcePoint" />
+            <mxPoint x="120" y="1270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="py-24" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontColor=light-dark(#000000,#FFFFFF);" value="Línea llena = usa (o la relación que dice el texto)" vertex="1">
+          <mxGeometry height="30" width="470" x="140" y="1255" as="geometry" />
+        </mxCell>
+        <mxCell id="py-25" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeWidth=3;endArrow=block;endFill=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="1315" as="sourcePoint" />
+            <mxPoint x="120" y="1315" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="py-26" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontColor=light-dark(#000000,#FFFFFF);" value="Punteada con triángulo vacío = implementa" vertex="1">
+          <mxGeometry height="30" width="470" x="140" y="1300" as="geometry" />
+        </mxCell>
+        <mxCell id="py-27" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;strokeColor=#9AA3B0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="1360" as="sourcePoint" />
+            <mxPoint x="120" y="1360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="py-28" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontColor=light-dark(#000000,#FFFFFF);" value="Gris gruesa = conexión externa (dice el protocolo)" vertex="1">
+          <mxGeometry height="30" width="470" x="140" y="1345" as="geometry" />
+        </mxCell>
+        <mxCell id="py-29" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeWidth=1;endArrow=none;endFill=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="1405" as="sourcePoint" />
+            <mxPoint x="120" y="1405" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="py-30" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontColor=light-dark(#000000,#FFFFFF);" value="Punteada finita = une una nota con su cuadro" vertex="1">
+          <mxGeometry height="30" width="470" x="140" y="1390" as="geometry" />
+        </mxCell>
+        <mxCell id="py-31" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontColor=light-dark(#000000,#FFFFFF);" value="«interfaz» = contrato · «enum» = lista de valores · + público · - privado" vertex="1">
+          <mxGeometry height="30" width="620" y="1450" as="geometry" />
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-6" edge="1" parent="1" source="LVcWmEAhlsUdlElcIDpK-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;exitX=0.295;exitY=1.011;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="py-11" value="">
+          <mxGeometry relative="1" x="-0.633" as="geometry">
+            <Array as="points">
+              <mxPoint x="148.7" y="190" />
+              <mxPoint x="150" y="190" />
+              <mxPoint x="150" y="210" />
+              <mxPoint x="540" y="210" />
+              <mxPoint x="540" y="450" />
+            </Array>
+            <mxPoint x="270" y="160" as="sourcePoint" />
+            <mxPoint x="390" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-7" edge="1" parent="1" source="LVcWmEAhlsUdlElcIDpK-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeWidth=3;endArrow=block;endFill=0;exitX=1.001;exitY=0.311;exitDx=0;exitDy=0;entryX=0;entryY=0.776;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" target="LVcWmEAhlsUdlElcIDpK-11" value="">
+          <mxGeometry relative="1" x="-0.2457" as="geometry">
+            <mxPoint x="280" y="170" as="sourcePoint" />
+            <mxPoint x="400" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-8" edge="1" parent="1" source="LVcWmEAhlsUdlElcIDpK-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;exitX=0.181;exitY=1.004;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1.003;entryY=0.947;entryDx=0;entryDy=0;entryPerimeter=0;" target="LVcWmEAhlsUdlElcIDpK-1" value="">
+          <mxGeometry relative="1" x="-0.1333" as="geometry">
+            <mxPoint x="863.0999999999999" y="117.36000000000001" as="sourcePoint" />
+            <mxPoint x="270" y="95.99999999999989" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-10" edge="1" parent="1" source="py-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="py-13" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="950" y="160" as="sourcePoint" />
+            <mxPoint x="1070" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-20" edge="1" parent="1" source="py-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="py-13" value="">
+          <mxGeometry relative="1" x="0.2638" as="geometry">
+            <mxPoint x="420" y="610" as="sourcePoint" />
+            <mxPoint x="570" y="597" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-24" edge="1" parent="1" source="py-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeWidth=3;endArrow=block;endFill=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.313;entryY=1.021;entryDx=0;entryDy=0;entryPerimeter=0;" target="LVcWmEAhlsUdlElcIDpK-14" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="145" y="530" />
+              <mxPoint x="126.4" y="530" />
+            </Array>
+            <mxPoint x="210" y="530" as="sourcePoint" />
+            <mxPoint x="330" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-32" edge="1" parent="1" source="py-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeWidth=3;endArrow=block;endFill=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.176;entryY=1.027;entryDx=0;entryDy=0;entryPerimeter=0;" target="LVcWmEAhlsUdlElcIDpK-31" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="230" y="980" as="sourcePoint" />
+            <mxPoint x="350" y="980" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-36" edge="1" parent="1" source="py-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" target="py-16" value="">
+          <mxGeometry relative="1" x="0.4" as="geometry">
+            <mxPoint x="460" y="1080" as="sourcePoint" />
+            <mxPoint x="580" y="1080" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-41" edge="1" parent="1" source="py-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;strokeColor=#9AA3B0;entryX=0.001;entryY=0.157;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.983;exitY=0.419;exitDx=0;exitDy=0;exitPerimeter=0;" target="py-8" value="">
+          <mxGeometry relative="1" x="-0.5346" as="geometry">
+            <mxPoint x="-210" y="27.5" as="sourcePoint" />
+            <mxPoint x="-90" y="27.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-42" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;strokeColor=#9AA3B0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" target="py-10" value="">
+          <mxGeometry relative="1" x="-0.922" as="geometry">
+            <Array as="points">
+              <mxPoint x="-212" y="240" />
+              <mxPoint x="1095" y="240" />
+            </Array>
+            <mxPoint x="-212" y="280" as="sourcePoint" />
+            <mxPoint x="-92" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-43" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;strokeColor=#9AA3B0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" target="py-16" value="">
+          <mxGeometry relative="1" x="-0.8142" as="geometry">
+            <Array as="points">
+              <mxPoint x="-212" y="954" />
+            </Array>
+            <mxPoint x="-212" y="950" as="sourcePoint" />
+            <mxPoint x="-92" y="950" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cfHNCpF53c6xYyRTL883-2" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="«interfaz»&lt;br&gt;IPaymentProvider" vertex="1">
+          <mxGeometry height="80" width="300" x="610" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="cfHNCpF53c6xYyRTL883-3" parent="cfHNCpF53c6xYyRTL883-2" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="+ ProcessPayment(): PaymentStatus" vertex="1">
+          <mxGeometry height="34" width="300" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="cfHNCpF53c6xYyRTL883-4" edge="1" parent="1" source="cfHNCpF53c6xYyRTL883-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;dashed=1;strokeWidth=3;endArrow=block;endFill=0;exitX=0.31;exitY=1.029;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.449;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" target="py-13" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="740" y="480" as="sourcePoint" />
+            <mxPoint x="860" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cfHNCpF53c6xYyRTL883-5" edge="1" parent="1" source="cfHNCpF53c6xYyRTL883-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="LVcWmEAhlsUdlElcIDpK-14" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="500" as="sourcePoint" />
+            <mxPoint x="920" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cfHNCpF53c6xYyRTL883-7" edge="1" parent="1" source="LVcWmEAhlsUdlElcIDpK-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="py-14" value="">
+          <mxGeometry relative="1" x="0.2638" as="geometry">
+            <Array as="points">
+              <mxPoint x="-70" y="643.5" />
+              <mxPoint x="-70" y="885" />
+            </Array>
+            <mxPoint x="-180" y="658" as="sourcePoint" />
+            <mxPoint x="-40" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cfHNCpF53c6xYyRTL883-8" edge="1" parent="1" source="LVcWmEAhlsUdlElcIDpK-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;exitX=0.996;exitY=0.649;exitDx=0;exitDy=0;exitPerimeter=0;" value="">
+          <mxGeometry relative="1" x="0.2996" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="679.4" />
+              <mxPoint x="460" y="520" />
+              <mxPoint x="640" y="520" />
+            </Array>
+            <mxPoint x="500" y="568" as="sourcePoint" />
+            <mxPoint x="640" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cfHNCpF53c6xYyRTL883-10" edge="1" parent="1" source="LVcWmEAhlsUdlElcIDpK-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;entryX=0.87;entryY=0.029;entryDx=0;entryDy=0;entryPerimeter=0;" target="py-12" value="">
+          <mxGeometry relative="1" x="0.0044" as="geometry">
+            <Array as="points">
+              <mxPoint x="1040.7" y="500" />
+              <mxPoint x="380.6" y="500" />
+            </Array>
+            <mxPoint x="1330" y="110" as="sourcePoint" />
+            <mxPoint x="1450" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cfHNCpF53c6xYyRTL883-11" edge="1" parent="1" source="LVcWmEAhlsUdlElcIDpK-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" target="LVcWmEAhlsUdlElcIDpK-35" value="">
+          <mxGeometry relative="1" x="0.0092" as="geometry">
+            <Array as="points">
+              <mxPoint x="1240" y="21" />
+              <mxPoint x="1240" y="1079.5" />
+            </Array>
+            <mxPoint x="1320" y="240" as="sourcePoint" />
+            <mxPoint x="1440" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cfHNCpF53c6xYyRTL883-12" edge="1" parent="1" source="LVcWmEAhlsUdlElcIDpK-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;exitX=0.42;exitY=0.971;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" target="py-16" value="">
+          <mxGeometry relative="1" x="-0.7366" as="geometry">
+            <Array as="points">
+              <mxPoint x="996" y="954" />
+            </Array>
+            <mxPoint x="1290" y="70" as="sourcePoint" />
+            <mxPoint x="1410" y="70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9Tnitw0a8xYTt7Goq75I-5" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="150" width="176" x="-404" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="9Tnitw0a8xYTt7Goq75I-3" parent="9Tnitw0a8xYTt7Goq75I-5" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="150" width="176" as="geometry" />
+        </mxCell>
+        <mxCell id="9Tnitw0a8xYTt7Goq75I-2" parent="9Tnitw0a8xYTt7Goq75I-5" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=0;" value="&lt;li&gt;&lt;p&gt;Realm: &lt;code&gt;realm-tp-prog4&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;JWT Authentication&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Audience: &lt;code&gt;payment-api&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Role: &lt;code&gt;payments.process&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;" vertex="1">
+          <mxGeometry height="30" width="150" x="14" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9Tnitw0a8xYTt7Goq75I-6" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="150" width="170" x="-400" y="950" as="geometry" />
+        </mxCell>
+        <mxCell id="9Tnitw0a8xYTt7Goq75I-7" parent="9Tnitw0a8xYTt7Goq75I-6" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="150" width="170" as="geometry" />
+        </mxCell>
+        <mxCell id="9Tnitw0a8xYTt7Goq75I-8" parent="9Tnitw0a8xYTt7Goq75I-6" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=0;" value="&lt;li&gt;&lt;p&gt;Motor: SQLite&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Archivo: payment.db&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Connection String:&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(#000000, var(--ge-light-color, #ffffff));&quot;&gt;Data Source=payment.db&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;" vertex="1">
+          <mxGeometry height="30" width="158.66666666666666" x="5.666666666666667" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9Tnitw0a8xYTt7Goq75I-9" connectable="0" parent="1" style="group" value="" vertex="1">
+          <mxGeometry height="470" width="400" x="1390" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="py-7" parent="9Tnitw0a8xYTt7Goq75I-9" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=light-dark(#E3C800,#FFF5B2);fontColor=light-dark(#000000,#000000);strokeColor=#B09500;strokeWidth=5;opacity=80;fontSize=30;fontStyle=1;verticalAlign=top;align=center;spacingTop=12;" value="Dominio · Payment.Domain" vertex="1">
+          <mxGeometry height="470" width="400" as="geometry" />
+        </mxCell>
+        <mxCell id="py-17" parent="9Tnitw0a8xYTt7Goq75I-9" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=36;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="PaymentAttempt" vertex="1">
+          <mxGeometry height="176" width="300" x="50" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-26" parent="py-17" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="+ Guid Id&lt;br&gt;+ Guid PaymentOperationId&lt;br&gt;+ string BookingId&lt;br&gt;+ string UserId&lt;br&gt;+ decimal Amount&lt;br&gt;+ string Currency&lt;br&gt;+ PaymentStatus Status&lt;br&gt;+ int AttemptNumber&lt;br&gt;+ DateTime CreatedAt" vertex="1">
+          <mxGeometry height="140" width="300" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="py-18" parent="9Tnitw0a8xYTt7Goq75I-9" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=46;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=13;swimlaneFillColor=light-dark(#FFFFFF,#FFFFFF);" value="«enum»&lt;br&gt;PaymentStatus" vertex="1">
+          <mxGeometry height="122" width="300" x="50" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-30" parent="py-18" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontColor=light-dark(#000000,#000000);" value="&#xa;+ Unspecified = 0&#xa;+ Success = 1&#xa;+ Declined = 2&#xa;+ Unavailable = 3&#xa;&#xa;" vertex="1">
+          <mxGeometry height="76" width="300" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-27" edge="1" parent="9Tnitw0a8xYTt7Goq75I-9" source="py-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="py-18" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="150" y="280" as="sourcePoint" />
+            <mxPoint x="270" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-21" edge="1" parent="9Tnitw0a8xYTt7Goq75I-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;entryX=0.17;entryY=0.008;entryDx=0;entryDy=0;entryPerimeter=0;" target="py-18" value="">
+          <mxGeometry relative="1" x="-0.75" as="geometry">
+            <mxPoint x="-520" y="290" as="sourcePoint" />
+            <mxPoint x="-400" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-33" edge="1" parent="1" source="LVcWmEAhlsUdlElcIDpK-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="LVcWmEAhlsUdlElcIDpK-26" value="">
+          <mxGeometry relative="1" x="-0.8512" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="890" />
+              <mxPoint x="1170" y="890" />
+              <mxPoint x="1170" y="516" />
+            </Array>
+            <mxPoint x="450" y="880" as="sourcePoint" />
+            <mxPoint x="1360" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cfHNCpF53c6xYyRTL883-9" edge="1" parent="1" source="LVcWmEAhlsUdlElcIDpK-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;entryX=-0.003;entryY=0.807;entryDx=0;entryDy=0;entryPerimeter=0;" target="LVcWmEAhlsUdlElcIDpK-26" value="">
+          <mxGeometry relative="1" x="0.108" as="geometry">
+            <Array as="points">
+              <mxPoint x="1333.1" y="660" />
+              <mxPoint x="1333.1" y="559" />
+            </Array>
+            <mxPoint x="430.00000000000006" y="684.6800000000002" as="sourcePoint" />
+            <mxPoint x="1333.06" y="575.9999999999999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-25" edge="1" parent="1" source="LVcWmEAhlsUdlElcIDpK-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" value="">
+          <mxGeometry relative="1" x="-0.6269" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="688.5" />
+              <mxPoint x="640" y="740" />
+            </Array>
+            <mxPoint x="420" y="680" as="sourcePoint" />
+            <mxPoint x="1440" y="740" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-29" edge="1" parent="1" source="LVcWmEAhlsUdlElcIDpK-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;exitX=-0.011;exitY=0.243;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontColor=light-dark(#000000,#999999);fillColor=#6a00ff;strokeColor=light-dark(#3700CC,#FFFFFF);" target="py-16" value="">
+          <mxGeometry relative="1" x="-0.8501" as="geometry">
+            <Array as="points">
+              <mxPoint x="1280" y="480" />
+              <mxPoint x="1280" y="978" />
+            </Array>
+            <mxPoint x="1070" y="590" as="sourcePoint" />
+            <mxPoint x="1190" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LVcWmEAhlsUdlElcIDpK-37" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeWidth=5;endArrow=classic;endFill=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" target="py-17" value="">
+          <mxGeometry relative="1" x="-0.9217" as="geometry">
+            <Array as="points">
+              <mxPoint x="1210" y="1100" />
+              <mxPoint x="1210" y="454" />
+            </Array>
+            <mxPoint x="400" y="1100" as="sourcePoint" />
+            <mxPoint x="520" y="1100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
