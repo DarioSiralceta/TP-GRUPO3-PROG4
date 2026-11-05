@@ -1,6 +1,4 @@
-using Booking.Infrastructure.Entities;
-using Booking.Infrastructure.Persistence;
-using Microsoft.EntityFrameworkCore;
+using Booking.Service.Interfaces;
 
 namespace Booking.API.Workers;
 
@@ -27,19 +25,9 @@ public sealed class BookingRetentionExpirationWorker : BackgroundService
             try
             {
                 using var scope = _scopeFactory.CreateScope();
-                var context = scope.ServiceProvider.GetRequiredService<BookingDbContext>();
-                var now = DateTime.UtcNow;
+                var bookingService = scope.ServiceProvider.GetRequiredService<IBookingService>();
 
-                // Update expired holds in one statement instead of loading each row.
-                var expiredCount = await context.Bookings
-                    .Where(booking =>
-                        booking.Status == BookingStatus.Retenida &&
-                        booking.ExpiresAt <= now)
-                    .ExecuteUpdateAsync(
-                        setters => setters.SetProperty(
-                            booking => booking.Status,
-                            BookingStatus.Vencida),
-                        stoppingToken);
+                var expiredCount = await bookingService.ExpireRetentionsAsync(stoppingToken);
 
                 if (expiredCount > 0)
                 {

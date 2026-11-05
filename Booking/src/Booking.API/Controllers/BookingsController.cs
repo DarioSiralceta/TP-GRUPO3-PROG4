@@ -2,6 +2,7 @@ using Booking.Infrastructure.Entities;
 using Booking.Service.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Booking.Service.Interfaces;
 
 namespace Booking.API.Controllers;
 

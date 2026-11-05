@@ -10,19 +10,9 @@ using Booking.Service.Services.Payment;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Npgsql;
+using Booking.Service.Interfaces;
 
 namespace Booking.Service.Services;
-
-public interface IBookingService
-{
-    Task<BookingEntity?> GetBookingByIdAsync(Guid id);
-
-    Task<List<string>> GetOccupiedSeatsAsync(string eventId);
-
-    Task<BookingEntity> ProcessReservationRequestAsync(
-        ReservationRequestedMessage request,
-        CancellationToken cancellationToken = default);
-}
 
 public class BookingService : IBookingService
 {
@@ -82,6 +72,20 @@ public class BookingService : IBookingService
             .ExecuteUpdateAsync(
                 setters => setters.SetProperty(
                     b => b.Status,
+                    BookingStatus.Vencida),
+                cancellationToken);
+    }
+
+    public async Task<int> ExpireRetentionsAsync(CancellationToken cancellationToken = default)
+    {
+        var now = DateTime.UtcNow;
+        return await _context.Bookings
+            .Where(booking =>
+                booking.Status == BookingStatus.Retenida &&
+                booking.ExpiresAt <= now)
+            .ExecuteUpdateAsync(
+                setters => setters.SetProperty(
+                    booking => booking.Status,
                     BookingStatus.Vencida),
                 cancellationToken);
     }

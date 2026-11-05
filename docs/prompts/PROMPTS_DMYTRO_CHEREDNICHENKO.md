@@ -73,6 +73,18 @@ Este documento conserva las consultas que influyeron en la arquitectura, los con
 
 **Resultado:** Se separó el cambio de estado por expiración de las consultas normales mediante `BookingRetentionExpirationWorker`. La comprobación de `RequestId` existente antes de procesar de nuevo preserva la idempotencia frente a entregas duplicadas de Service Bus.
 
+### Desacoplamiento del worker de expiración a través de la capa de servicio
+**Prompt:**
+> Right now, the background worker in Booking.API directly resolves BookingDbContext to run ExecuteUpdateAsync, bypassing the domain/service layer.
+>
+> Step 1: Add the method to IBookingService
+> Update the interface (in Booking.Service/Interfaces/IBookingService.cs):
+> Step 2: Implement ExpireRetentionsAsync in BookingService
+> Move ExecuteUpdateAsync LINQ logic into Booking.Service/Services/BookingService.cs
+> Step 3: Consume IBookingService inside BookingRetentionExpirationWorker
+> Refactor the worker in Booking.API/Workers/BookingRetentionExpirationWorker.cs to request IBookingService from the scope instead of BookingDbContext:
+**Resultado:** Se desacopló `BookingRetentionExpirationWorker` del acceso directo a la persistencia (`BookingDbContext`), encapsulando la ejecución por lotes de `ExecuteUpdateAsync` dentro de `IBookingService.ExpireRetentionsAsync` en la capa de servicios. Esto asegura el respeto de los límites arquitectónicos de capas (N-Layer) sin sacrificar la eficiencia de actualización masiva.
+
 ### Recuperación ante colisiones concurrentes en PostgreSQL
 
 **Prompt:**

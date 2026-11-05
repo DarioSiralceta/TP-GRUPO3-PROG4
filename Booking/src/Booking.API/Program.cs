@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Payment.API.Protos;
 using Shared.Authentication.Extensions;
 using Shared.Authentication.Services;
+using Booking.Service.Interfaces;
 
 
 var builder = WebApplication.CreateBuilder(args);
